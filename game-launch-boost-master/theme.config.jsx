@@ -1,82 +1,48 @@
-import { useRouter } from "nextra/hooks";
-import {
-  SITE_CONFIG,
-  SUPPORTED_LOCALES,
-  getDefaultLocale,
-  URL_PRIORITIES,
-} from "./config/site.js"; // 应该为 site.js 可能因为重命名引入更新导致错误
-
-// 主题配置
-export default {
-  // 基础配置
-  ...SITE_CONFIG,
-
-  // 功能开关配置
-  features: SITE_CONFIG.features,
-
-  // Logo 配置
-  logo: {
-    text: SITE_CONFIG.logo.text,
-    image: SITE_CONFIG.logo.image,
-    height: SITE_CONFIG.logo.height,
+const config = {
+  logo: <span>🍎 Fruitslash Online</span>,
+  project: {
+    link: 'https://github.com/jewelrydecornerforwork/fruitslash-online'
   },
-
-  // 主题主色调
-  primaryColor: SITE_CONFIG.primaryColor,
-
-  // 多语言支持
-  i18n: SITE_CONFIG.features.i18n
-    ? {
-        defaultLocale:
-          Object.entries(SUPPORTED_LOCALES).find(
-            ([_, config]) => config.isDefault
-          )?.[0] || Object.keys(SUPPORTED_LOCALES)[0],
-        locales: Object.keys(SUPPORTED_LOCALES),
-        config: Object.entries(SUPPORTED_LOCALES).map(([locale, config]) => ({
-          locale,
-          name: config.name,
-          ogLocale: config.ogLocale,
-          htmlLang: config.htmlLang,
-          titleSuffix: config.titleSuffix,
-          isDefault: config.isDefault,
-        })),
-      }
-    : undefined,
-
-  // SEO 配置
-  head: () => {
-    const { asPath, locale } = useRouter();
-    const defaultLocale = getDefaultLocale();
-    const currentLocale = SITE_CONFIG.features.i18n
-      ? SUPPORTED_LOCALES[locale] || defaultLocale
-      : defaultLocale;
-
-    return (
-      <>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta property="og:title" content={SITE_CONFIG.title} />
-        <meta property="og:site_name" content={SITE_CONFIG.siteName} />
-        <meta property="og:locale" content={currentLocale.ogLocale} />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="canonical" href={`${SITE_CONFIG.url}${asPath}`} />
-      </>
-    );
+  chat: {
+    link: 'https://discord.gg/fruitslash' // Optional: if you have Discord
   },
-
-  // sitemap 配置
-  sitemap: {
-    siteUrl: SITE_CONFIG.url,
-    generateRobotsTxt: true,
-    priority: URL_PRIORITIES,
-  },
-
-  // 导航配置
-  navigation: {
-    prev: true,
-    next: true,
-  },
-  // 页脚配置
+  docsRepositoryBase: 'https://github.com/jewelrydecornerforwork/fruitslash-online',
   footer: {
-    text: `${new Date().getFullYear()} © ${SITE_CONFIG.siteName}`,
+    text: (
+      <span>
+        {new Date().getFullYear()} © <a href="https://fruitslash-online.com" target="_blank">Fruitslash Online</a> - The Ultimate Fruit Slashing Game Platform
+      </span>
+    )
   },
-};
+  head: (
+    <>
+      <meta name="msapplication-TileColor" content="#ffffff" />
+      <meta name="theme-color" content="#ffffff" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta httpEquiv="Content-Language" content="en" />
+      <meta name="description" content="Fruitslash Online - Play the most addictive fruit slashing game. Multiple game modes, leaderboards, and endless fun!" />
+      <meta name="og:description" content="Fruitslash Online - Play the most addictive fruit slashing game. Multiple game modes, leaderboards, and endless fun!" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:image" content="https://fruitslash-online.com/og-image.png" />
+      <meta name="og:title" content="Fruitslash Online - Ultimate Fruit Slashing Game" />
+      <meta name="og:image" content="https://fruitslash-online.com/og-image.png" />
+      <meta name="apple-mobile-web-app-title" content="Fruitslash Online" />
+      <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon.png" />
+      <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+      <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+      <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000" />
+      <link rel="shortcut icon" href="/favicon.ico" />
+      <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+    </>
+  ),
+  search: {
+    component: false // We'll add custom search later
+  },
+  primaryHue: 30, // Orange theme for fruits
+  darkMode: true,
+  nextThemes: {
+    defaultTheme: 'dark'
+  }
+}
+
+export default config
