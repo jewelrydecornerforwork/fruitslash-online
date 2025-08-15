@@ -1,22 +1,21 @@
 // 多语言配置 至少设置一个，默认语言设置 isDefault: true, 如果需要启用多语言，需要设置 SITE_CONFIG 处 features.i18n = true
 // 重命名后检查 next.config.mjs 、theme.config.jsx 、next-sitemap.config.js pages/_document.tsx 中配置文件引入是否正确 注意都应该为 site.js / site
-
 const SUPPORTED_LOCALES = {
-  en: {
-    name: "English",
-    localeName: "English",
-    ogLocale: "en_US",
-    htmlLang: "en",
-    titleSuffix: "- Game Launch Boost",
-    isDefault: true,
-  },
   zh: {
     name: "简体中文",
     localeName: "简体中文",
     ogLocale: "zh_CN",
     htmlLang: "zh",
-    titleSuffix: "- Game Launch Boost",
-    // isDefault: true,
+    titleSuffix: "- 水果切切乐在线",
+    isDefault: true, // 改为中文默认
+  },
+  en: {
+    name: "English",
+    localeName: "English",
+    ogLocale: "en_US",
+    htmlLang: "en",
+    titleSuffix: "- Fruitslash Online",
+    // isDefault: false, // 英文作为第二语言
   },
 };
 
@@ -42,52 +41,66 @@ const i18nConfig = {
 
 // 网站基础配置
 const SITE_CONFIG = {
-  url: "https://example.com",
-  title: "Game Launch Boost",
-  twitter: "@example",
-  siteName: "Game Launch Boost",
+  url: "https://fruitslash-online.com", // 修改为你的域名
+  title: "Fruitslash Online - 最好玩的水果切切乐游戏", // 修改网站标题
+  twitter: "@fruitslash", // 修改Twitter账号（如果有的话）
+  siteName: "Fruitslash Online", // 修改网站名称
+  
   // Logo 配置
   logo: {
-    text: "Game Launch Boost",
-    image: "/logo.svg",
+    text: "🍎 Fruitslash Online", // 添加水果emoji和新名称
+    image: "/fruitslash-logo.svg", // 修改logo路径
     height: 32,
   },
-  // 主题主色调
-  primaryColor: "#81c869",
+  
+  // 主题主色调 - 改为水果主题色彩
+  primaryColor: "#ff4757", // 水果红色
+  
   // 功能开关配置
   features: {
-    i18n: true, // 是否启用多语言启用后将会读取 SUPPORTED_LOCALES 的默认语言作为网站语言
-    themeSwitch: true, // 是否启用主题切换
-    defaultTheme: "light", // 默认颜色模式: light 或 dark
+    i18n: true, // 保持多语言支持
+    themeSwitch: true, // 保持主题切换
+    defaultTheme: "light", // 默认颜色模式
   },
+  
   // 使用生成的 i18n 配置
   i18nConfig,
 };
 
-// sitemap URL 优先级配置
+// sitemap URL 优先级配置 - 修改为游戏网站相关页面
 const URL_PRIORITIES = [
   {
-    pattern: "^/$",
+    pattern: "^/$", // 首页
     priority: 1.0,
     changefreq: "daily",
   },
   {
-    pattern: "^/games",
+    pattern: "^/games/fruitslash$", // 主要游戏页面
+    priority: 0.95,
+    changefreq: "daily",
+  },
+  {
+    pattern: "^/games", // 游戏相关页面
     priority: 0.9,
     changefreq: "weekly",
   },
   {
-    pattern: "^/guides",
+    pattern: "^/leaderboard", // 排行榜页面
+    priority: 0.85,
+    changefreq: "daily",
+  },
+  {
+    pattern: "^/guides", // 游戏指南
     priority: 0.8,
     changefreq: "weekly",
   },
   {
-    pattern: "^/about",
+    pattern: "^/about", // 关于页面
     priority: 0.7,
     changefreq: "monthly",
   },
   {
-    pattern: ".*",
+    pattern: ".*", // 其他页面
     priority: 0.5,
     changefreq: "weekly",
   },
