@@ -1,21 +1,21 @@
 // 多语言配置 至少设置一个，默认语言设置 isDefault: true, 如果需要启用多语言，需要设置 SITE_CONFIG 处 features.i18n = true
 // 重命名后检查 next.config.mjs 、theme.config.jsx 、next-sitemap.config.js pages/_document.tsx 中配置文件引入是否正确 注意都应该为 site.js / site
 const SUPPORTED_LOCALES = {
-  zh: {
-    name: "简体中文",
-    localeName: "简体中文",
-    ogLocale: "zh_CN",
-    htmlLang: "zh",
-    titleSuffix: "- 水果切切乐在线",
-    isDefault: true, // 改为中文默认
-  },
   en: {
     name: "English",
     localeName: "English",
     ogLocale: "en_US",
     htmlLang: "en",
     titleSuffix: "- Fruitslash Online",
-    // isDefault: false, // 英文作为第二语言
+    isDefault: true, // 改为英文默认
+  },
+  zh: {
+    name: "简体中文",
+    localeName: "简体中文",
+    ogLocale: "zh_CN",
+    htmlLang: "zh",
+    titleSuffix: "- 水果切切乐在线",
+    // isDefault: false, // 中文作为第二语言
   },
 };
 
