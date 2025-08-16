@@ -11,7 +11,7 @@ google.com, pub-4996167737872209, DIRECT, f08c47fec0942fa0google.com, pub-499616
 google.com, pub-4440077550203864, DIRECT, f08c47fec0942fa0google.com, pub-4440077550203864, 直接, f08c47fec0942fa0
 rubiconproject.com, 20474, DIRECT, 0bfd66d529a55807rubiconproject.com, 20474, 直达, 0bfd66d529a55807
 rubiconproject.com, 20476, DIRECT, 0bfd66d529a55807rubiconproject.com, 20476, 直达, 0bfd66d529a55807
-appnexus.com, 11995, DIRECT, f5ab79cb980f11d1
+appnexus.com, 11995, DIRECT, f5ab79cb980f11d1appnexus.com, 11995, 直达, f5ab79cb980f11d1
 pubmatic.com, 158150, DIRECT, 5d62403b186f2acepubmatic.com, 158150, 直销, 5d62403b186f2ace
 pubmatic.com, 160474, DIRECT, 5d62403b186f2acepubmatic.com, 160474, 直销, 5d62403b186f2ace
 google.com, pub-5285623249468085, DIRECT, f08c47fec0942fa0google.com, pub-5285623249468085, 直接, f08c47fec0942fa0
@@ -31,30 +31,30 @@ openx.com, 537120563, RESELLER, 6a698e2ec38604c6 #33Across #hb #tagopenx.com, 53
 adyoulike.com, 1f301d3bcd723f5c372070bdfd142940, RESELLERadyoulike.com, 1f301d3bcd723f5c372070bdfd142940, 经销商
 # AdSolut  #广告解决方案
 Adsolut.in, 2578, RESELLERAdsolut.in，2578，经销商
-Playstream.media, 2578, RESELLER
-Pubmatic.com, 162175, RESELLER, 5d62403b186f2ace
-openx.com, 557904194, RESELLER, 6a698e2ec38604c6
-rubiconproject.com, 24872, DIRECT, 0bfd66d529a55807
+Playstream.media, 2578, RESELLERPlaystream.media，2578，经销商
+Pubmatic.com, 162175, RESELLER, 5d62403b186f2acePubmatic.com, 162175, 经销商, 5d62403b186f2ace
+openx.com, 557904194, RESELLER, 6a698e2ec38604c6openx.com, 557904194, 经销商, 6a698e2ec38604c6
+rubiconproject.com, 24872, DIRECT, 0bfd66d529a55807rubiconproject.com, 24872, 直达, 0bfd66d529a55807
 rubiconproject.com, 24874, DIRECT, 0bfd66d529a55807rubiconproject.com, 24874, 直达, 0bfd66d529a55807
 appnexus.com, 9988, RESELLERappnexus.com, 9988, 经销商
 indexexchange.com, 192769, RESELLER, 50b1c356f2c5c8fcindexexchange.com, 192769, 经销商, 50b1c356f2c5c8fc
 indexexchange.com, 192787, RESELLER, 50b1c356f2c5c8fcindexexchange.com, 192787, 经销商, 50b1c356f2c5c8fc
-publift.com, 01F0F6BYERJ5DC4874C703AFDR, DIRECT
-smartadserver.com, 4164, DIRECT, 060d053dcf45cbf3
-smartadserver.com, 4164-OB, RESELLER, 060d053dcf45cbf3
-contextweb.com, 560288, RESELLER, 89ff185a4c4e857c
-rubiconproject.com, 16114, RESELLER, 0bfd66d529a55807
-openx.com, 537149888, RESELLER, 6a698e2ec38604c6
-appnexus.com, 3703, RESELLER, f5ab79cb980f11d1
+publift.com, 01F0F6BYERJ5DC4874C703AFDR, DIRECTpublift.com, 01F0F6BYERJ5DC4874C703AFDR, 直达
+smartadserver.com, 4164, DIRECT, 060d053dcf45cbf3smartadserver.com, 4164, 直达, 060d053dcf45cbf3
+smartadserver.com, 4164-OB, RESELLER, 060d053dcf45cbf3smartadserver.com, 4164-OB, 经销商, 060d053dcf45cbf3
+contextweb.com, 560288, RESELLER, 89ff185a4c4e857ccontextweb.com, 560288, 经销商, 89ff185a4c4e857c
+rubiconproject.com, 16114, RESELLER, 0bfd66d529a55807rubiconproject.com, 16114, 经销商, 0bfd66d529a55807
+openx.com, 537149888, RESELLER, 6a698e2ec38604c6openx.com, 537149888, 经销商, 6a698e2ec38604c6
+appnexus.com, 3703, RESELLER, f5ab79cb980f11d1appnexus.com，3703，经销商，f5ab79cb980f11d1
 loopme.com, 5679, RESELLER, 6c8d5f95897a5a3bLoopme.com，5679，经销商，6c8d5f95897a5a3b
 xad.com, 958, RESELLER, 81cbf0a75a5e0e9axad.com，958，经销商，81cbf0a75a5e0e9a
 rhythmone.com, 2564526802, RESELLER, a670c89d4a324e47rhythmone.com, 2564526802, 经销商, a670c89d4a324e47
-smaato.com, 1100044045, RESELLER, 07bcf65f187117b4
-pubnative.net, 1006576, RESELLER, d641df8625486a7b
-verve.com, 15503, RESELLER, 0c8f5958fc2d6270
-adyoulike.com, b4bf4fdd9b0b915f746f6747ff432bde, RESELLER
-axonix.com, 57264, RESELLER
-admanmedia.com, 43, RESELLER
+smaato.com, 1100044045, RESELLER, 07bcf65f187117b4smaato.com，1100044045，经销商，07bcf65f187117b4
+pubnative.net, 1006576, RESELLER, d641df8625486a7bpubnative.net，1006576，经销商，d641df8625486a7b
+verve.com, 15503, RESELLER, 0c8f5958fc2d6270verve.com, 15503, 经销商, 0c8f5958fc2d6270
+adyoulike.com, b4bf4fdd9b0b915f746f6747ff432bde, RESELLERadyoulike.com, b4bf4fdd9b0b915f746f6747ff432bde, 经销商
+axonix.com, 57264, RESELLERaxonix.com, 57264, 经销商
+admanmedia.com, 43, RESELLERadmanmedia.com，43 岁，经销商
 smartadserver.com, 4012, RESELLERsmartadserver.com, 4012, 经销商
 smartadserver.com, 4016, RESELLERsmartadserver.com, 4016, 经销商
 smartadserver.com, 4071, RESELLERsmartadserver.com, 4071, 经销商
@@ -83,25 +83,25 @@ rubiconproject.com, 22884, RESELLER, 0bfd66d529a55807rubiconproject.com, 22884, 
 # Adagio  # 柔板
 adagio.io, 1416, DIRECT  adagio.io, 1416, 直接
 rubiconproject.com, 19116, RESELLER, 0bfd66d529a55807rubiconproject.com, 19116, 经销商, 0bfd66d529a55807
-pubmatic.com, 159110, RESELLER, 5d62403b186f2ace
-improvedigital.com, 1790, RESELLER
-onetag.com, 6b859b96c564fbe, RESELLER
-appnexus.com, 13099, RESELLER
+pubmatic.com, 159110, RESELLER, 5d62403b186f2acepubmatic.com, 159110, 经销商, 5d62403b186f2ace
+improvedigital.com, 1790, RESELLERimprovedigital.com，1790，经销商
+onetag.com, 6b859b96c564fbe, RESELLERonetag.com, 6b859b96c564fbe, 经销商
+appnexus.com, 13099, RESELLERappnexus.com，13099，经销商
 pubmatic.com, 161593, RESELLER, 5d62403b186f2acepubmatic.com, 161593, 经销商, 5d62403b186f2ace
 rubiconproject.com, 11006, RESELLER, 0bfd66d529a55807rubiconproject.com, 11006, 经销商, 0bfd66d529a55807
 33across.com, 0015a00002oUk4aAAC, RESELLER, bbea06d9c4d2853c33across.com, 0015a00002oUk4aAAC, 经销商, bbea06d9c4d2853c
 yahoo.com, 57289, RESELLER, e1a5b5b6e3255540yahoo.com, 57289, 经销商, e1a5b5b6e3255540
 appnexus.com, 10239, RESELLER, f5ab79cb980f11d1appnexus.com，10239，经销商，f5ab79cb980f11d1
 rubiconproject.com, 16414, RESELLER, 0bfd66d529a55807rubiconproject.com, 16414, 经销商, 0bfd66d529a55807
-pubmatic.com, 156423, RESELLER, 5d62403b186f2ace
-rubiconproject.com, 21642, RESELLER, 0bfd66d529a55807
-conversantmedia.com, 100141, RESELLER
-indexexchange.com, 191973, RESELLER, 50b1c356f2c5c8fc
-lijit.com, 367236, RESELLER, fafdf38b16bf6b2b
-openx.com, 538959099, RESELLER, 6a698e2ec38604c6
-rubiconproject.com, 17960, RESELLER, 0bfd66d529a55807
-freewheel.tv, 1568036, RESELLER
-freewheel.tv, 1568041, RESELLER
+pubmatic.com, 156423, RESELLER, 5d62403b186f2acepubmatic.com, 156423, 经销商, 5d62403b186f2ace
+rubiconproject.com, 21642, RESELLER, 0bfd66d529a55807rubiconproject.com, 21642, 经销商, 0bfd66d529a55807
+conversantmedia.com, 100141, RESELLERconversantmedia.com, 100141, 经销商
+indexexchange.com, 191973, RESELLER, 50b1c356f2c5c8fcindexexchange.com, 191973, 经销商, 50b1c356f2c5c8fc
+lijit.com, 367236, RESELLER, fafdf38b16bf6b2blijit.com, 367236, 经销商, fafdf38b16bf6b2b
+openx.com, 538959099, RESELLER, 6a698e2ec38604c6openx.com, 538959099, 经销商, 6a698e2ec38604c6
+rubiconproject.com, 17960, RESELLER, 0bfd66d529a55807rubiconproject.com, 17960, 经销商, 0bfd66d529a55807
+freewheel.tv, 1568036, RESELLERfreewheel.tv, 1568036, 经销商
+freewheel.tv, 1568041, RESELLERfreewheel.tv, 1568041, 经销商
 openx.com, 558899373, RESELLER, 6a698e2ec38604c6openx.com, 558899373, 经销商, 6a698e2ec38604c6
 e-planning.net, 83c06e81531537f4, RESELLER, c1ba615865ed87b2e-planning.net, 83c06e81531537f4, 经销商, c1ba615865ed87b2
 pubmatic.com, 156631, RESELLER, 5d62403b186f2acepubmatic.com, 156631, 经销商, 5d62403b186f2ace
@@ -227,15 +227,15 @@ markappmedia.site, 533994, RESELLERmarkappmedia.site, 533994, 经销商
 appnexus.com, 14416, RESELLER, f5ab79cb980f11d1appnexus.com，14416，经销商，f5ab79cb980f11d1
 vidoomy.com, 2252369, RESELLERvidoomy.com, 2252369, 经销商
 seedtag.com, 6752-1716-01, DIRECTseedtag.com, 6752-1716-01，直达
-xandr.com, 4009, DIRECT
+xandr.com, 4009, DIRECT  xandr.com, 4009, 直达
 advertising.com, 29034, DIRECTadvertising.com，29034，直接
 smartadserver.com, 3050, DIRECTsmartadserver.com, 3050, 直达
 seedtag.com, 61debd20903e3707004cffe3, DIRECTseedtag.com, 61debd20903e3707004cffe3, 直销
 rubiconproject.com, 17280, DIRECT, 0bfd66d529a55807rubiconproject.com, 17280, 直达, 0bfd66d529a55807
 pubmatic.com, 157743, DIRECT, 5d62403b186f2acepubmatic.com, 157743, 直销, 5d62403b186f2ace
 spotxchange.com, 249286, DIRECT, 7842df1d2fe2db34spotxchange.com, 249286, 直达, 7842df1d2fe2db34
-spotx.tv, 249286, DIRECT, 7842df1d2fe2db34
-33across.com, 0010b00002MptHCAAZ, DIRECT, bbea06d9c4d2853c
+spotx.tv, 249286, DIRECT, 7842df1d2fe2db34spotx.tv, 249286, 直拨, 7842df1d2fe2db34
+33across.com, 0010b00002MptHCAAZ, DIRECT, bbea06d9c4d2853c33across.com, 0010b00002MptHCAAZ, 直销, bbea06d9c4d2853c
 yahoo.com, 58578, DIRECT, e1a5b5b6e3255540yahoo.com, 58578, 直达, e1a5b5b6e3255540
 aol.com, 58578, DIRECT, e1a5b5b6e3255540aol.com, 58578, 直达, e1a5b5b6e3255540
 adyoulike.com, 83d15ef72d387a1e60e5a1399a2b0c03, DIRECT, 4ad745ead2958bf7adyoulike.com, 83d15ef72d387a1e60e5a1399a2b0c03, 直接, 4ad745ead2958bf7
@@ -266,27 +266,27 @@ openx.com, 539924617, RESELLER, 6a698e2ec38604c6openx.com, 539924617, 经销商,
 pubmatic.com, 156212, RESELLER, 5d62403b186f2acepubmatic.com, 156212, 经销商, 5d62403b186f2ace
 rubiconproject.com, 17250, RESELLER, 0bfd66d529a55807rubiconproject.com, 17250, 经销商, 0bfd66d529a55807
 openx.com, 558758631, RESELLER, 6a698e2ec38604c6openx.com, 558758631, 经销商, 6a698e2ec38604c6
-video.unrulymedia.com, 2564526802, RESELLER, 6f752381ad5ec0e5
-loopme.com, 11712, RESELLER, 6c8d5f95897a5a3b
-adform.com, 3083, RESELLER
-freewheel.tv, 1137745, RESELLER
+video.unrulymedia.com, 2564526802, RESELLER, 6f752381ad5ec0e5video.unrulymedia.com, 2564526802, 经销商, 6f752381ad5ec0e5
+loopme.com, 11712, RESELLER, 6c8d5f95897a5a3bLoopme.com，11712，经销商，6c8d5f95897a5a3b
+adform.com, 3083, RESELLERadform.com, 3083, 经销商
+freewheel.tv, 1137745, RESELLERfreewheel.tv, 1137745, 经销商
 themediagrid.com, HIFRLS, DIRECT, 35d5010d7789b49dthemediagrid.com, HIFRLS, 直接, 35d5010d7789b49d
 gumgum.com, 15343, RESELLER, ffdef49475d318a9giggum.com，15343，经销商，ffdef49475d318a9
 mediafuse.com, 486, DIRECTmediafuse.com, 486, 直接
 appnexus.com, 9538, DIRECTappnexus.com, 9538, 直达
-amxrtb.com, 105199520, DIRECT
-sharethrough.com, Z7D3ygNP, DIRECT, d53b998a7bd4ecd2
-rubiconproject.com, 24434, DIRECT, 0bfd66d529a55807 #nobid
-video.unrulymedia.com, 2997140015, DIRECT
-mediafusemedia.net, 8cuv34pj4, DIRECT
-onetag.com, 7e9adb1ccca08d0, DIRECT
+amxrtb.com, 105199520, DIRECTamxrtb.com, 105199520, 直销
+sharethrough.com, Z7D3ygNP, DIRECT, d53b998a7bd4ecd2sharethrough.com, Z7D3ygNP, 直接, d53b998a7bd4ecd2
+rubiconproject.com, 24434, DIRECT, 0bfd66d529a55807 #nobidrubiconproject.com, 24434, 直达, 0bfd66d529a55807 #nobid
+video.unrulymedia.com, 2997140015, DIRECTvideo.unrulymedia.com, 2997140015, 直达
+mediafusemedia.net, 8cuv34pj4, DIRECTmediafusemedia.net，8cuv34pj4，直接
+onetag.com, 7e9adb1ccca08d0, DIRECTonetag.com, 7e9adb1ccca08d0, 直达
 indexexchange.com, 182257, RESELLER #unrulyindexexchange.com, 182257, 经销商 #unruly
 appnexus.com, 6849, RESELLER #unrulyappnexus.com, 6849, 经销商 #unruly
 rubiconproject.com, 15268, RESELLER #unrulyrubiconproject.com, 15268, 经销商 #unruly
 pubmatic.com, 159277, RESELLER, 5d62403b186f2ace #unrulypubmatic.com, 159277, 经销商, 5d62403b186f2ace #unruly
-advertising.com, 28605, RESELLER #unruly
-openx.com, 543878511, RESELLER, 6a698e2ec38604c6
-improvedigital.com, 1699, RESELLER
+advertising.com, 28605, RESELLER #unrulyadvertising.com，28605，经销商#unruly
+openx.com, 543878511, RESELLER, 6a698e2ec38604c6openx.com, 543878511, 经销商, 6a698e2ec38604c6
+improvedigital.com, 1699, RESELLERimprovedigital.com，1699，经销商
 appnexus.com, 12290, RESELLER #AdaptMXappnexus.com，12290，经销商#AdaptMX
 sovrn.com, 260380, RESELLERsovrn.com, 260380, 经销商
 pubmatic.com, 158355, RESELLER #AdaptMXpubmatic.com，158355，经销商#AdaptMX
@@ -342,7 +342,7 @@ pubmatic.com, 161527, RESELLER, 5d62403b186f2acepubmatic.com, 161527, 经销商,
 appnexus.com, 11786, RESELLERappnexus.com, 11786, 经销商
 sharethrough.com, AgltJqgT, RESELLER, d53b998a7bd4ecd2sharethrough.com，AgltJqgT，经销商，d53b998a7bd4ecd2
 sharethrough.com, 83218964, RESELLER, d53b998a7bd4ecd2sharethrough.com, 83218964, 经销商, d53b998a7bd4ecd2
-sharethrough.com, 5Kak0OX0, RESELLER, d53b998a7bd4ecd2
+sharethrough.com, 5Kak0OX0, RESELLER, d53b998a7bd4ecd2sharethrough.com, 5Kak0OX0, 经销商, d53b998a7bd4ecd2
 rhythmone.com, 1838093862, DIRECT, a670c89d4a324e47rhythmone.com, 1838093862, 直拨, a670c89d4a324e47
 video.unrulymedia.com, 1838093862, DIRECTvideo.unrulymedia.com，1838093862，直接
 advertising.com, 23089, RESELLERadvertising.com，23089，经销商
@@ -372,28 +372,28 @@ onetag.com, 5927d926323dc2c, DIRECTonetag.com, 5927d926323dc2c, 直销
 appnexus.com, 15941, RESELLERappnexus.com, 15941, 经销商
 smilewanted.com, 4880, RESELLERsmilewanted.com, 4880, 经销商
 pubmatic.com, 158810, RESELLER, 5d62403b186f2acepubmatic.com, 158810, 经销商, 5d62403b186f2ace
-smartadserver.com, 2491, RESELLER
-rubiconproject.com, 19814, RESELLER, 0bfd66d529a55807
-appnexus.com, 10040, RESELLER
+smartadserver.com, 2491, RESELLERsmartadserver.com, 2491, 经销商
+rubiconproject.com, 19814, RESELLER, 0bfd66d529a55807rubiconproject.com, 19814, 经销商, 0bfd66d529a55807
+appnexus.com, 10040, RESELLERappnexus.com, 10040, 经销商
 improvedigital.com, 1010, RESELLERimprovedigital.com，1010，经销商
 openx.com, 557083110, RESELLER, 6a698e2ec38604c6openx.com, 557083110, 经销商, 6a698e2ec38604c6
 sharethrough.com, TZ1ahFV8, RESELLER, d53b998a7bd4ecd2sharethrough.com，TZ1ahFV8，经销商，d53b998a7bd4ecd2
 adform.com, 3027, RESELLERadform.com, 3027, 经销商
-richaudience.com, NtMZGaQQTT, DIRECT
-appnexus.com, 8233, RESELLER
-pubmatic.com, 81564, RESELLER, 5d62403b186f2ace
-pubmatic.com, 156538, RESELLER, 5d62403b186f2ace
-rubiconproject.com, 13510, RESELLER
-adform.com, 1942, RESELLER
+richaudience.com, NtMZGaQQTT, DIRECTrichaudience.com、NtMZGaQQTT、直接
+appnexus.com, 8233, RESELLERappnexus.com, 8233, 经销商
+pubmatic.com, 81564, RESELLER, 5d62403b186f2acepubmatic.com, 81564, 经销商, 5d62403b186f2ace
+pubmatic.com, 156538, RESELLER, 5d62403b186f2acepubmatic.com, 156538, 经销商, 5d62403b186f2ace
+rubiconproject.com, 13510, RESELLERrubiconproject.com，13510，经销商
+adform.com, 1942, RESELLERadform.com，1942 年，经销商
 lijit.com, 249425, RESELLERlijit.com, 249425, 经销商
 smartadserver.com, 1999, RESELLER, 060d053dcf45cbf3smartadserver.com, 1999, 经销商, 060d053dcf45cbf3
 pubmatic.com, 156136, RESELLER, 5d62403b186f2acepubmatic.com, 156136, 经销商, 5d62403b186f2ace
 triplelift.com, 8683, RESELLER, 6c33edb13117fd86Triplelift.com，8683，经销商，6c33edb13117fd86
-betweendigital.com, 44770, DIRECT
-vidoomy.com, 9148331, RESELLER
-contextweb.com, 562827, RESELLER, 89ff185a4c4e857c
-smartadserver.com, 4467, RESELLER
-33across.com, 0015a00003DKg9ZAAT, RESELLER, bbea06d9c4d2853c
+betweendigital.com, 44770, DIRECTbetweendigital.com, 44770, 直达
+vidoomy.com, 9148331, RESELLERvidoomy.com, 9148331, 经销商
+contextweb.com, 562827, RESELLER, 89ff185a4c4e857ccontextweb.com, 562827, 经销商, 89ff185a4c4e857c
+smartadserver.com, 4467, RESELLERsmartadserver.com, 4467, 经销商
+33across.com, 0015a00003DKg9ZAAT, RESELLER, bbea06d9c4d2853c33across.com，0015a00003DKg9ZAAT，经销商，bbea06d9c4d2853c
 pubmatic.com, 159668, RESELLER, 5d62403b186f2acepubmatic.com, 159668, 经销商, 5d62403b186f2ace
 lijit.com, 273644, RESELLER, fafdf38b16bf6b2blijit.com, 273644, 经销商, fafdf38b16bf6b2b
 onetag.com, 5d1628750185ace, RESELLERonetag.com, 5d1628750185ace, 经销商
@@ -451,20 +451,20 @@ media.net, 8CUQ6928Q, RESELLERmedia.net，8CUQ6928Q，经销商
 triplelift.com, 9207-EB, DIRECT, 6c33edb13117fd86triplelift.com, 9207-EB, 直达, 6c33edb13117fd86
 triplelift.com, 9207, RESELLER, 6c33edb13117fd86Triplelift.com，9207，经销商，6c33edb13117fd86
 gumgum.com, 15729, RESELLER, ffdef49475d318a9giggum.com，15729，经销商，ffdef49475d318a9
-smartadserver.com, 4005, RESELLER
-video.unrulymedia.com, 78519861, DIRECT
-rhythmone.com, 78519861, RESELLER, a670c89d4a324e47
-smartadserver.com, 4872, RESELLER, 060d053dcf45cbf3
-pubmatic.com, 156439, RESELLER, 5d62403b186f2ace
-pubmatic.com, 154037, RESELLER, 5d62403b186f2ace
+smartadserver.com, 4005, RESELLERsmartadserver.com, 4005, 经销商
+video.unrulymedia.com, 78519861, DIRECTvideo.unrulymedia.com, 78519861, 直达
+rhythmone.com, 78519861, RESELLER, a670c89d4a324e47rhythmone.com, 78519861, 经销商, a670c89d4a324e47
+smartadserver.com, 4872, RESELLER, 060d053dcf45cbf3smartadserver.com, 4872, 经销商, 060d053dcf45cbf3
+pubmatic.com, 156439, RESELLER, 5d62403b186f2acepubmatic.com, 156439, 经销商, 5d62403b186f2ace
+pubmatic.com, 154037, RESELLER, 5d62403b186f2acepubmatic.com, 154037, 经销商, 5d62403b186f2ace
 lijit.com, 57729, DIRECT, fafdf38b16bf6b2b #SOVRNlijit.com, 57729, 直达, fafdf38b16bf6b2b #SOVRN
 lijit.com, 57729-eb, DIRECT, fafdf38b16bf6b2b #SOVRNlijit.com, 57729-eb, 直达, fafdf38b16bf6b2b #SOVRN
 pubmatic.com, 137711, RESELLER, 5d62403b186f2acepubmatic.com, 137711, 经销商, 5d62403b186f2ace
 contextweb.com, 562263, DIRECT, 89ff185a4c4e857ccontextweb.com, 562263, 直达, 89ff185a4c4e857c
 superawesome.tv, 541, DIRECT, 706a53c9da3b4ceesuperawesome.tv, 541, 直达, 706a53c9da3b4cee
 onetag.com, 753930a353d6990, DIRECTonetag.com，753930a353d6990，直接
-onetag.com, 753930a353d6990-OB, DIRECT
-google.com, pub-3769010358500643, RESELLER, f08c47fec0942fa0
+onetag.com, 753930a353d6990-OB, DIRECTonetag.com，753930a353d6990-OB，直接
+google.com, pub-3769010358500643, RESELLER, f08c47fec0942fa0google.com，pub-3769010358500643，经销商，f08c47fec0942fa0
 freewheel.tv, 20393, RESELLERfreewheel.tv, 20393, 经销商
 yahoo.com, 58905, RESELLER, e1a5b5b6e3255540yahoo.com, 58905, 经销商, e1a5b5b6e3255540
 freewheel.tv, 24377, RESELLERfreewheel.tv, 24377, 经销商
@@ -616,14 +616,14 @@ yieldmo.com, 2757543169808605705, RESELLERyieldmo.com，2757543169808605705，�
 appnexus.com, 15629, RESELLER, f5ab79cb980f11d1appnexus.com，15629，经销商，f5ab79cb980f11d1
 appnexus.com, 11801, RESELLERappnexus.com, 11801, 经销商
 aps.amazon.com, 48266a61-b3d9-4cb7-b172-553abc6a42a4, DIRECTaps.amazon.com, 48266a61-b3d9-4cb7-b172-553abc6a42a4, 直接
-rubiconproject.com, 24364, RESELLER, 0bfd66d529a55807
+rubiconproject.com, 24364, RESELLER, 0bfd66d529a55807rubiconproject.com, 24364, 经销商, 0bfd66d529a55807
 getmediamx.com, 1220964, DIRECTgetmediamx.com, 1220964, 直达
 loopme.com, 12733, RESELLER, 6c8d5f95897a5a3bLoopme.com，12733，经销商，6c8d5f95897a5a3b
 smartadserver.com, 4483, RESELLERsmartadserver.com, 4483, 经销商
 limpid.tv, 920964, DIRECTlimpid.tv, 920964, 直销
 sonobi.com, 3aed893727, RESELLER, d1a215d9eb5aee9esonobi.com，3aed893727，经销商，d1a215d9eb5aee9e
 appnexus.com, 15127, RESELLERappnexus.com，15127，经销商
-sharethrough.com, LxFeZvU4, RESELLER, d53b998a7bd4ecd2
+sharethrough.com, LxFeZvU4, RESELLER, d53b998a7bd4ecd2sharethrough.com，LxFeZvU4，经销商，d53b998a7bd4ecd2
 smaato.com, 1100057655, RESELLER, 07bcf65f187117b4smaato.com，1100057655，经销商，07bcf65f187117b4
 # OftMedia  #OftMedia
 appnexus.com, 3153, RESELLER, f5ab79cb980f11d1appnexus.com，3153，经销商，f5ab79cb980f11d1
@@ -631,7 +631,7 @@ appnexus.com, 3153, RESELLER, f5ab79cb980f11d1appnexus.com，3153，经销商，
 ogury.com, ff096106-0e25-4eec-9b0a-ad0034341a0e, DIRECTogury.com, ff096106-0e25-4eec-9b0a-ad0034341a0e, 直销
 appnexus.com, 11470, RESELLERappnexus.com, 11470, 经销商
 pubmatic.com, 163238, RESELLER, 5d62403b186f2acepubmatic.com, 163238, 经销商, 5d62403b186f2ace
-smartadserver.com, 4537, RESELLER, 060d053dcf45cbf3
+smartadserver.com, 4537, RESELLER, 060d053dcf45cbf3smartadserver.com, 4537, 经销商, 060d053dcf45cbf3
 rubiconproject.com, 25198, RESELLER, 0bfd66d529a55807rubiconproject.com, 25198, 经销商, 0bfd66d529a55807
 # OneTag  #OneTag
 onetag.com, 85cae3f3f8ba0dc, DIRECTonetag.com, 85cae3f3f8ba0dc, 直销
@@ -684,40 +684,40 @@ rubiconproject.com, 22328, RESELLER, 0bfd66d529a55807rubiconproject.com, 22328, 
 adform.com, 2631, RESELLER, 9f5210a2f0999e32adform.com, 2631, 经销商, 9f5210a2f0999e32
 indexexchange.com, 192051, RESELLERindexexchange.com, 192051, 经销商
 criteo.com, B-062041, RESELLER, 9fac4a4a87c2a44fcriteo.com, B-062041, 经销商, 9fac4a4a87c2a44f
-openx.com, 539625136, RESELLER
-smartadserver.com, 2640, RESELLER
-smartadserver.com, 2441, RESELLER
+openx.com, 539625136, RESELLERopenx.com, 539625136, 经销商
+smartadserver.com, 2640, RESELLERsmartadserver.com, 2640, 经销商
+smartadserver.com, 2441, RESELLERsmartadserver.com, 2441, 经销商
 sovrn.com, 249425, RESELLERsovrn.com, 249425, 经销商
 indexexchange.com, 201092, RESELLER, 50b1c356f2c5c8fcindexexchange.com, 201092, 经销商, 50b1c356f2c5c8fc
 sharethrough.com, 1udopJ1S, RESELLER, d53b998a7bd4ecd2sharethrough.com, 1udopJ1S, 经销商, d53b998a7bd4ecd2
 onetag.com, 7a4244b2979db22-OB, RESELLERonetag.com，7a4244b2979db22-OB，经销商
-onetag.com, 7a4244b2979db22, RESELLER
-google.com, pub-2128757167812663, RESELLER, f08c47fec0942fa0
-rubiconproject.com, 17210, RESELLER, 0bfd66d529a55807
-appnexus.com, 10264, RESELLER, f5ab79cb980f11d1
-indexexchange.com, 192450, RESELLER, 50b1c356f2c5c8fc
-criteo.com, B-060278, RESELLER, 9fac4a4a87c2a44f
-themediagrid.com, VIY354, RESELLER, 35d5010d7789b49d
-smartadserver.com, 1743, RESELLER, 060d053dcf45cbf3
-pubmatic.com, 156383, RESELLER, 5d62403b186f2ace
-adform.com, 2474, RESELLER, 9f5210a2f0999e32
-ogury.com, 9b3557e1-59f8-4656-849b-313b81c11ce6, RESELLER
-improvedigital.com, 2048, RESELLER
-sharethrough.com, QWxGEL6s, RESELLER, d53b998a7bd4ecd2
-sovrn.com, 257429, RESELLER, fafdf38b16bf6b2b
-lijit.com, 257429, RESELLER, fafdf38b16bf6b2b
-aps.amazon.com, 93aec77c-f6d2-45bd-affc-a85ab5a72683, RESELLER
-onetag.com, 59817ac704fe3e8, RESELLER
-betweendigital.com, 42666, RESELLER
-freewheel.com, 435713, RESELLER
+onetag.com, 7a4244b2979db22, RESELLERonetag.com，7a4244b2979db22，经销商
+google.com, pub-2128757167812663, RESELLER, f08c47fec0942fa0google.com，pub-2128757167812663，经销商，f08c47fec0942fa0
+rubiconproject.com, 17210, RESELLER, 0bfd66d529a55807rubiconproject.com, 17210, 经销商, 0bfd66d529a55807
+appnexus.com, 10264, RESELLER, f5ab79cb980f11d1appnexus.com，10264，经销商，f5ab79cb980f11d1
+indexexchange.com, 192450, RESELLER, 50b1c356f2c5c8fcindexexchange.com, 192450, 经销商, 50b1c356f2c5c8fc
+criteo.com, B-060278, RESELLER, 9fac4a4a87c2a44fcriteo.com，B-060278，经销商，9fac4a4a87c2a44f
+themediagrid.com, VIY354, RESELLER, 35d5010d7789b49dthemediagrid.com，VIY354，经销商，35d5010d7789b49d
+smartadserver.com, 1743, RESELLER, 060d053dcf45cbf3smartadserver.com, 1743, 经销商, 060d053dcf45cbf3
+pubmatic.com, 156383, RESELLER, 5d62403b186f2acepubmatic.com, 156383, 经销商, 5d62403b186f2ace
+adform.com, 2474, RESELLER, 9f5210a2f0999e32adform.com, 2474, 经销商, 9f5210a2f0999e32
+ogury.com, 9b3557e1-59f8-4656-849b-313b81c11ce6, RESELLERogury.com, 9b3557e1-59f8-4656-849b-313b81c11ce6, 经销商
+improvedigital.com, 2048, RESELLERimprovedigital.com，2048，经销商
+sharethrough.com, QWxGEL6s, RESELLER, d53b998a7bd4ecd2sharethrough.com, QWxGEL6s, 经销商, d53b998a7bd4ecd2
+sovrn.com, 257429, RESELLER, fafdf38b16bf6b2bsovrn.com, 257429, 经销商, fafdf38b16bf6b2b
+lijit.com, 257429, RESELLER, fafdf38b16bf6b2blijit.com, 257429, 经销商, fafdf38b16bf6b2b
+aps.amazon.com, 93aec77c-f6d2-45bd-affc-a85ab5a72683, RESELLERaps.amazon.com，93aec77c-f6d2-45bd-affc-a85ab5a72683，经销商
+onetag.com, 59817ac704fe3e8, RESELLERonetag.com, 59817ac704fe3e8, 经销商
+betweendigital.com, 42666, RESELLERbetweendigital.com, 42666, 经销商
+freewheel.com, 435713, RESELLERfreewheel.com, 435713, 经销商
 freewheel.com, 435777, RESELLERfreewheel.com, 435777, 经销商
 aps.amazon.com, bbbb77a7-1459-4c85-af82-cd7e0a773a21, RESELLERaps.amazon.com，bbbb77a7-1459-4c85-af82-cd7e0a773a21，经销商
 improvedigital.com, 1062, RESELLERimprovedigital.com，1062，经销商
-sovrn.com, 277115, RESELLER, fafdf38b16bf6b2b
-admanmedia.com, f85eeb2e, RESELLER
-lijit.com, 277115, RESELLER, fafdf38b16bf6b2b
-lijit.com, 277115-eb, RESELLER, fafdf38b16bf6b2b
-connectad.io, 236, RESELLER, 85ac85a30c93b3e5
+sovrn.com, 277115, RESELLER, fafdf38b16bf6b2bsovrn.com, 277115, 经销商, fafdf38b16bf6b2b
+admanmedia.com, f85eeb2e, RESELLERadmanmedia.com、f85eeb2e、经销商
+lijit.com, 277115, RESELLER, fafdf38b16bf6b2blijit.com, 277115, 经销商, fafdf38b16bf6b2b
+lijit.com, 277115-eb, RESELLER, fafdf38b16bf6b2blijit.com, 277115-eb, 经销商, fafdf38b16bf6b2b
+connectad.io, 236, RESELLER, 85ac85a30c93b3e5connectad.io，236，经销商，85ac85a30c93b3e5
 smilewanted.com, 3834, RESELLERsmilewanted.com, 3834, 经销商
 google.com, pub-9115524111147081, RESELLER, f08c47fec0942fa0google.com，pub-9115524111147081，经销商，f08c47fec0942fa0
 adyoulike.com, 0bce3861af1d6e06fbaaf13529e76b6e, RESELLERadyoulike.com, 0bce3861af1d6e06fbaaf13529e76b6e, 经销商
@@ -797,83 +797,83 @@ sharethrough.com, S6xYgb3B, RESELLER, d53b998a7bd4ecd2sharethrough.com, S6xYgb3B
 smartadserver.com, 2289, RESELLERsmartadserver.com, 2289, 经销商
 smartadserver.com, 2597, RESELLERsmartadserver.com, 2597, 经销商
 smartadserver.com, 3056, RESELLERsmartadserver.com, 3056, 经销商
-smartadserver.com, 3286, RESELLER
-smartadserver.com, 3459, RESELLER
-smartadserver.com, 3713, RESELLER
-spotim.market, sp_AYL2022, RESELLER, 077e5f709d15bdbb
-themediagrid.com, RYIDPE, RESELLER, 35d5010d7789b49d
-triplelift.com, 12911-EB, RESELLER, 6c33edb13117fd86
-vi.ai, 987349031605160, RESELLER
-videoffy.com, pub00076, RESELLER
-xad.com, 240, RESELLER, 81cbf0a75a5e0e9a
-adform.com, 582, RESELLER, 9f5210a2f0999e32
-rubiconproject.com, 20266, RESELLER, 0bfd66d529a55807
-smilewanted.com, 4258, RESELLER
-appnexus.com, 10736, RESELLER
-video.unrulymedia.com, 1295892552, RESELLER
+smartadserver.com, 3286, RESELLERsmartadserver.com, 3286, 经销商
+smartadserver.com, 3459, RESELLERsmartadserver.com, 3459, 经销商
+smartadserver.com, 3713, RESELLERsmartadserver.com, 3713, 经销商
+spotim.market, sp_AYL2022, RESELLER, 077e5f709d15bdbbspotim.market, sp_AYL2022, 经销商, 077e5f709d15bdbb
+themediagrid.com, RYIDPE, RESELLER, 35d5010d7789b49dthemediagrid.com，RYIDPE，经销商，35d5010d7789b49d
+triplelift.com, 12911-EB, RESELLER, 6c33edb13117fd86triplelift.com, 12911-EB, 经销商, 6c33edb13117fd86
+vi.ai, 987349031605160, RESELLERvi.ai，987349031605160，经销商
+videoffy.com, pub00076, RESELLERvideoffy.com，pub00076，经销商
+xad.com, 240, RESELLER, 81cbf0a75a5e0e9axad.com，240，经销商，81cbf0a75a5e0e9a
+adform.com, 582, RESELLER, 9f5210a2f0999e32adform.com, 582, 经销商, 9f5210a2f0999e32
+rubiconproject.com, 20266, RESELLER, 0bfd66d529a55807rubiconproject.com, 20266, 经销商, 0bfd66d529a55807
+smilewanted.com, 4258, RESELLERsmilewanted.com, 4258, 经销商
+appnexus.com, 10736, RESELLERappnexus.com, 10736, 经销商
+video.unrulymedia.com, 1295892552, RESELLERvideo.unrulymedia.com, 1295892552, 经销商
 # RiseSSP
-risecodes.com, 65831af2a67d3600018f098a, DIRECT
-sonobi.com, 4a289cdd79, RESELLER, d1a215d9eb5aee9e
-contextweb.com, 562615, RESELLER, 89ff185a4c4e857c
-themediagrid.com, 4DQHAP, RESELLER, 35d5010d7789b49d
-loopme.com, 11362, RESELLER, 6c8d5f95897a5a3b
-amxrtb.com, 105199691, RESELLER
-smartadserver.com, 4284, RESELLER
-adform.com, 3119, RESELLER, 9f5210a2f0999e32
-smaato.com, 1100057444, RESELLER, 07bcf65f187117b4
-# SmileWanted
-smilewanted.com, 5042, RESELLER
-33across.com, 001Pg000009Gtq2IAC, DIRECT, bbea06d9c4d2853c
-indexexchange.com, 193216, RESELLER
-152media.info, 152M728, RESELLER
-adwmg.com, 100746, RESELLER
-aniview.com, 5ef4bc022e79664d2b473869, RESELLER, 78b21b97965ec3f8
-betweendigital.com, 45128, DIRECT
-criteo.com, B-061307, RESELLER, 9fac4a4a87c2a44f
-freewheel.tv, 770449, DIRECT
-freewheel.tv, 774673, RESELLER
-freewheel.tv, 893873, RESELLER
-loopme.com, 11468, RESELLER, 6c8d5f95897a5a3b
-mediafuse.com, 729, RESELLER
-onetag.com, 7f5d22b0006ab5a, RESELLER
-outbrain.com, 0089b17935555149a32ed30dc72fc83f2d, RESELLER
-richaudience.com, lDF5XleM05, DIRECT
-smaato.com, 1100055901, RESELLER, 07bcf65f187117b4
-video.unrulymedia.com, 1767448067723954599, RESELLER
-videoheroes.tv, 212648, RESELLER, 064bc410192443d8
-Vidoomy.com, 7763608, RESELLER
-eskimi.com, 2020000768, RESELLER
-# Sonobi
-sonobi.com, 77d89ec7c4, DIRECT, d1a215d9eb5aee9e
-contextweb.com, 560606, RESELLER, 89ff185a4c4e857c
-# Sovrn
-lijit.com, 506144, DIRECT, fafdf38b16bf6b2b #SOVRN
-lijit.com, 506144-eb, DIRECT, fafdf38b16bf6b2b #SOVRN
+risecodes.com, 65831af2a67d3600018f098a, DIRECTrisecodes.com, 65831af2a67d3600018f098a, 直达
+sonobi.com, 4a289cdd79, RESELLER, d1a215d9eb5aee9esonobi.com、4a289cdd79、经销商、d1a215d9eb5aee9e
+contextweb.com, 562615, RESELLER, 89ff185a4c4e857ccontextweb.com, 562615, 经销商, 89ff185a4c4e857c
+themediagrid.com, 4DQHAP, RESELLER, 35d5010d7789b49dthemediagrid.com, 4DQHAP, 经销商, 35d5010d7789b49d
+loopme.com, 11362, RESELLER, 6c8d5f95897a5a3bLoopme.com，11362，经销商，6c8d5f95897a5a3b
+amxrtb.com, 105199691, RESELLERamxrtb.com, 105199691, 经销商
+smartadserver.com, 4284, RESELLERsmartadserver.com, 4284, 经销商
+adform.com, 3119, RESELLER, 9f5210a2f0999e32adform.com, 3119, 经销商, 9f5210a2f0999e32
+smaato.com, 1100057444, RESELLER, 07bcf65f187117b4smaato.com，1100057444，经销商，07bcf65f187117b4
+# SmileWanted  # 想要微笑
+smilewanted.com, 5042, RESELLERsmilewanted.com, 5042, 经销商
+33across.com, 001Pg000009Gtq2IAC, DIRECT, bbea06d9c4d2853c33across.com, 001Pg000009Gtq2IAC, 直销, bbea06d9c4d2853c
+indexexchange.com, 193216, RESELLERindexexchange.com, 193216, 经销商
+152media.info, 152M728, RESELLER152media.info，152M728，经销商
+adwmg.com, 100746, RESELLERadwmg.com, 100746, 经销商
+aniview.com, 5ef4bc022e79664d2b473869, RESELLER, 78b21b97965ec3f8aniview.com，5ef4bc022e79664d2b473869，经销商，78b21b97965ec3f8
+betweendigital.com, 45128, DIRECTbetweendigital.com, 45128, 直达
+criteo.com, B-061307, RESELLER, 9fac4a4a87c2a44fcriteo.com，B-061307，经销商，9fac4a4a87c2a44f
+freewheel.tv, 770449, DIRECTfreewheel.tv, 770449, 直销
+freewheel.tv, 774673, RESELLERfreewheel.tv, 774673, 经销商
+freewheel.tv, 893873, RESELLERfreewheel.tv, 893873, 经销商
+loopme.com, 11468, RESELLER, 6c8d5f95897a5a3bLoopme.com，11468，经销商，6c8d5f95897a5a3b
+mediafuse.com, 729, RESELLERmediafuse.com，729，经销商
+onetag.com, 7f5d22b0006ab5a, RESELLERonetag.com, 7f5d22b0006ab5a, 经销商
+outbrain.com, 0089b17935555149a32ed30dc72fc83f2d, RESELLERoutbrain.com, 0089b17935555149a32ed30dc72fc83f2d, 经销商
+richaudience.com, lDF5XleM05, DIRECTrichaudience.com, lDF5XleM05, 直接
+smaato.com, 1100055901, RESELLER, 07bcf65f187117b4smaato.com，1100055901，经销商，07bcf65f187117b4
+video.unrulymedia.com, 1767448067723954599, RESELLERvideo.unrulymedia.com，1767448067723954599，经销商
+videoheroes.tv, 212648, RESELLER, 064bc410192443d8videoheroes.tv，212648，经销商，064bc410192443d8
+Vidoomy.com, 7763608, RESELLERVidoomy.com，7763608，经销商
+eskimi.com, 2020000768, RESELLEReskimi.com，2020000768，经销商
+# Sonobi  # 索诺比
+sonobi.com, 77d89ec7c4, DIRECT, d1a215d9eb5aee9esonobi.com, 77d89ec7c4, 直达, d1a215d9eb5aee9e
+contextweb.com, 560606, RESELLER, 89ff185a4c4e857ccontextweb.com, 560606, 经销商, 89ff185a4c4e857c
+# Sovrn  # 索夫恩
+lijit.com, 506144, DIRECT, fafdf38b16bf6b2b #SOVRNlijit.com, 506144, 直达, fafdf38b16bf6b2b #SOVRN
+lijit.com, 506144-eb, DIRECT, fafdf38b16bf6b2b #SOVRNlijit.com, 506144-eb, 直达, fafdf38b16bf6b2b #SOVRN
 # Triplelift
-triplelift.com, 14375, DIRECT, 6c33edb13117fd86
-# Vidazoo
-vidazoo.com, 6580e119ad74027d455f54e5, DIRECT, b6ada874b4d7d0b2
-Xapads.com, 204666, RESELLER
-sharethrough.com, 0c3ba0a3, RESELLER, d53b998a7bd4ecd2
-freewheel.tv, 625393, RESELLER
-video.unrulymedia.com, 2743945877, RESELLER
-appnexus.com, 2794, RESELLER, f5ab79cb980f11d1
-pubmatic.com, 159470, RESELLER, 5d62403b186f2ace
-media.net, 8CUN4Y5Y3, RESELLER
-openx.com, 541017750, RESELLER, 6a698e2ec38604c6
-themediagrid.com, 3AW9JB, RESELLER, 35d5010d7789b49d
-lijit.com, 222372, RESELLER, fafdf38b16bf6b2b
-sharethrough.com, S2rESyUH, RESELLER, d53b998a7bd4ecd2
-supply.colossusssp.com, 181, RESELLER, 6c5b49d96ec1b458
-33across.com, 0014000001a0hIqAAI, RESELLER, bbea06d9c4d2853c
-aps.amazon.com, cfee765f-a9ba-4867-af16-2ff8d62ed9ba, RESELLER
+triplelift.com, 14375, DIRECT, 6c33edb13117fd86triplelift.com, 14375, 直达, 6c33edb13117fd86
+# Vidazoo  # 维达祖
+vidazoo.com, 6580e119ad74027d455f54e5, DIRECT, b6ada874b4d7d0b2vidazoo.com, 6580e119ad74027d455f54e5, 直接, b6ada874b4d7d0b2
+Xapads.com, 204666, RESELLERXapads.com, 204666, 经销商
+sharethrough.com, 0c3ba0a3, RESELLER, d53b998a7bd4ecd2sharethrough.com，0c3ba0a3，经销商，d53b998a7bd4ecd2
+freewheel.tv, 625393, RESELLERfreewheel.tv, 625393, 经销商
+video.unrulymedia.com, 2743945877, RESELLERvideo.unrulymedia.com, 2743945877, 经销商
+appnexus.com, 2794, RESELLER, f5ab79cb980f11d1appnexus.com，2794，经销商，f5ab79cb980f11d1
+pubmatic.com, 159470, RESELLER, 5d62403b186f2acepubmatic.com, 159470, 经销商, 5d62403b186f2ace
+media.net, 8CUN4Y5Y3, RESELLERmedia.net，8CUN4Y5Y3，经销商
+openx.com, 541017750, RESELLER, 6a698e2ec38604c6openx.com, 541017750, 经销商, 6a698e2ec38604c6
+themediagrid.com, 3AW9JB, RESELLER, 35d5010d7789b49dthemediagrid.com，3AW9JB，经销商，35d5010d7789b49d
+lijit.com, 222372, RESELLER, fafdf38b16bf6b2blijit.com, 222372, 经销商, fafdf38b16bf6b2b
+sharethrough.com, S2rESyUH, RESELLER, d53b998a7bd4ecd2sharethrough.com、S2rESyUH、经销商、d53b998a7bd4ecd2
+supply.colossusssp.com, 181, RESELLER, 6c5b49d96ec1b458Supply.colossusssp.com，181，经销商，6c5b49d96ec1b458
+33across.com, 0014000001a0hIqAAI, RESELLER, bbea06d9c4d2853c33across.com，0014000001a0hIqAAI，经销商，bbea06d9c4d2853c
+aps.amazon.com, cfee765f-a9ba-4867-af16-2ff8d62ed9ba, RESELLERaps.amazon.com、cfee765f-a9ba-4867-af16-2ff8d62ed9ba、经销商
 # Xapads
-Xapads.com, 211715, DIRECT
-33across.com, 001Pg00000HDbTOIA1, DIRECT, bbea06d9c4d2853c
-aps.amazon.com, 822c7bc2-d58f-4911-b8a2-95ee49e044c8, DIRECT
-# Zeta
-zetaglobal.net, 741, DIRECT
-sharethrough.com, UvcAx8IL, RESELLER, d53b998a7bd4ecd2
-sonobi.com, 296bf9795d, DIRECT, d1a215d9eb5aee9e
-video.unrulymedia.com, 919139201, RESELLER
-rubiconproject.com, 13380, RESELLER, 0bfd66d529a55807
+Xapads.com, 211715, DIRECTXapads.com, 211715, 直销
+33across.com, 001Pg00000HDbTOIA1, DIRECT, bbea06d9c4d2853c33across.com, 001Pg00000HDbTOIA1, 直销, bbea06d9c4d2853c
+aps.amazon.com, 822c7bc2-d58f-4911-b8a2-95ee49e044c8, DIRECTaps.amazon.com, 822c7bc2-d58f-4911-b8a2-95ee49e044c8, 直接
+# Zeta  # 泽塔
+zetaglobal.net, 741, DIRECTzetaglobal.net，741，直接
+sharethrough.com, UvcAx8IL, RESELLER, d53b998a7bd4ecd2sharethrough.com，UvcAx8IL，经销商，d53b998a7bd4ecd2
+sonobi.com, 296bf9795d, DIRECT, d1a215d9eb5aee9esonobi.com, 296bf9795d, 直达, d1a215d9eb5aee9e
+video.unrulymedia.com, 919139201, RESELLERvideo.unrulymedia.com, 919139201, 经销商
+rubiconproject.com, 13380, RESELLER, 0bfd66d529a55807rubiconproject.com, 13380, 经销商, 0bfd66d529a55807
