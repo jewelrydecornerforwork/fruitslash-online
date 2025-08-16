@@ -750,33 +750,6 @@ function openGame(gameId) {
         console.error('Error opening game page:', error);
     }
 }
-        
-        const game = window.allGames.find(g => g.id === gameId);
-        if (!game) {
-            console.error('Game not found:', gameId);
-            return;
-        }
-
-        const gameModal = document.getElementById('gameModal');
-        const gameFrame = document.getElementById('gameFrame');
-        const modalTitle = document.getElementById('modalTitle');
-        
-        if (!gameModal || !gameFrame || !modalTitle) {
-            console.error('Modal elements not found');
-            return;
-        }
-
-        modalTitle.textContent = game.title;
-        gameFrame.src = game.gameUrl;
-        gameModal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-        
-        console.log('Game opened successfully:', game.title);
-        
-    } catch (error) {
-        console.error('Error opening game:', error);
-    }
-}
 
 // 关闭游戏
 function closeGameModal() {
