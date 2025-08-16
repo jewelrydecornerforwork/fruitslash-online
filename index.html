@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FruitSlash.online - Play Free HTML5 Games</title>
+    <meta name="description" content="Play the best free HTML5 games online. No downloads required! Enjoy puzzle, action, arcade games and more.">
+    <meta name="keywords" content="HTML5 games, free games, online games, browser games, arcade games">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://fruitslash.online/">
+    <meta property="og:title" content="FruitSlash.online - Play Free HTML5 Games">
+    <meta property="og:description" content="Play the best free HTML5 games online. No downloads required!">
+    <meta property="og:image" content="https://fruitslash.online/assets/images/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://fruitslash.online/">
+    <meta property="twitter:title" content="FruitSlash.online - Play Free HTML5 Games">
+    <meta property="twitter:description" content="Play the best free HTML5 games online. No downloads required!">
+    <meta property="twitter:image" content="https://fruitslash.online/assets/images/og-image.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #6b46c1;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo::before {
+            content: "🎮";
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #6b46c1;
+        }
+
+        .search-container {
+            position: relative;
+        }
+
+        .search-input {
+            padding: 0.5rem 2.5rem 0.5rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 25px;
+            outline: none;
+            transition: border-color 0.3s;
+            width: 250px;
+        }
+
+        .search-input:focus {
+            border-color: #6b46c1;
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 0.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #6b46c1;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem 0;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .categories {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            color: #333;
+        }
+
+        .category-btn:hover, .category-btn.active {
+            background: #6b46c1;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(107, 70, 193, 0.4);
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .game-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .game-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #f093fb 0%, #f5576c 50%, #4facfe 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .game-card:hover .game-image::after {
+            opacity: 1;
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 2;
+        }
+
+        .game-card:hover .play-button {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .game-info {
+            padding: 1.5rem;
+        }
+
+        .game-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .game-description {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin-bottom: 1rem;
+        }
+
+        .game-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .game-tag {
+            background: #f3f4f6;
+            color: #6b46c1;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .game-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .game-modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 1000px;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .modal-header {
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #666;
+            line-height: 1;
+        }
+
+        .game-frame {
+            flex: 1;
+            border: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        .footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .search-input {
+                width: 200px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .games-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1rem;
+            }
+
+            .modal-content {
+                height: 90vh;
+                margin: 1rem;
+            }
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .no-games {
+            text-align: center;
+            padding: 3rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .no-games h3 {
+            margin-bottom: 1rem;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="#" class="logo">FruitSlash.online</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#games">Games</a></li>
+                <li><a href="#categories">Categories</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search games..." id="searchInput">
+                <button class="search-btn" id="searchBtn">🔍</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <section class="hero">
+            <h1>Play Amazing HTML5 Games</h1>
+            <p>Discover thousands of free browser games. No downloads, no registration required. Just click and play!</p>
+        </section>
+
+        <section class="categories">
+            <button class="category-btn active" data-category="all">All Games</button>
+            <button class="category-btn" data-category="action">Action</button>
+            <button class="category-btn" data-category="puzzle">Puzzle</button>
+            <button class="category-btn" data-category="arcade">Arcade</button>
+            <button class="category-btn" data-category="strategy">Strategy</button>
+            <button class="category-btn" data-category="sports">Sports</button>
+        </section>
+
+        <div class="loading" id="loading">Loading games...</div>
+        <div class="no-games" id="noGames" style="display: none;">
+            <h3>No games found</h3>
+            <p>Try adjusting your search or category filter</p>
+        </div>
+
+        <section class="games-grid" id="gamesGrid"></section>
+    </main>
+
+    <div class="game-modal" id="gameModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle">Game Title</h2>
+                <button class="close-btn" id="closeModal">&times;</button>
+            </div>
+            <iframe class="game-frame" id="gameFrame" src=""></iframe>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#privacy">Privacy Policy</a>
+                <a href="#terms">Terms of Service</a>
+                <a href="#contact">Contact Us</a>
+                <a href="#dmca">DMCA</a>
+            </div>
+            <p>&copy; 2025 FruitSlash.online. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Game data structure - Replace with your GamePix API calls
+        let allGames = [
+            {
+                id: 1,
+                title: "Fruit Ninja",
+                description: "Slice fruits and avoid bombs in this addictive arcade game!",
+                category: "arcade",
+                tags: ["fruit", "arcade", "casual"],
+                gameUrl: "https://games.gamepix.com/games/fruit-ninja/index.html",
+                thumbnail: "🍎"
+            },
+            {
+                id: 2,
+                title: "Puzzle Master",
+                description: "Challenge your mind with these brain-teasing puzzles.",
+                category: "puzzle",
+                tags: ["puzzle", "brain", "logic"],
+                gameUrl: "https://games.gamepix.com/games/puzzle-master/index.html",
+                thumbnail: "🧩"
+            },
+            {
+                id: 3,
+                title: "Space Adventure",
+                description: "Explore the galaxy and fight alien invaders!",
+                category: "action",
+                tags: ["space", "action", "adventure"],
+                gameUrl: "https://games.gamepix.com/games/space-adventure/index.html",
+                thumbnail: "🚀"
+            },
+            {
+                id: 4,
+                title: "Soccer Striker",
+                description: "Score amazing goals in this realistic soccer game.",
+                category: "sports",
+                tags: ["soccer", "sports", "football"],
+                gameUrl: "https://games.gamepix.com/games/soccer-striker/index.html",
+                thumbnail: "⚽"
+            },
+            {
+                id: 5,
+                title: "Castle Defense",
+                description: "Defend your castle from waves of enemies!",
+                category: "strategy",
+                tags: ["tower defense", "strategy", "medieval"],
+                gameUrl: "https://games.gamepix.com/games/castle-defense/index.html",
+                thumbnail: "🏰"
+            },
+            {
+                id: 6,
+                title: "Racing Thunder",
+                description: "High-speed racing action with stunning graphics.",
+                category: "action",
+                tags: ["racing", "cars", "speed"],
+                gameUrl: "https://games.gamepix.com/games/racing-thunder/index.html",
+                thumbnail: "🏎️"
+            }
+        ];
+
+        let filteredGames = [...allGames];
+        let currentCategory = 'all';
+        let currentSearch = '';
+
+        // DOM elements
+        const gamesGrid = document.getElementById('gamesGrid');
+        const gameModal = document.getElementById('gameModal');
+        const gameFrame = document.getElementById('gameFrame');
+        const modalTitle = document.getElementById('modalTitle');
+        const closeModal = document.getElementById('closeModal');
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const loading = document.getElementById('loading');
+        const noGames = document.getElementById('noGames');
+
+        // Initialize the page
+        function init() {
+            setTimeout(() => {
+                loading.style.display = 'none';
+                renderGames();
+            }, 1000);
+            
+            setupEventListeners();
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    categoryBtns.forEach(b => b.classList.remove('active'));
+                    e.target.classList.add('active');
+                    currentCategory = e.target.dataset.category;
+                    filterGames();
+                });
+            });
+
+            searchInput.addEventListener('input', (e) => {
+                currentSearch = e.target.value.toLowerCase();
+                filterGames();
+            });
+
+            searchBtn.addEventListener('click', () => {
+                filterGames();
+            });
+
+            closeModal.addEventListener('click', closeGameModal);
+            gameModal.addEventListener('click', (e) => {
+                if (e.target === gameModal) closeGameModal();
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && gameModal.classList.contains('active')) {
+                    closeGameModal();
+                }
+            });
+        }
+
+        // Filter games based on category and search
+        function filterGames() {
+            filteredGames = allGames.filter(game => {
+                const matchesCategory = currentCategory === 'all' || game.category === currentCategory;
+                const matchesSearch = !currentSearch || 
+                    game.title.toLowerCase().includes(currentSearch) ||
+                    game.description.toLowerCase().includes(currentSearch) ||
+                    game.tags.some(tag => tag.toLowerCase().includes(currentSearch));
+                
+                return matchesCategory && matchesSearch;
+            });
+
+            renderGames();
+        }
+
+        // Render games grid
+        function renderGames() {
+            if (filteredGames.length === 0) {
+                gamesGrid.style.display = 'none';
+                noGames.style.display = 'block';
+                return;
+            }
+
+            gamesGrid.style.display = 'grid';
+            noGames.style.display = 'none';
+
+            gamesGrid.innerHTML = filteredGames.map(game => `
+                <div class="game-card" onclick="openGame(${game.id})">
+                    <div class="game-image">
+                        ${game.thumbnail}
+                        <button class="play-button">▶️</button>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">${game.title}</h3>
+                        <p class="game-description">${game.description}</p>
+                        <div class="game-tags">
+                            ${game.tags.map(tag => `<span class="game-tag">${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Open game in modal
+        function openGame(gameId) {
+            const game = allGames.find(g => g.id === gameId);
+            if (!game) return;
+
+            modalTitle.textContent = game.title;
+            gameFrame.src = game.gameUrl;
+            gameModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close game modal
+        function closeGameModal() {
+            gameModal.classList.remove('active');
+            gameFrame.src = '';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', init);
+
+        // Add scroll animations
+        function addScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+
+            document.querySelectorAll('.game-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s, transform 0.5s';
+                observer.observe(card);
+            });
+        }
+
+        setTimeout(addScrollAnimations, 1100);
+    </script>
+</body>
+</html>
