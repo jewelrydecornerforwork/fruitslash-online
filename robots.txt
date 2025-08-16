@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://fruitslash.online/sitemap.xml
+
+# Disallow admin or sensitive areas (add as needed)
+Disallow: /admin/
+Disallow: /api/
+Disallow: /*.json$
+
+# Allow search engines to crawl games
+Allow: /games/
+Allow: /play/
+
+# Crawl delay (optional)
+Crawl-delay: 1
