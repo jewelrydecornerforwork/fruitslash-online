@@ -744,12 +744,12 @@ function filterGames() {
 // 打开游戏
 function openGame(gameId) {
     try {
-        console.log('Attempting to open game with ID:', gameId);
-        
-        if (!window.allGames) {
-            console.error('allGames not defined');
-            return;
-        }
+        console.log('Opening game page for game ID:', gameId);
+        window.location.href = `/game.html?id=${gameId}`;
+    } catch (error) {
+        console.error('Error opening game page:', error);
+    }
+}
         
         const game = window.allGames.find(g => g.id === gameId);
         if (!game) {
