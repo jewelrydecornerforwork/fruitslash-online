@@ -4,14 +4,26 @@ Allow: /
 # Sitemaps
 Sitemap: https://fruitslash.online/sitemap.xml
 
-# Disallow admin or sensitive areas (add as needed)
+# Allow search engines to crawl all game pages
+Allow: /game.html
+Allow: /game.html?id=*
+
+# Allow static pages
+Allow: /privacy.html
+Allow: /terms.html
+
+# Disallow admin or backend areas (if any in the future)
 Disallow: /admin/
 Disallow: /api/
 Disallow: /*.json$
 
-# Allow search engines to crawl games
-Allow: /games/
-Allow: /play/
-
-# Crawl delay (optional)
+# Crawl delay for better server performance
 Crawl-delay: 1
+
+# Special directives for game content
+# Allow crawling of game-related URLs
+Allow: /*?id=1
+Allow: /*?id=2
+Allow: /*?id=3
+Allow: /*?id=4
+Allow: /*?id=5
