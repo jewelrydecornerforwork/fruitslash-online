@@ -508,38 +508,109 @@ const gameData = {
         }
 
         // Initialize game page
-        function initGamePage() {
-            const gameId = getGameId();
-            const game = gameData[gameId];
+        // 修复的initGamePage函数 - 替换game.html中的相应函数
+
+function initGamePage() {
+    console.log('=== initGamePage called ===');
+    
+    const gameId = getGameId();
+    console.log('Game ID from URL:', gameId, 'Type:', typeof gameId);
+    
+    // 确保gameId是字符串（URL参数总是字符串）
+    const gameIdStr = String(gameId);
+    console.log('Looking for game with ID:', gameIdStr);
+    
+    // 打印所有可用的游戏ID
+    console.log('Available game IDs:', Object.keys(gameData));
+    
+    // 尝试获取游戏数据
+    let game = gameData[gameIdStr];
+    console.log('Direct lookup result:', game);
+    
+    if (!game) {
+        console.log('Direct lookup failed, trying alternative methods...');
+        
+        // 尝试数字ID
+        const gameIdNum = parseInt(gameId);
+        game = gameData[gameIdNum];
+        console.log('Numeric lookup result:', game);
+        
+        if (!game) {
+            console.error('Game not found for ID:', gameId);
+            console.log('Available games:', gameData);
             
-            if (!game) {
-                // Redirect to home if game not found
-                window.location.href = '/';
-                return;
-            }
+            // 不要重定向，显示错误信息
+            document.getElementById('gameTitle').textContent = `Game ${gameId} Not Found`;
+            document.getElementById('gameDescription').textContent = `Sorry, the game with ID "${gameId}" could not be found.`;
+            return;
+        }
+    }
 
-            // Update page content
-            document.getElementById('gameTitle').textContent = game.title;
-            document.getElementById('gameIcon').textContent = game.thumbnail;
-            document.getElementById('gameCategory').textContent = game.category;
-            document.getElementById('gameCategoryInfo').textContent = game.category;
-            document.getElementById('gameDescription').textContent = game.description;
-            document.getElementById('gameRating').textContent = game.rating;
-            document.getElementById('current-game').textContent = game.title;
-            document.title = `${game.title} - FruitSlash.online`;
+    console.log('Successfully found game:', game.title);
 
-            // Update tags
-            const tagsContainer = document.getElementById('gameTags');
+    try {
+        // 更新页面内容
+        document.getElementById('gameTitle').textContent = game.title;
+        document.getElementById('gameIcon').textContent = game.thumbnail;
+        document.getElementById('gameCategory').textContent = game.category;
+        document.getElementById('gameCategoryInfo').textContent = game.category;
+        document.getElementById('gameDescription').textContent = game.description;
+        document.getElementById('gameRating').textContent = game.rating;
+        document.getElementById('current-game').textContent = game.title;
+        document.title = `${game.title} - FruitSlash.online`;
+
+        // 更新标签
+        const tagsContainer = document.getElementById('gameTags');
+        if (tagsContainer) {
             tagsContainer.innerHTML = game.tags.map(tag => 
                 `<span class="tag">${tag}</span>`
             ).join('');
-
-            // Setup game loading
-            document.getElementById('startGameBtn').addEventListener('click', loadGame);
-
-            // Load recommended games
-            loadRecommendedGames(gameId);
         }
+
+        // 设置游戏加载
+        const startBtn = document.getElementById('startGameBtn');
+        if (startBtn) {
+            startBtn.addEventListener('click', function() {
+                loadGame(game);
+            });
+        }
+
+        // 加载推荐游戏
+        loadRecommendedGames(gameIdStr);
+        
+        console.log('Page initialization completed successfully');
+        
+    } catch (error) {
+        console.error('Error during page initialization:', error);
+    }
+}
+
+// 修复的游戏加载函数
+function loadGame(gameData) {
+    try {
+        console.log('Loading game:', gameData.title);
+        
+        const overlay = document.getElementById('playOverlay');
+        const iframe = document.getElementById('gameFrame');
+        
+        if (overlay) overlay.classList.add('hidden');
+        if (iframe) {
+            iframe.classList.remove('hidden');
+            iframe.src = gameData.gameUrl;
+            console.log('Game URL set to:', gameData.gameUrl);
+        }
+    } catch (error) {
+        console.error('Error loading game:', error);
+    }
+}
+
+// 修复的getGameId函数，确保返回正确类型
+function getGameId() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id') || '1';
+    console.log('Raw game ID from URL:', id);
+    return id;
+}
 
         // Load the game
         function loadGame() {
