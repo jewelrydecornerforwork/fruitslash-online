@@ -1,0 +1,19 @@
+# _redirects file for Cloudflare Pages
+
+# Redirect all traffic to HTTPS
+http://fruitslash.online/* https://fruitslash.online/:splat 301!
+http://www.fruitslash.online/* https://fruitslash.online/:splat 301!
+https://www.fruitslash.online/* https://fruitslash.online/:splat 301!
+
+# SPA fallback - redirect all non-file requests to index.html
+/*    /index.html   200
+
+# API routes (if you add backend later)
+/api/*  https://your-api-endpoint.com/api/:splat  200
+
+# Game embed routes
+/play/*  /index.html  200
+
+# Sitemap and robots
+/sitemap.xml  /sitemap.xml  200
+/robots.txt   /robots.txt   200
