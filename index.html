@@ -483,206 +483,329 @@
     </footer>
 
     <script>
-        // Game data structure - Replace with your GamePix API calls
-        let allGames = [
-            {
-                id: 1,
-                title: "Fruit Ninja",
-                description: "Slice fruits and avoid bombs in this addictive arcade game!",
-                category: "arcade",
-                tags: ["fruit", "arcade", "casual"],
-                gameUrl: "https://games.gamepix.com/games/fruit-ninja/index.html",
-                thumbnail: "🍎"
-            },
-            {
-                id: 2,
-                title: "Puzzle Master",
-                description: "Challenge your mind with these brain-teasing puzzles.",
-                category: "puzzle",
-                tags: ["puzzle", "brain", "logic"],
-                gameUrl: "https://games.gamepix.com/games/puzzle-master/index.html",
-                thumbnail: "🧩"
-            },
-            {
-                id: 3,
-                title: "Space Adventure",
-                description: "Explore the galaxy and fight alien invaders!",
-                category: "action",
-                tags: ["space", "action", "adventure"],
-                gameUrl: "https://games.gamepix.com/games/space-adventure/index.html",
-                thumbnail: "🚀"
-            },
-            {
-                id: 4,
-                title: "Soccer Striker",
-                description: "Score amazing goals in this realistic soccer game.",
-                category: "sports",
-                tags: ["soccer", "sports", "football"],
-                gameUrl: "https://games.gamepix.com/games/soccer-striker/index.html",
-                thumbnail: "⚽"
-            },
-            {
-                id: 5,
-                title: "Castle Defense",
-                description: "Defend your castle from waves of enemies!",
-                category: "strategy",
-                tags: ["tower defense", "strategy", "medieval"],
-                gameUrl: "https://games.gamepix.com/games/castle-defense/index.html",
-                thumbnail: "🏰"
-            },
-            {
-                id: 6,
-                title: "Racing Thunder",
-                description: "High-speed racing action with stunning graphics.",
-                category: "action",
-                tags: ["racing", "cars", "speed"],
-                gameUrl: "https://games.gamepix.com/games/racing-thunder/index.html",
-                thumbnail: "🏎️"
+const GAMEPIX_CONFIG = {
+    propertyId: '3L5E7',
+    feedUrl: 'https://feeds.gamepix.com/v2/json?sid=3L5E7',
+    embedBaseUrl: 'https://games.gamepix.com/games/',
+    publisherId: 'jewelrydecomfornework'
+};
+
+let allGames = [];
+let filteredGames = [];
+let currentCategory = 'all';
+let currentSearch = '';
+
+// DOM elements
+const gamesGrid = document.getElementById('gamesGrid');
+const gameModal = document.getElementById('gameModal');
+const gameFrame = document.getElementById('gameFrame');
+const modalTitle = document.getElementById('modalTitle');
+const closeModal = document.getElementById('closeModal');
+const searchInput = document.getElementById('searchInput');
+const searchBtn = document.getElementById('searchBtn');
+const categoryBtns = document.querySelectorAll('.category-btn');
+const loading = document.getElementById('loading');
+const noGames = document.getElementById('noGames');
+
+// 从GamePix RSS Feed加载游戏
+async function loadGamesFromGamePix() {
+    try {
+        document.getElementById('loading').style.display = 'block';
+        document.getElementById('gamesGrid').style.display = 'none';
+        
+        console.log('Loading games from GamePix...');
+        
+        // 使用CORS代理或直接访问
+        const feedUrl = `${GAMEPIX_CONFIG.feedUrl}&pagination=100&page=1`;
+        
+        const response = await fetch(feedUrl, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
             }
-        ];
-
-        let filteredGames = [...allGames];
-        let currentCategory = 'all';
-        let currentSearch = '';
-
-        // DOM elements
-        const gamesGrid = document.getElementById('gamesGrid');
-        const gameModal = document.getElementById('gameModal');
-        const gameFrame = document.getElementById('gameFrame');
-        const modalTitle = document.getElementById('modalTitle');
-        const closeModal = document.getElementById('closeModal');
-        const searchInput = document.getElementById('searchInput');
-        const searchBtn = document.getElementById('searchBtn');
-        const categoryBtns = document.querySelectorAll('.category-btn');
-        const loading = document.getElementById('loading');
-        const noGames = document.getElementById('noGames');
-
-        // Initialize the page
-        function init() {
-            setTimeout(() => {
-                loading.style.display = 'none';
-                renderGames();
-            }, 1000);
-            
-            setupEventListeners();
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
-
-        // Setup event listeners
-        function setupEventListeners() {
-            categoryBtns.forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    categoryBtns.forEach(b => b.classList.remove('active'));
-                    e.target.classList.add('active');
-                    currentCategory = e.target.dataset.category;
-                    filterGames();
-                });
-            });
-
-            searchInput.addEventListener('input', (e) => {
-                currentSearch = e.target.value.toLowerCase();
-                filterGames();
-            });
-
-            searchBtn.addEventListener('click', () => {
-                filterGames();
-            });
-
-            closeModal.addEventListener('click', closeGameModal);
-            gameModal.addEventListener('click', (e) => {
-                if (e.target === gameModal) closeGameModal();
-            });
-
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && gameModal.classList.contains('active')) {
-                    closeGameModal();
-                }
-            });
+        
+        const data = await response.json();
+        console.log('GamePix API Response:', data);
+        
+        // 处理GamePix Feed数据
+        if (data && data.games && Array.isArray(data.games)) {
+            allGames = data.games.map((game, index) => ({
+                id: game.id || index + 1,
+                title: game.title || game.name || 'Unknown Game',
+                description: game.description || 'Play this amazing HTML5 game!',
+                category: mapGameCategory(game.category || game.categories),
+                tags: extractTags(game),
+                gameUrl: game.url || `${GAMEPIX_CONFIG.embedBaseUrl}${game.id}/`,
+                thumbnail: game.thumb || game.thumbnail || game.image || '🎮',
+                width: game.width || 800,
+                height: game.height || 600
+            }));
+        } else {
+            throw new Error('Invalid data format from GamePix');
         }
+        
+        filteredGames = [...allGames];
+        document.getElementById('loading').style.display = 'none';
+        renderGames();
+        
+        console.log(`Successfully loaded ${allGames.length} games from GamePix`);
+        
+    } catch (error) {
+        console.error('Failed to load games from GamePix:', error);
+        loadFallbackGames();
+    }
+}
 
-        // Filter games based on category and search
-        function filterGames() {
-            filteredGames = allGames.filter(game => {
-                const matchesCategory = currentCategory === 'all' || game.category === currentCategory;
-                const matchesSearch = !currentSearch || 
-                    game.title.toLowerCase().includes(currentSearch) ||
-                    game.description.toLowerCase().includes(currentSearch) ||
-                    game.tags.some(tag => tag.toLowerCase().includes(currentSearch));
-                
-                return matchesCategory && matchesSearch;
-            });
-
-            renderGames();
+// 映射游戏分类
+function mapGameCategory(categories) {
+    if (!categories) return 'arcade';
+    
+    const categoryString = Array.isArray(categories) ? categories.join(' ').toLowerCase() : categories.toLowerCase();
+    
+    const categoryMap = {
+        'action': 'action',
+        'puzzle': 'puzzle', 
+        'arcade': 'arcade',
+        'strategy': 'strategy',
+        'sports': 'sports',
+        'racing': 'action',
+        'adventure': 'action',
+        'casual': 'arcade',
+        'multiplayer': 'arcade',
+        'shooter': 'action',
+        'platform': 'arcade',
+        'rpg': 'strategy'
+    };
+    
+    for (const [key, value] of Object.entries(categoryMap)) {
+        if (categoryString.includes(key)) {
+            return value;
         }
+    }
+    
+    return 'arcade';
+}
 
-        // Render games grid
-        function renderGames() {
-            if (filteredGames.length === 0) {
-                gamesGrid.style.display = 'none';
-                noGames.style.display = 'block';
-                return;
-            }
+// 提取游戏标签
+function extractTags(game) {
+    const tags = [];
+    
+    if (game.category) tags.push(game.category);
+    if (game.categories && Array.isArray(game.categories)) {
+        tags.push(...game.categories);
+    }
+    if (game.tags && Array.isArray(game.tags)) {
+        tags.push(...game.tags);
+    }
+    
+    return tags.length > 0 ? tags.slice(0, 3) : ['game'];
+}
 
-            gamesGrid.style.display = 'grid';
-            noGames.style.display = 'none';
+// 备用游戏数据
+function loadFallbackGames() {
+    console.log('Loading fallback games...');
+    
+    allGames = [
+        {
+            id: 1,
+            title: "Body Drop 3D",
+            description: "Amazing 3D physics game with realistic body movements!",
+            category: "action",
+            tags: ["3D", "physics", "action"],
+            gameUrl: "https://games.gamepix.com/games/body-drop-3d/",
+            thumbnail: "🏃"
+        },
+        {
+            id: 2,
+            title: "Funny Shooter 2",
+            description: "Hilarious shooting game with cartoon graphics!",
+            category: "action", 
+            tags: ["shooting", "funny", "action"],
+            gameUrl: "https://games.gamepix.com/games/funny-shooter-2/",
+            thumbnail: "🔫"
+        },
+        {
+            id: 3,
+            title: "Parmesan Partisan",
+            description: "Delicious puzzle game about cheese!",
+            category: "puzzle",
+            tags: ["puzzle", "food", "strategy"],
+            gameUrl: "https://games.gamepix.com/games/parmesan-partisan/",
+            thumbnail: "🧀"
+        },
+        {
+            id: 4,
+            title: "Three Cups Game",
+            description: "Classic shell game - find the ball!",
+            category: "puzzle",
+            tags: ["classic", "puzzle", "memory"],
+            gameUrl: "https://games.gamepix.com/games/three-cups-game/",
+            thumbnail: "🥤"
+        },
+        {
+            id: 5,
+            title: "Hoops & Fruits",
+            description: "Basketball meets fruit collection!",
+            category: "sports",
+            tags: ["basketball", "sports", "fruits"],
+            gameUrl: "https://games.gamepix.com/games/hoops-and-fruits/",
+            thumbnail: "🏀"
+        },
+        {
+            id: 6,
+            title: "TenTrix",
+            description: "Addictive block puzzle game!",
+            category: "puzzle",
+            tags: ["puzzle", "blocks", "tetris"],
+            gameUrl: "https://games.gamepix.com/games/tentrix/",
+            thumbnail: "🧩"
+        }
+    ];
+    
+    filteredGames = [...allGames];
+    document.getElementById('loading').style.display = 'none';
+    renderGames();
+}
 
-            gamesGrid.innerHTML = filteredGames.map(game => `
-                <div class="game-card" onclick="openGame(${game.id})">
-                    <div class="game-image">
-                        ${game.thumbnail}
-                        <button class="play-button">▶️</button>
-                    </div>
-                    <div class="game-info">
-                        <h3 class="game-title">${game.title}</h3>
-                        <p class="game-description">${game.description}</p>
-                        <div class="game-tags">
-                            ${game.tags.map(tag => `<span class="game-tag">${tag}</span>`).join('')}
-                        </div>
-                    </div>
+// 初始化函数
+function init() {
+    setupEventListeners();
+    loadGamesFromGamePix();
+}
+
+// 设置事件监听器
+function setupEventListeners() {
+    categoryBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            categoryBtns.forEach(b => b.classList.remove('active'));
+            e.target.classList.add('active');
+            currentCategory = e.target.dataset.category;
+            filterGames();
+        });
+    });
+
+    searchInput.addEventListener('input', (e) => {
+        currentSearch = e.target.value.toLowerCase();
+        filterGames();
+    });
+
+    searchBtn.addEventListener('click', () => {
+        filterGames();
+    });
+
+    closeModal.addEventListener('click', closeGameModal);
+    gameModal.addEventListener('click', (e) => {
+        if (e.target === gameModal) closeGameModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && gameModal.classList.contains('active')) {
+            closeGameModal();
+        }
+    });
+}
+
+// 过滤游戏
+function filterGames() {
+    filteredGames = allGames.filter(game => {
+        const matchesCategory = currentCategory === 'all' || game.category === currentCategory;
+        const matchesSearch = !currentSearch || 
+            game.title.toLowerCase().includes(currentSearch) ||
+            game.description.toLowerCase().includes(currentSearch) ||
+            game.tags.some(tag => tag.toLowerCase().includes(currentSearch));
+        
+        return matchesCategory && matchesSearch;
+    });
+
+    renderGames();
+}
+
+// 渲染游戏网格
+function renderGames() {
+    if (filteredGames.length === 0) {
+        gamesGrid.style.display = 'none';
+        noGames.style.display = 'block';
+        return;
+    }
+
+    gamesGrid.style.display = 'grid';
+    noGames.style.display = 'none';
+
+    gamesGrid.innerHTML = filteredGames.map(game => `
+        <div class="game-card" onclick="openGame(${game.id})">
+            <div class="game-image" ${game.thumbnail.startsWith('http') ? `style="background-image: url('${game.thumbnail}'); background-size: cover; background-position: center;"` : ''}>
+                ${!game.thumbnail.startsWith('http') ? game.thumbnail : ''}
+                <button class="play-button">▶️</button>
+            </div>
+            <div class="game-info">
+                <h3 class="game-title">${game.title}</h3>
+                <p class="game-description">${game.description}</p>
+                <div class="game-tags">
+                    ${game.tags.map(tag => `<span class="game-tag">${tag}</span>`).join('')}
                 </div>
-            `).join('');
-        }
+            </div>
+        </div>
+    `).join('');
+    
+    setTimeout(addScrollAnimations, 100);
+}
 
-        // Open game in modal
-        function openGame(gameId) {
-            const game = allGames.find(g => g.id === gameId);
-            if (!game) return;
+// 打开游戏模态框
+function openGame(gameId) {
+    const game = allGames.find(g => g.id === gameId);
+    if (!game) return;
 
-            modalTitle.textContent = game.title;
-            gameFrame.src = game.gameUrl;
-            gameModal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
+    modalTitle.textContent = game.title;
+    
+    // 构建游戏URL
+    let gameUrl = game.gameUrl;
+    if (!gameUrl.includes('?')) {
+        gameUrl += `?sid=${GAMEPIX_CONFIG.propertyId}`;
+    }
+    
+    gameFrame.src = gameUrl;
+    gameModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    
+    // 分析追踪
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'game_start', {
+            'game_name': game.title,
+            'game_category': game.category
+        });
+    }
+}
 
-        // Close game modal
-        function closeGameModal() {
-            gameModal.classList.remove('active');
-            gameFrame.src = '';
-            document.body.style.overflow = 'auto';
-        }
+// 关闭游戏模态框
+function closeGameModal() {
+    gameModal.classList.remove('active');
+    gameFrame.src = '';
+    document.body.style.overflow = 'auto';
+}
 
-        // Initialize when page loads
-        document.addEventListener('DOMContentLoaded', init);
+// 添加滚动动画
+function addScrollAnimations() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    });
 
-        // Add scroll animations
-        function addScrollAnimations() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            });
+    document.querySelectorAll('.game-card').forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = 'opacity 0.5s, transform 0.5s';
+        observer.observe(card);
+    });
+}
 
-            document.querySelectorAll('.game-card').forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                card.style.transition = 'opacity 0.5s, transform 0.5s';
-                observer.observe(card);
-            });
-        }
-
-        setTimeout(addScrollAnimations, 1100);
-    </script>
-</body>
-</html>
+// 页面加载完成后初始化
+document.addEventListener('DOMContentLoaded', init);
