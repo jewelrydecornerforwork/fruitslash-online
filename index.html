@@ -748,31 +748,42 @@
             });
         }
 
-        // 播放精选游戏 - 使用GamePix的Fruit Blaster嵌入URL
-       // 播放精选游戏 - 使用移动端兼容的URL
-function playFeaturedGame() {
-    const gamePreview = document.getElementById('gamePreview');
-    const previewContent = document.getElementById('previewContent');
-    const gameIframe = document.getElementById('featuredGameIframe');
-    
-    // 隐藏预览内容，显示游戏
-    previewContent.style.display = 'none';
-    gameIframe.classList.add('active');
-    gamePreview.classList.add('playing');
-    
-    // 检测设备类型并使用不同的URL
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    
-    if (isMobile) {
-        // 移动端使用不同的URL
-        gameIframe.src = 'https://games.gamepix.com/games/fruit-blaster/?pub_id=1';
-    } else {
-        // 桌面端使用原来的URL
-        gameIframe.src = 'https://play.gamepix.com/fruit-blaster/embed?sid=1';
-    }
-    
-    console.log('Starting Fruit Blaster in featured area');
-}
+        // 设置精选游戏 - 直接在首页播放
+        function setupFeaturedGame() {
+            document.getElementById('playFeaturedBtn').addEventListener('click', () => {
+                playFeaturedGame();
+            });
+        }
+
+        // 播放精选游戏 - 使用移动端兼容的URL
+        function playFeaturedGame() {
+            const gamePreview = document.getElementById('gamePreview');
+            const previewContent = document.getElementById('previewContent');
+            const gameIframe = document.getElementById('featuredGameIframe');
+            
+            // 隐藏预览内容，显示游戏
+            previewContent.style.display = 'none';
+            gameIframe.classList.add('active');
+            gamePreview.classList.add('playing');
+            
+            // 检测设备类型并使用不同的URL
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            
+            if (isMobile) {
+                // 移动端使用不同的URL
+                gameIframe.src = 'https://games.gamepix.com/games/fruit-blaster/?pub_id=1';
+            } else {
+                // 桌面端使用原来的URL
+                gameIframe.src = 'https://play.gamepix.com/fruit-blaster/embed?sid=1';
+            }
+            
+            console.log('Starting Fruit Blaster in featured area');
+        }
+
+        // 设置事件监听器
+        function setupEventListeners() {
+            // ... 其他代码
+        }
 
         // 设置事件监听器
         function setupEventListeners() {
