@@ -748,36 +748,33 @@
             });
         }
 
-        // 播放精选游戏 - 调试版本
+        // 播放精选游戏 - 带恢复功能
 function playFeaturedGame() {
     const gamePreview = document.getElementById('gamePreview');
     const previewContent = document.getElementById('previewContent');
     const gameIframe = document.getElementById('featuredGameIframe');
     
-    console.log('Elements found:', {
-        gamePreview: !!gamePreview,
-        previewContent: !!previewContent,
-        gameIframe: !!gameIframe
-    });
-    
-    // 隐藏预览内容，显示游戏
-    previewContent.style.display = 'none';
+    // 先显示游戏区域
     gameIframe.classList.add('active');
     gamePreview.classList.add('playing');
     
     // 设置游戏URL
     gameIframe.src = 'https://www.gamepix.com/embed/fruit-blaster';
     
-    // 监听iframe加载事件
-    gameIframe.onload = function() {
-        console.log('Game iframe loaded successfully');
-    };
+    // 3秒后如果没有加载成功，恢复按钮
+    setTimeout(() => {
+        if (!gameIframe.src || gameIframe.src === 'about:blank') {
+            console.log('Game failed to load, restoring button');
+            previewContent.style.display = 'flex';
+            gameIframe.classList.remove('active');
+            gamePreview.classList.remove('playing');
+        } else {
+            // 确认加载成功后再隐藏按钮
+            previewContent.style.display = 'none';
+        }
+    }, 3000);
     
-    gameIframe.onerror = function() {
-        console.log('Game iframe failed to load');
-    };
-    
-    console.log('Starting Fruit Blaster, iframe src set to:', gameIframe.src);
+    console.log('Starting Fruit Blaster in featured area');
 }
         // 设置事件监听器
         function setupEventListeners() {
