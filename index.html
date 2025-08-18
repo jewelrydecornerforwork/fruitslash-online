@@ -748,34 +748,22 @@
             });
         }
 
-        // 播放精选游戏 - 带恢复功能
-function playFeaturedGame() {
-    const gamePreview = document.getElementById('gamePreview');
-    const previewContent = document.getElementById('previewContent');
-    const gameIframe = document.getElementById('featuredGameIframe');
-    
-    // 先显示游戏区域
-    gameIframe.classList.add('active');
-    gamePreview.classList.add('playing');
-    
-    // 设置游戏URL
-    gameIframe.src = 'https://www.gamepix.com/embed/fruit-blaster';
-    
-    // 3秒后如果没有加载成功，恢复按钮
-    setTimeout(() => {
-        if (!gameIframe.src || gameIframe.src === 'about:blank') {
-            console.log('Game failed to load, restoring button');
-            previewContent.style.display = 'flex';
-            gameIframe.classList.remove('active');
-            gamePreview.classList.remove('playing');
-        } else {
-            // 确认加载成功后再隐藏按钮
+        // 播放精选游戏 - 使用GamePix的Fruit Blaster嵌入URL
+        function playFeaturedGame() {
+            const gamePreview = document.getElementById('gamePreview');
+            const previewContent = document.getElementById('previewContent');
+            const gameIframe = document.getElementById('featuredGameIframe');
+
+          // 隐藏预览内容，显示游戏
             previewContent.style.display = 'none';
+            gameIframe.classList.add('active');
+            gamePreview.classList.add('playing');
+            
+         // 使用GamePix提供的Fruit Blaster嵌入URL
+        gameIframe.src = 'https://play.gamepix.com/fruit-blaster/embed?sid=1';
+        console.log('Starting Fruit Blaster in featured area');
         }
-    }, 3000);
-    
-    console.log('Starting Fruit Blaster in featured area');
-}
+            
         // 设置事件监听器
         function setupEventListeners() {
             // 搜索功能
