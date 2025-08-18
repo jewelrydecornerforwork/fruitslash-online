@@ -221,66 +221,39 @@
         .play-featured:hover {
             background: #1d4ed8;
             transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+        }
+
+        /* 游戏iframe样式 - 初始隐藏 */
+        .game-iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 15px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .game-iframe.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .game-preview-content {
+            transition: all 0.5s ease;
+        }
+
+        .game-preview.playing .game-preview-content {
+            opacity: 0;
+            visibility: hidden;
         }
 
         .game-info {
             flex: 1;
-        }
-
-        .game-info h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: #1f2937;
-            text-align: center;
-        }
-
-        .game-description {
-            font-size: 1.2rem;
-            color: #6b7280;
-            margin-bottom: 2rem;
-            line-height: 1.8;
-            text-align: center;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .game-stats {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin-bottom: 2rem;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-value {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #2563eb;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: #6b7280;
-        }
-
-        .game-tags {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-        }
-
-        .tag {
-            background: #e0e7ff;
-            color: #3730a3;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
         }
 
         /* 分类导航 */
@@ -522,6 +495,7 @@
         .more-games-section {
             margin-top: 4rem;
         }
+
         @media (max-width: 768px) {
             .nav {
                 flex-direction: column;
@@ -621,50 +595,23 @@
             
             <div class="game-content">
                 <div class="featured-game" id="featuredGame">
-                    <div class="game-preview">
-                        <div class="game-icon" id="featuredIcon">🍎</div>
-                        <button class="play-featured" id="playFeaturedBtn">
-                            ▶️ Play Now - It's Free!
-                        </button>
-                    </div>
-                    
-                    <div class="game-info">
-                        <h2 id="featuredTitle">Fruit Crush Saga</h2>
-                        <p class="game-description" id="featuredDescription">
-                            Slice and crush delicious fruits in this addictive puzzle game! Match colorful fruits, create amazing combos, and experience the most satisfying fruit-crushing adventure ever!
-                        </p>
-                        
-                        <div class="game-stats">
-                            <div class="stat">
-                                <div class="stat-value">4.8</div>
-                                <div class="stat-label">Rating</div>
-                            </div>
-                            <div class="stat">
-                                <div class="stat-value">Free</div>
-                                <div class="stat-label">Price</div>
-                            </div>
-                            <div class="stat">
-                                <div class="stat-value">HTML5</div>
-                                <div class="stat-label">Platform</div>
-                            </div>
-                            <div class="stat">
-                                <div class="stat-value">1M+</div>
-                                <div class="stat-label">Players</div>
-                            </div>
+                    <div class="game-preview" id="gamePreview">
+                        <div class="game-preview-content" id="previewContent">
+                            <div class="game-icon" id="featuredIcon">🍎</div>
+                            <button class="play-featured" id="playFeaturedBtn">
+                                ▶️ Play Now
+                            </button>
                         </div>
-                        
-                        <div class="game-tags" id="featuredTags">
-                            <span class="tag">🍓 Fruit Matching</span>
-                            <span class="tag">🧩 Puzzle</span>
-                            <span class="tag">🆓 Free to Play</span>
-                            <span class="tag">📱 Mobile Friendly</span>
-                        </div>
+                        <iframe 
+                            class="game-iframe" 
+                            id="featuredGameIframe"
+                            src=""
+                            allowfullscreen>
+                        </iframe>
                     </div>
                 </div>
             </div>
         </div>
-
-
 
         <!-- 更多游戏部分 -->
         <div class="more-games-section">
@@ -710,17 +657,8 @@
         let currentSearch = '';
         let featuredGameId = 1;
 
-        // 游戏数据 - 水果粉碎机作为特色游戏
+        // 游戏数据 - 移除Body Drop 3D，从Funny Shooter 2开始
         const gameData = [
-            {
-                id: 1,
-                title: "Fruit Crush Saga",
-                description: "Slice and crush delicious fruits in this addictive puzzle game! Match colorful fruits, create amazing combos, and experience the most satisfying fruit-crushing adventure ever!",
-                category: "puzzle",
-                tags: ["fruit", "puzzle", "crush", "match"],
-                gameUrl: "https://games.gamepix.com/games/fruit-ninja/",
-                thumbnail: "🍎"
-            },
             {
                 id: 2,
                 title: "Funny Shooter 2",
@@ -782,21 +720,28 @@
             }, 1000);
         }
 
-        // 设置精选游戏
+        // 设置精选游戏 - 直接在首页播放
         function setupFeaturedGame() {
-            const featured = allGames[0]; // 使用第一个游戏作为精选
-            document.getElementById('featuredTitle').textContent = featured.title;
-            document.getElementById('featuredDescription').textContent = featured.description;
-            document.getElementById('featuredIcon').textContent = featured.thumbnail;
-            
-            const tagsContainer = document.getElementById('featuredTags');
-            tagsContainer.innerHTML = featured.tags.map(tag => 
-                `<span class="tag">${tag}</span>`
-            ).join('');
-
             document.getElementById('playFeaturedBtn').addEventListener('click', () => {
-                openGame(featured.id);
+                playFeaturedGame();
             });
+        }
+
+        // 播放精选游戏
+        function playFeaturedGame() {
+            const gamePreview = document.getElementById('gamePreview');
+            const previewContent = document.getElementById('previewContent');
+            const gameIframe = document.getElementById('featuredGameIframe');
+            
+            // 隐藏预览内容，显示游戏
+            previewContent.style.display = 'none';
+            gameIframe.classList.add('active');
+            gamePreview.classList.add('playing');
+            
+            // 加载水果忍者游戏（使用真实的GamePix URL）
+            gameIframe.src = 'https://games.gamepix.com/games/fruit-ninja/';
+            
+            console.log('Starting Fruit Crush Saga in featured area');
         }
 
         // 设置事件监听器
@@ -834,12 +779,9 @@
             renderGames();
         }
 
-        // 渲染游戏网格 - 只显示4个游戏（跳过第一个特色游戏）
+        // 渲染游戏网格 - 显示4个游戏（不包含已删除的Body Drop 3D）
         function renderGames() {
-            // 获取除了第一个特色游戏外的其他游戏，限制为4个
-            const moreGames = filteredGames.slice(1, 5);
-            
-            if (moreGames.length === 0) {
+            if (filteredGames.length === 0) {
                 gamesGrid.style.display = 'none';
                 noGames.style.display = 'block';
                 return;
@@ -848,7 +790,7 @@
             gamesGrid.style.display = 'grid';
             noGames.style.display = 'none';
 
-            gamesGrid.innerHTML = moreGames.map(game => `
+            gamesGrid.innerHTML = filteredGames.map(game => `
                 <div class="game-card" onclick="openGame(${game.id})">
                     <div class="game-image">
                         ${game.thumbnail}
