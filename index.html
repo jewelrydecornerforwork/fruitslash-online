@@ -119,7 +119,7 @@
 
         /* 主游戏展示区域 */
         .main-game-section {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 2rem auto;
             padding: 0 2rem;
         }
@@ -151,13 +151,11 @@
         }
 
         .game-content {
-            padding: 2rem;
+            padding: 3rem;
         }
 
         .featured-game {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
+            display: block;
             margin-bottom: 3rem;
         }
 
@@ -168,7 +166,9 @@
             padding: 2rem;
             text-align: center;
             position: relative;
-            min-height: 400px;
+            min-height: 600px;
+            width: 100%;
+            max-width: 1000px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -512,6 +512,16 @@
 
             .main-game-section {
                 padding: 0 1rem;
+                max-width: 100%;
+            }
+
+            .game-preview {
+                min-height: 400px;
+                padding: 1rem;
+            }
+
+            .game-content {
+                padding: 1rem;
             }
 
             .featured-game {
@@ -589,15 +599,15 @@
         <!-- 主游戏展示区 -->
         <div class="game-container">
             <div class="game-header">
-                <h1 class="game-title">🍎 Fruit Crush Saga</h1>
-                <p class="game-subtitle">Slice, match and crush your way to victory!</p>
+                <h1 class="game-title">🍇 Fruit Blaster</h1>
+                <p class="game-subtitle">Blast fruits and create explosive combos!</p>
             </div>
             
             <div class="game-content">
                 <div class="featured-game" id="featuredGame">
                     <div class="game-preview" id="gamePreview">
                         <div class="game-preview-content" id="previewContent">
-                            <div class="game-icon" id="featuredIcon">🍎</div>
+                            <div class="game-icon" id="featuredIcon">🍇</div>
                             <button class="play-featured" id="playFeaturedBtn">
                                 ▶️ Play Now
                             </button>
@@ -727,7 +737,7 @@
             });
         }
 
-        // 播放精选游戏
+        // 播放精选游戏 - 使用GamePix的Fruit Blaster嵌入URL
         function playFeaturedGame() {
             const gamePreview = document.getElementById('gamePreview');
             const previewContent = document.getElementById('previewContent');
@@ -738,10 +748,10 @@
             gameIframe.classList.add('active');
             gamePreview.classList.add('playing');
             
-            // 加载水果忍者游戏（使用真实的GamePix URL）
+            // 使用GamePix提供的Fruit Blaster嵌入URL
             gameIframe.src = 'https://play.gamepix.com/fruit-blaster/embed?sid=1';
             
-            console.log('Starting Fruit Crush Saga in featured area');
+            console.log('Starting Fruit Blaster in featured area');
         }
 
         // 设置事件监听器
