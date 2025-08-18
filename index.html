@@ -748,31 +748,37 @@
             });
         }
 
-        // 播放精选游戏 - 使用移动端兼容的URL
-        function playFeaturedGame() {
-            const gamePreview = document.getElementById('gamePreview');
-            const previewContent = document.getElementById('previewContent');
-            const gameIframe = document.getElementById('featuredGameIframe');
-            
-            // 隐藏预览内容，显示游戏
-            previewContent.style.display = 'none';
-            gameIframe.classList.add('active');
-            gamePreview.classList.add('playing');
-            
-            // 检测设备类型并使用不同的URL
-            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-            
-            if (isMobile) {
-                // 移动端使用不同的URL
-                gameIframe.src = 'https://www.gamepix.com/embed/fruit-blaster';
-            } else {
-                // 桌面端使用原来的URL
-                gameIframe.src = 'https://www.gamepix.com/embed/fruit-blaster';
-            }
-            
-            console.log('Starting Fruit Blaster in featured area');
-        }
-
+        // 播放精选游戏 - 调试版本
+function playFeaturedGame() {
+    const gamePreview = document.getElementById('gamePreview');
+    const previewContent = document.getElementById('previewContent');
+    const gameIframe = document.getElementById('featuredGameIframe');
+    
+    console.log('Elements found:', {
+        gamePreview: !!gamePreview,
+        previewContent: !!previewContent,
+        gameIframe: !!gameIframe
+    });
+    
+    // 隐藏预览内容，显示游戏
+    previewContent.style.display = 'none';
+    gameIframe.classList.add('active');
+    gamePreview.classList.add('playing');
+    
+    // 设置游戏URL
+    gameIframe.src = 'https://www.gamepix.com/embed/fruit-blaster';
+    
+    // 监听iframe加载事件
+    gameIframe.onload = function() {
+        console.log('Game iframe loaded successfully');
+    };
+    
+    gameIframe.onerror = function() {
+        console.log('Game iframe failed to load');
+    };
+    
+    console.log('Starting Fruit Blaster, iframe src set to:', gameIframe.src);
+}
         // 设置事件监听器
         function setupEventListeners() {
             // 搜索功能
