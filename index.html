@@ -748,13 +748,6 @@
             });
         }
 
-        // 设置精选游戏 - 直接在首页播放
-        function setupFeaturedGame() {
-            document.getElementById('playFeaturedBtn').addEventListener('click', () => {
-                playFeaturedGame();
-            });
-        }
-
         // 播放精选游戏 - 使用移动端兼容的URL
         function playFeaturedGame() {
             const gamePreview = document.getElementById('gamePreview');
@@ -778,11 +771,6 @@
             }
             
             console.log('Starting Fruit Blaster in featured area');
-        }
-
-        // 设置事件监听器
-        function setupEventListeners() {
-            // ... 其他代码
         }
 
         // 设置事件监听器
