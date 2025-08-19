@@ -198,13 +198,28 @@
             font-weight: 600;
         }
 
+        /* 自适应游戏容器 */
         .game-frame-container {
             background: #000;
-            min-height: 500px;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
+            /* 使用动态高度，支持不同屏幕尺寸 */
+            min-height: 60vh;
+            max-height: 80vh;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        /* 游戏加载前的播放区域 */
+        .play-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
         }
 
         .play-button {
@@ -227,11 +242,14 @@
             transform: scale(1.05);
         }
 
+        /* 自适应游戏iframe */
         .game-iframe {
             width: 100%;
-            height: 500px;
+            height: 100%;
             border: none;
             display: none;
+            /* 确保iframe能够自适应容器 */
+            min-height: 500px;
         }
 
         .game-iframe.active {
@@ -242,6 +260,30 @@
             color: #9ca3af;
             margin-top: 1rem;
             font-size: 0.9rem;
+        }
+
+        /* 全屏模式支持 */
+        .fullscreen-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            padding: 0.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            z-index: 10;
+            display: none;
+        }
+
+        .game-frame-container:hover .fullscreen-btn {
+            display: block;
+        }
+
+        .fullscreen-btn:hover {
+            background: rgba(0, 0, 0, 0.9);
         }
 
         /* 游戏信息 */
@@ -384,6 +426,17 @@
         }
 
         /* 响应式设计 */
+        @media (max-width: 1200px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .sidebar {
+                order: -1;
+            }
+        }
+
         @media (max-width: 768px) {
             .nav {
                 flex-direction: column;
@@ -399,7 +452,6 @@
             }
 
             .main-content {
-                grid-template-columns: 1fr;
                 padding: 1rem;
             }
 
@@ -414,6 +466,44 @@
             .game-title {
                 font-size: 1.5rem;
             }
+
+            /* 移动端游戏容器调整 */
+            .game-frame-container {
+                min-height: 50vh;
+                max-height: 70vh;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .game-frame-container {
+                min-height: 40vh;
+                max-height: 60vh;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 高分辨率屏幕优化 */
+        @media (min-width: 1400px) {
+            .game-frame-container {
+                min-height: 600px;
+                max-height: 800px;
+            }
+        }
+
+        /* 全屏模式样式 */
+        .game-frame-container:fullscreen {
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .game-frame-container:fullscreen .game-iframe {
+            width: 100vw;
+            height: 100vh;
         }
     </style>
 </head>
@@ -465,14 +555,16 @@
                 </div>
             </div>
 
-            <!-- 游戏播放区域 -->
+            <!-- 自适应游戏播放区域 -->
             <div class="game-frame-container" id="gameContainer">
                 <div class="play-area" id="playArea">
                     <button class="play-button" id="playBtn">
-                        Play Game
+                        ▶️ Play Game
                     </button>
+                    <p class="click-to-load">Click to load the game</p>
                 </div>
                 <iframe class="game-iframe" id="gameIframe" src=""></iframe>
+                <button class="fullscreen-btn" id="fullscreenBtn" title="Toggle Fullscreen">⛶</button>
             </div>
 
             <!-- 游戏信息 -->
@@ -596,6 +688,26 @@
             return parseInt(urlParams.get('id')) || 2;
         }
 
+        // 自适应游戏容器尺寸
+        function adjustGameContainer() {
+            const gameContainer = document.getElementById('gameContainer');
+            const viewportHeight = window.innerHeight;
+            const viewportWidth = window.innerWidth;
+            
+            // 根据屏幕尺寸动态调整游戏容器高度
+            if (viewportWidth >= 1400) {
+                gameContainer.style.height = Math.min(800, viewportHeight * 0.7) + 'px';
+            } else if (viewportWidth >= 1200) {
+                gameContainer.style.height = Math.min(700, viewportHeight * 0.65) + 'px';
+            } else if (viewportWidth >= 768) {
+                gameContainer.style.height = Math.min(600, viewportHeight * 0.6) + 'px';
+            } else if (viewportWidth >= 480) {
+                gameContainer.style.height = Math.min(500, viewportHeight * 0.55) + 'px';
+            } else {
+                gameContainer.style.height = Math.min(400, viewportHeight * 0.5) + 'px';
+            }
+        }
+
         // 加载游戏
         function loadGame() {
             const gameId = getCurrentGameId();
@@ -616,6 +728,9 @@
                 // 更新面包屑
                 document.querySelector('.breadcrumb-links span:last-child').textContent = game.title;
             }
+            
+            // 调整游戏容器尺寸
+            adjustGameContainer();
         }
 
         // 播放游戏
@@ -632,6 +747,38 @@
                 playArea.style.display = 'none';
                 gameIframe.src = game.url;
                 gameIframe.classList.add('active');
+                
+                // 游戏加载后再次调整容器尺寸
+                gameIframe.onload = function() {
+                    adjustGameContainer();
+                };
+            }
+        });
+
+        // 全屏功能
+        document.getElementById('fullscreenBtn').addEventListener('click', function() {
+            const gameContainer = document.getElementById('gameContainer');
+            
+            if (!document.fullscreenElement) {
+                gameContainer.requestFullscreen().catch(err => {
+                    console.log(`Error attempting to enable fullscreen: ${err.message}`);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        });
+
+        // 监听全屏状态变化
+        document.addEventListener('fullscreenchange', function() {
+            const fullscreenBtn = document.getElementById('fullscreenBtn');
+            if (document.fullscreenElement) {
+                fullscreenBtn.textContent = '⛶';
+                fullscreenBtn.title = 'Exit Fullscreen';
+            } else {
+                fullscreenBtn.textContent = '⛶';
+                fullscreenBtn.title = 'Enter Fullscreen';
+                // 退出全屏后重新调整尺寸
+                setTimeout(adjustGameContainer, 100);
             }
         });
 
@@ -658,6 +805,9 @@
                 alert('Link copied to clipboard!');
             });
         });
+
+        // 窗口尺寸变化时重新调整游戏容器
+        window.addEventListener('resize', adjustGameContainer);
 
         // 页面加载时初始化
         document.addEventListener('DOMContentLoaded', loadGame);
