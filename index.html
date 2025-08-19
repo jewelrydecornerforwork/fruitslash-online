@@ -1059,7 +1059,7 @@
             noGames.style.display = 'none';
 
             gamesGrid.innerHTML = filteredGames.map(game => `
-                <div class="game-card" onclick="openGame(${game.id})">
+                <div class="game-card" onclick="openGame(${game.id})" data-game-id="${game.id}">
                     <div class="game-image">
                         ${game.thumbnail}
                         <button class="play-button">▶️</button>
@@ -1075,9 +1075,42 @@
             `).join('');
         }
 
-        // 打开游戏
+        // 打开游戏 - 修复路径问题并添加错误处理
         function openGame(gameId) {
-            window.location.href = `/game.html?id=${gameId}`;
+            try {
+                console.log(`Opening game with ID: ${gameId}`);
+                
+                // 验证游戏ID是否有效
+                const game = gameData.find(g => g.id === gameId);
+                if (!game) {
+                    console.error(`Game with ID ${gameId} not found`);
+                    alert('游戏不存在，请稍后再试！');
+                    return;
+                }
+                
+                // 检查当前页面路径，确保正确跳转
+                const currentPath = window.location.pathname;
+                let targetPath;
+                
+                if (currentPath === '/' || currentPath === '/index.html' || currentPath.endsWith('/')) {
+                    // 从首页或根目录跳转
+                    targetPath = `game.html?id=${gameId}`;
+                } else {
+                    // 从其他页面跳转，使用相对路径
+                    targetPath = `./game.html?id=${gameId}`;
+                }
+                
+                console.log(`Navigating from ${currentPath} to game ${gameId} at path: ${targetPath}`);
+                
+                // 添加延迟以防止重复点击
+                setTimeout(() => {
+                    window.location.href = targetPath;
+                }, 100);
+                
+            } catch (error) {
+                console.error('Error opening game:', error);
+                alert('打开游戏时出现错误，请刷新页面后重试！');
+            }
         }
 
         // 关闭游戏模态框
@@ -1089,6 +1122,32 @@
 
         // 页面加载完成后初始化
         document.addEventListener('DOMContentLoaded', init);
+
+        // 添加防抖功能，避免重复点击
+        let clickTimeout = null;
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.game-card')) {
+                if (clickTimeout) {
+                    clearTimeout(clickTimeout);
+                }
+                clickTimeout = setTimeout(() => {
+                    clickTimeout = null;
+                }, 500);
+            }
+        });
+
+        // 添加错误处理
+        window.addEventListener('error', function(e) {
+            console.error('Page error:', e.error);
+        });
+
+        // 添加页面卸载前的清理
+        window.addEventListener('beforeunload', function() {
+            // 清理任何活动的定时器
+            if (clickTimeout) {
+                clearTimeout(clickTimeout);
+            }
+        });
     </script>
 </body>
 </html>
