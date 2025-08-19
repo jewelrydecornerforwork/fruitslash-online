@@ -1058,21 +1058,27 @@
             gamesGrid.style.display = 'grid';
             noGames.style.display = 'none';
 
-            gamesGrid.innerHTML = filteredGames.map(game => 
-            '<div class="game-card" onclick="openGame(' + game.id + ')" data-game-id="' + game.id + '">' +
+            gamesGrid.innerHTML = '';
+        
+        filteredGames.forEach(function(game) {
+            var gameCard = '<div class="game-card" onclick="openGame(' + game.id + ')">' +
                 '<div class="game-image">' +
-                    game.thumbnail +
-                    '<button class="play-button">▶️</button>' +
+                game.thumbnail +
+                '<button class="play-button">▶️</button>' +
                 '</div>' +
                 '<div class="card-content">' +
-                    '<h3 class="card-title">' + game.title + '</h3>' +
-                    '<p class="card-description">' + game.description.substring(0, 80) + '...</p>' +
-                    '<div class="card-tags">' +
-                        game.tags.map(tag => '<span class="card-tag">' + tag + '</span>').join('') +
-                    '</div>' +
-                '</div>' +
-            '</div>'
-        ).join('');
+                '<h3 class="card-title">' + game.title + '</h3>' +
+                '<p class="card-description">' + game.description.substring(0, 80) + '...</p>' +
+                '<div class="card-tags">';
+            
+            game.tags.forEach(function(tag) {
+                gameCard += '<span class="card-tag">' + tag + '</span>';
+            });
+            
+            gameCard += '</div></div></div>';
+            
+            gamesGrid.innerHTML += gameCard;
+        });
             
         // 打开游戏 - 修复路径问题并添加错误处理
         function openGame(gameId) {
