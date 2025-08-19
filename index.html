@@ -1094,10 +1094,10 @@
                 
                 if (currentPath === '/' || currentPath === '/index.html' || currentPath.endsWith('/')) {
                     // 从首页或根目录跳转
-                    targetPath = `game.html?id=${gameId}`;
+                    targetPath = "game.html?id=" + gameId;
                 } else {
                     // 从其他页面跳转，使用相对路径
-                    targetPath = `./game.html?id=${gameId}`;
+                    targetPath = "./game.html?id=" + gameId;
                 }
                 
                 console.log(`Navigating from ${currentPath} to game ${gameId} at path: ${targetPath}`);
