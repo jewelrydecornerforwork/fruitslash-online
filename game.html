@@ -1,49 +1,666 @@
-// 更新game.html文件中的gameData，替换现有的gameData对象
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funny Shooter 2 - FruitSlash.online</title>
+    <meta name="description" content="Play Funny Shooter 2 online for free! Hilarious shooting game with cartoon graphics.">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-const gameData = {
-    1: {
-        title: "Fruit Crush Saga",
-        description: "Slice and crush delicious fruits in this addictive puzzle game! Match colorful fruits, create amazing combos, and experience the most satisfying fruit-crushing adventure ever! Swipe your way through hundreds of levels filled with juicy challenges.",
-        category: "puzzle",
-        tags: ["fruit", "puzzle", "crush", "match"],
-        gameUrl: "https://games.gamepix.com/games/fruit-ninja/",
-        thumbnail: "🍎",
-        rating: "4.8"
-    },
-    2: {
-        title: "Funny Shooter 2",
-        description: "Hilarious shooting game with cartoon graphics! Join the fun with colorful characters and exciting gameplay featuring unique weapons and funny sound effects.",
-        category: "action",
-        tags: ["shooting", "funny", "action"],
-        gameUrl: "https://games.gamepix.com/games/funny-shooter-2/",
-        thumbnail: "🔫",
-        rating: "4.3"
-    },
-    3: {
-        title: "2048 Puzzle",
-        description: "Classic number puzzle - combine tiles to reach 2048! Test your strategic thinking in this addictive puzzle game that challenges your mathematical skills.",
-        category: "puzzle",
-        tags: ["puzzle", "numbers", "classic"],
-        gameUrl: "https://games.gamepix.com/games/2048/",
-        thumbnail: "🔢",
-        rating: "4.7"
-    },
-    4: {
-        title: "Snake Classic",
-        description: "The classic snake game with modern graphics! Navigate the snake to eat food and grow longer while avoiding obstacles in this timeless arcade experience.",
-        category: "arcade",
-        tags: ["snake", "classic", "arcade"],
-        gameUrl: "https://games.gamepix.com/games/snake/",
-        thumbnail: "🐍",
-        rating: "4.4"
-    },
-    5: {
-        title: "Tetris Blocks",
-        description: "The legendary block-falling puzzle game! Arrange falling blocks to create complete lines and clear the board in this iconic puzzle challenge.",
-        category: "puzzle",
-        tags: ["tetris", "blocks", "classic"],
-        gameUrl: "https://games.gamepix.com/games/tetris/",
-        thumbnail: "🧱",
-        rating: "4.6"
-    }
-};
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #ffffff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* 导航栏样式 */
+        .header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            z-index: 100;
+        }
+
+        .nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2563eb;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo::before {
+            content: "🎮";
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        .search-container {
+            position: relative;
+        }
+
+        .search-input {
+            padding: 0.75rem 2.5rem 0.75rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 25px;
+            outline: none;
+            transition: border-color 0.3s;
+            width: 300px;
+            font-size: 0.9rem;
+        }
+
+        .search-input:focus {
+            border-color: #2563eb;
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #6b7280;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        /* 面包屑导航 */
+        .breadcrumb {
+            background: #f8f9fa;
+            padding: 1rem 2rem;
+            margin-top: 80px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .breadcrumb-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .breadcrumb-links {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+
+        .breadcrumb-links a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .breadcrumb-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* 主内容区域 */
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 2rem;
+        }
+
+        /* 游戏区域 */
+        .game-section {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .game-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .game-title-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .game-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #f093fb 0%, #f5576c 50%, #4facfe 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .game-title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #1f2937;
+        }
+
+        .game-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            background: #2563eb;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .game-frame-container {
+            background: #000;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .play-button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .play-button:hover {
+            background: #1d4ed8;
+            transform: scale(1.05);
+        }
+
+        .game-iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+            display: none;
+        }
+
+        .game-iframe.active {
+            display: block;
+        }
+
+        .click-to-load {
+            color: #9ca3af;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        /* 游戏信息 */
+        .game-info {
+            padding: 1.5rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .info-item {
+            text-align: center;
+        }
+
+        .info-label {
+            font-size: 0.8rem;
+            color: #6b7280;
+            margin-bottom: 0.25rem;
+        }
+
+        .info-value {
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .description-section h3 {
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .description-text {
+            color: #6b7280;
+            margin-bottom: 1rem;
+        }
+
+        .game-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: #f3f4f6;
+            color: #6b7280;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        /* 侧边栏 */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .sidebar-section {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+        }
+
+        .sidebar-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .share-btn {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: background 0.3s;
+        }
+
+        .share-btn.twitter {
+            background: #1da1f2;
+        }
+
+        .share-btn.facebook {
+            background: #1877f2;
+        }
+
+        .share-btn:hover {
+            opacity: 0.8;
+        }
+
+        .recommended-game {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: 10px;
+            transition: background 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .recommended-game:hover {
+            background: #f8f9fa;
+        }
+
+        .recommended-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #f093fb 0%, #f5576c 50%, #4facfe 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .recommended-info h4 {
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+            color: #1f2937;
+        }
+
+        .recommended-info p {
+            font-size: 0.8rem;
+            color: #6b7280;
+            line-height: 1.4;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .search-input {
+                width: 250px;
+            }
+
+            .main-content {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+
+            .breadcrumb {
+                margin-top: 120px;
+            }
+
+            .info-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .game-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header class="header">
+        <nav class="nav">
+            <a href="/" class="logo">FruitSlash.online</a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="#games">Games</a></li>
+                <li><a href="#categories">Categories</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search games...">
+                <button class="search-btn">🔍</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 面包屑导航 -->
+    <div class="breadcrumb">
+        <div class="breadcrumb-container">
+            <div class="breadcrumb-links">
+                <a href="/">Home</a>
+                <span>›</span>
+                <a href="#games">Games</a>
+                <span>›</span>
+                <span>Funny Shooter 2</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 主内容 -->
+    <div class="main-content">
+        <!-- 游戏区域 -->
+        <div class="game-section">
+            <!-- 游戏头部 -->
+            <div class="game-header">
+                <div class="game-title-row">
+                    <div class="game-icon">🔫</div>
+                    <div>
+                        <h1 class="game-title">Funny Shooter 2</h1>
+                        <div class="game-meta">
+                            <div class="rating">⭐ 4.5</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 游戏播放区域 -->
+            <div class="game-frame-container" id="gameContainer">
+                <div class="play-area" id="playArea">
+                    <button class="play-button" id="playBtn">
+                        Play Game
+                    </button>
+                </div>
+                <iframe class="game-iframe" id="gameIframe" src=""></iframe>
+            </div>
+
+            <!-- 游戏信息 -->
+            <div class="game-info">
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">Category</div>
+                        <div class="info-value">action</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Rating</div>
+                        <div class="info-value">⭐ 4.5</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Type</div>
+                        <div class="info-value">Free to Play</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Platform</div>
+                        <div class="info-value">Browser</div>
+                    </div>
+                </div>
+
+                <div class="description-section">
+                    <h3>Game Description</h3>
+                    <p class="description-text">
+                        Hilarious shooting game with cartoon graphics! Join the fun with colorful characters and exciting gameplay.
+                    </p>
+                    <div class="game-tags">
+                        <span class="tag">shooting</span>
+                        <span class="tag">funny</span>
+                        <span class="tag">action</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 侧边栏 -->
+        <div class="sidebar">
+            <!-- 分享游戏 -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Share Game</h3>
+                <div class="share-buttons">
+                    <button class="share-btn facebook">📘</button>
+                    <button class="share-btn twitter">🐦</button>
+                    <button class="share-btn">🔗</button>
+                </div>
+            </div>
+
+            <!-- 推荐游戏 -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Recommended Games</h3>
+                
+                <a href="#" class="recommended-game" onclick="openRecommendedGame(3)">
+                    <div class="recommended-icon">🔢</div>
+                    <div class="recommended-info">
+                        <h4>2048 Puzzle</h4>
+                        <p>Classic number puzzle - combine tiles to reach 2048! Test your strategic thinking...</p>
+                    </div>
+                </a>
+
+                <a href="#" class="recommended-game" onclick="openRecommendedGame(4)">
+                    <div class="recommended-icon">🐍</div>
+                    <div class="recommended-info">
+                        <h4>Snake Classic</h4>
+                        <p>The classic snake game with modern graphics! Navigate the snake to eat food...</p>
+                    </div>
+                </a>
+
+                <a href="#" class="recommended-game" onclick="openRecommendedGame(5)">
+                    <div class="recommended-icon">🧱</div>
+                    <div class="recommended-info">
+                        <h4>Tetris Blocks</h4>
+                        <p>The legendary block-falling puzzle game! Arrange falling blocks to create...</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 游戏数据
+        const gameData = {
+            2: {
+                title: "Funny Shooter 2",
+                url: "https://games.gamepix.com/games/funny-shooter-2/",
+                description: "Hilarious shooting game with cartoon graphics! Join the fun with colorful characters and exciting gameplay.",
+                category: "action",
+                tags: ["shooting", "funny", "action"],
+                icon: "🔫"
+            },
+            3: {
+                title: "2048 Puzzle",
+                url: "https://games.gamepix.com/games/2048/",
+                description: "Classic number puzzle - combine tiles to reach 2048! Test your strategic thinking in this addictive puzzle game.",
+                category: "puzzle",
+                tags: ["puzzle", "numbers", "classic"],
+                icon: "🔢"
+            },
+            4: {
+                title: "Snake Classic",
+                url: "https://games.gamepix.com/games/snake/",
+                description: "The classic snake game with modern graphics! Navigate the snake to eat food and grow longer.",
+                category: "arcade",
+                tags: ["snake", "classic", "arcade"],
+                icon: "🐍"
+            },
+            5: {
+                title: "Tetris Blocks",
+                url: "https://games.gamepix.com/games/tetris/",
+                description: "The legendary block-falling puzzle game! Arrange falling blocks to create complete lines.",
+                category: "puzzle",
+                tags: ["tetris", "blocks", "classic"],
+                icon: "🧱"
+            }
+        };
+
+        // 获取当前游戏ID
+        function getCurrentGameId() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return parseInt(urlParams.get('id')) || 2;
+        }
+
+        // 加载游戏
+        function loadGame() {
+            const gameId = getCurrentGameId();
+            const game = gameData[gameId];
+            
+            if (game) {
+                // 更新页面标题和内容
+                document.title = `${game.title} - FruitSlash.online`;
+                document.querySelector('.game-title').textContent = game.title;
+                document.querySelector('.game-icon').textContent = game.icon;
+                document.querySelector('.description-text').textContent = game.description;
+                document.querySelector('.info-value').textContent = game.category;
+                
+                // 更新标签
+                const tagsContainer = document.querySelector('.game-tags');
+                tagsContainer.innerHTML = game.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+                
+                // 更新面包屑
+                document.querySelector('.breadcrumb-links span:last-child').textContent = game.title;
+            }
+        }
+
+        // 播放游戏
+        document.getElementById('playBtn').addEventListener('click', function() {
+            const gameId = getCurrentGameId();
+            const game = gameData[gameId];
+            
+            if (game) {
+                const gameContainer = document.getElementById('gameContainer');
+                const playArea = document.getElementById('playArea');
+                const gameIframe = document.getElementById('gameIframe');
+                
+                // 隐藏播放按钮，显示游戏
+                playArea.style.display = 'none';
+                gameIframe.src = game.url;
+                gameIframe.classList.add('active');
+            }
+        });
+
+        // 打开推荐游戏
+        function openRecommendedGame(gameId) {
+            window.location.href = `game.html?id=${gameId}`;
+        }
+
+        // 分享功能
+        document.querySelector('.share-btn.facebook').addEventListener('click', function() {
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+        });
+
+        document.querySelector('.share-btn.twitter').addEventListener('click', function() {
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent(`Playing ${gameData[getCurrentGameId()].title} on FruitSlash.online!`);
+            window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank');
+        });
+
+        // 复制链接
+        document.querySelector('.share-btn:last-child').addEventListener('click', function() {
+            navigator.clipboard.writeText(window.location.href).then(function() {
+                alert('Link copied to clipboard!');
+            });
+        });
+
+        // 页面加载时初始化
+        document.addEventListener('DOMContentLoaded', loadGame);
+    </script>
+</body>
+</html>
