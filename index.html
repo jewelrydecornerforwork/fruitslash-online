@@ -1064,8 +1064,8 @@
                 
                 var gameCard = '<div class="game-card" onclick="openGame(' + game.id + ')">' +
                     '<div class="game-image">' +
-                    game.thumbnail +
-                    '<button class="play-button">▶️</button>' +
+                    '<div class="game-emoji">' + game.thumbnail + '</div>' +
+                    '<button class="play-button">▶</button>' +
                     '</div>' +
                     '<div class="card-content">' +
                     '<h3 class="card-title">' + game.title + '</h3>' +
