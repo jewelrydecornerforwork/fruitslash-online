@@ -416,19 +416,15 @@
             align-items: flex-start;
             z-index: 3;
         }
-        
-        .card-title {
-            font-size: 1rem;
-            font-weight: bold;
-            color: #1f2937;
-            transition: color 0.3s;
-            flex: 1;
-            margin-right: 0.5rem;
-            margin-bottom: 0;
-        }
 
-        .game-card:hover .card-title {
-            color: #2563eb;
+        .card-title-top {
+            background: #2563eb;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: capitalize;
         }
 
         .game-rating {
@@ -449,7 +445,7 @@
             position: absolute;
             bottom: 0.5rem;
             left: 0.5rem;
-            background: #2563eb;
+            background: rgba(0, 0, 0, 0.2);
             color: white;
             padding: 0.25rem 0.75rem;
             border-radius: 12px;
@@ -457,27 +453,7 @@
             text-transform: capitalize;
             font-weight: 600;
             z-index: 3;
-        }
-
-        .card-description {
-            color: #6b7280;
-            font-size: 0.9rem;
-            line-height: 1.4;
-            margin-bottom: 1rem;
-        }
-
-        .card-tags {
-            display: flex;
-            gap: 0.25rem;
-            flex-wrap: wrap;
-        }
-
-        .card-tag {
-            background: #f3f4f6;
-            color: #6b7280;
-            padding: 0.2rem 0.5rem;
-            border-radius: 10px;
-            font-size: 0.7rem;
+            backdrop-filter: blur(4px);
         }
 
         /* 游戏模态框 */
@@ -1191,14 +1167,12 @@ const gameData = [
                 var gameCard = '<div class="game-card" onclick="openGame(' + game.id + ')">' +
                     '<div class="game-image">' +
                     thumbnailContent +
-                    '<button class="play-button">▶</button>' +
-                    '</div>' +
-                    '<div class="card-content">' +
                     '<div class="card-header">' +
-                    '<h3 class="card-title">' + game.title + '</h3>' +
-                    '<div class="game-rating">⭐ 4.5</div>' +
+                    '<div class="card-title-top">' + game.title + '</div>' +
+                    '<div class="game-rating">⭐ 4.6</div>' +
                     '</div>' +
                     '<div class="card-category">' + game.category + '</div>' +
+                    '<button class="play-button">▶</button>' +
                     '</div>' +
                     '</div>';
                 
