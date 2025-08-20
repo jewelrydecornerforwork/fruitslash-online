@@ -386,6 +386,21 @@
             opacity: 1;
             transform: translate(-50%, -50%) scale(1.1);
         }
+        .game-thumbnail {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 0;
+        }
+
+        .game-emoji {
+            position: relative;
+            z-index: 1;
+            font-size: 3rem;
+        }
 
         .card-content {
             padding: 1.25rem;
@@ -919,12 +934,12 @@
         const gameData = [
             {
                 id: 2,
-                title: "Funny Shooter 2",
-                description: "Hilarious shooting game with cartoon graphics! Join the fun with colorful characters and exciting gameplay.",
-                category: "action",
-                tags: ["shooting", "funny", "action"],
-                gameUrl: "https://games.gamepix.com/games/funny-shooter-2/",
-                thumbnail: "🔫"
+                title: "Cut Fruit Ninja",
+                description: "Become a master of the blade as you slice through flying fruit with precision and speed. Dodge bombs, rack up mega combos, and aim for high scores in thrilling game modes.",
+                category: "arcade",
+                tags: ["slicing", "fruit", "arcade"],
+                gameUrl: "https://play.gamepix.com/cut-fruit-ninja/embed?sid=1",
+                thumbnail: "https://img.gamepix.com/games/cut-fruit-ninja/icon/cut-fruit-ninja.png?w=1"
             },
             {
                 id: 3,
@@ -1066,14 +1081,21 @@
             for (var i = 0; i < filteredGames.length; i++) {
                 var game = filteredGames[i];
                 
+                // 判断是否为图片URL
+                var thumbnailContent = '';
+                if (game.thumbnail.startsWith('http')) {
+                    thumbnailContent = '<img src="' + game.thumbnail + '" alt="' + game.title + '" class="game-thumbnail">';
+                } else {
+                    thumbnailContent = '<div class="game-emoji">' + game.thumbnail + '</div>';
+                }
+                
                 var gameCard = '<div class="game-card" onclick="openGame(' + game.id + ')">' +
                     '<div class="game-image">' +
-                    '<div class="game-emoji">' + game.thumbnail + '</div>' +
+                    thumbnailContent +
                     '<button class="play-button">▶</button>' +
                     '</div>' +
                     '<div class="card-content">' +
                     '<h3 class="card-title">' + game.title + '</h3>' +
-                    '<p class="card-description">' + game.description.substring(0, 80) + '...</p>' +
                     '<div class="card-tags">';
                 
                 for (var j = 0; j < game.tags.length; j++) {
