@@ -186,6 +186,35 @@
             gap: 1rem;
         }
 
+        .game-cover-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .game-icon-emoji {
+            font-size: 2rem;
+        }
+
+        .featured-cover-image {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        #featuredIcon {
+            font-size: 10rem;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
         .rating {
             display: flex;
             align-items: center;
@@ -649,12 +678,13 @@
         // 游戏数据
         const gameData = {
             2: {
-                title: "Funny Shooter 2",
-                url: "https://games.gamepix.com/games/funny-shooter-2/",
-                description: "Hilarious shooting game with cartoon graphics! Join the fun with colorful characters and exciting gameplay.",
-                category: "action",
-                tags: ["shooting", "funny", "action"],
-                icon: "🔫"
+                title: "Cut Fruit Ninja",
+                url: "https://play.gamepix.com/cut-fruit-ninja/embed?sid=1",
+                description: "Become a master of the blade as you slice through flying fruit with precision and speed. Dodge bombs, rack up mega combos, and aim for high scores in thrilling game modes. With vibrant graphics and addictive gameplay, unleash your reflexes for fast-paced slicing fun. Are you ready to become a Fruit Ninja legend?",
+                category: "arcade",
+                tags: ["slicing", "fruit", "arcade"],
+                icon: "🥷",
+                thumbnail: "https://img.gamepix.com/games/cut-fruit-ninja/icon/cut-fruit-ninja.png?w=1"
             },
             3: {
                 title: "2048 Puzzle",
@@ -715,15 +745,35 @@
             
             if (game) {
                 // 更新页面标题和内容
-                document.title = `${game.title} - FruitSlash.online`;
+                document.title = game.title + ' - FruitSlash.online';
                 document.querySelector('.game-title').textContent = game.title;
-                document.querySelector('.game-icon').textContent = game.icon;
+                
+                // 更新左上角游戏图标
+                const gameIconElement = document.querySelector('.game-icon');
+                if (game.thumbnail) {
+                    gameIconElement.innerHTML = '<img src="' + game.thumbnail + '" alt="' + game.title + '" class="game-cover-image">';
+                } else {
+                    gameIconElement.innerHTML = '<span class="game-icon-emoji">' + game.icon + '</span>';
+                }
+                
+                // 更新游戏预览区域的图标
+                const featuredIconElement = document.getElementById('featuredIcon');
+                if (game.thumbnail) {
+                    featuredIconElement.innerHTML = '<img src="' + game.thumbnail + '" alt="' + game.title + '" class="featured-cover-image">';
+                } else {
+                    featuredIconElement.textContent = game.icon;
+                }
+                
                 document.querySelector('.description-text').textContent = game.description;
                 document.querySelector('.info-value').textContent = game.category;
                 
                 // 更新标签
                 const tagsContainer = document.querySelector('.game-tags');
-                tagsContainer.innerHTML = game.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+                var tagsHtml = '';
+                for (var i = 0; i < game.tags.length; i++) {
+                    tagsHtml += '<span class="tag">' + game.tags[i] + '</span>';
+                }
+                tagsContainer.innerHTML = tagsHtml;
                 
                 // 更新面包屑
                 document.querySelector('.breadcrumb-links span:last-child').textContent = game.title;
