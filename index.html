@@ -202,7 +202,7 @@
             z-index: 1;
         }
 
-        .play-featured {
+.play-featured {
             background: #2563eb;
             color: white;
             border: none;
@@ -221,12 +221,22 @@
             box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
         }
 
+        .play-featured::before {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 12px solid white;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            margin-right: 8px;
+        }
+
         .play-featured:hover {
             background: #1d4ed8;
             transform: scale(1.05);
             box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
         }
-
+        
         /* 游戏iframe样式 - 初始隐藏 */
         .game-iframe {
             position: absolute;
@@ -375,11 +385,23 @@
             border-radius: 50%;
             width: 50px;
             height: 50px;
-            font-size: 1.2rem;
             cursor: pointer;
             opacity: 0;
             transition: all 0.3s;
             z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .play-button::before {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 12px solid #2563eb;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            margin-left: 2px;
         }
 
         .game-card:hover .play-button {
