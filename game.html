@@ -284,6 +284,17 @@
             align-items: center;
             gap: 0.5rem;
             transition: all 0.3s;
+            position: relative;
+        }
+
+        .play-button::before {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 10px solid white;
+            border-top: 6px solid transparent;
+            border-bottom: 6px solid transparent;
+            margin-right: 8px;
         }
 
         .play-button:hover {
@@ -699,7 +710,7 @@
             <div class="game-frame-container" id="gameContainer">
                 <div class="play-area" id="playArea">
                     <button class="play-button" id="playBtn">
-                        ▶️ Play Game
+                        Play Game
                     </button>
                     <p class="click-to-load">Click to load the game</p>
                 </div>
