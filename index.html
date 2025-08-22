@@ -1177,22 +1177,16 @@ const gameData = [
         const modalTitle = document.getElementById('modalTitle');
         const closeModal = document.getElementById('closeModal');
         const searchInput = document.getElementById('searchInput');
-        const loading = document.getElementById('loading');
-        const noGames = document.getElementById('noGames');
 
         // 初始化
         function init() {
             allGames = gameData;
             filteredGames = [...allGames];
             
-            setTimeout(() => {
-                loading.style.display = 'none';
                 setupFeaturedGame();
                 renderGames();
-                setupEventListeners();
-                initializeSearch(); //
-            }, 1000);
-        }
+               setupEventListeners();
+            }
 
         // 设置精选游戏 - 直接在首页播放
         function setupFeaturedGame() {
