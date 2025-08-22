@@ -1396,65 +1396,6 @@ const gameData = [
                 clearTimeout(clickTimeout);
             }
         });
-        // 新增：搜索功能（添加在 </script> 之前）
-        function initializeSearch() {
-            const searchBtn = document.getElementById('searchBtn');
-            const searchInput = document.getElementById('searchInput');
-            
-            // 从URL获取搜索参数
-            const urlParams = new URLSearchParams(window.location.search);
-            const searchFromURL = urlParams.get('search');
-            
-            if (searchFromURL && searchInput) {
-                searchInput.value = searchFromURL;
-                currentSearch = searchFromURL.toLowerCase();
-                filterGames();
-            }
-            
-            // 搜索按钮点击事件
-            if (searchBtn && searchInput) {
-                searchBtn.addEventListener('click', () => {
-                    const searchTerm = searchInput.value.toLowerCase().trim();
-                    currentSearch = searchTerm;
-                    filterGames();
-                    updateURL(searchTerm);
-                });
-            }
-            
-            // 回车搜索
-            if (searchInput) {
-                searchInput.addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') {
-                        const searchTerm = searchInput.value.toLowerCase().trim();
-                        currentSearch = searchTerm;
-                        filterGames();
-                        updateURL(searchTerm);
-                    }
-                });
-            }
-        }
-
-        // 更新URL参数
-        function updateURL(searchTerm) {
-            const url = new URL(window.location);
-            if (searchTerm) {
-                url.searchParams.set('search', searchTerm);
-            } else {
-                url.searchParams.delete('search');
-            }
-            window.history.replaceState({}, '', url);
-        }
-
-        // 清除搜索功能
-        function clearSearch() {
-            const searchInput = document.getElementById('searchInput');
-            if (searchInput) {
-                searchInput.value = '';
-            }
-            currentSearch = '';
-            filterGames();
-            updateURL('');
-        }
     </script>
 </body>
 </html>
