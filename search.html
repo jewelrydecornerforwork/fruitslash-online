@@ -101,6 +101,13 @@
             color: #6b7280;
             cursor: pointer;
             font-size: 1.1rem;
+            padding: 0.25rem;
+            border-radius: 4px;
+            transition: color 0.3s;
+        }
+
+        .search-btn:hover {
+            color: #374151;
         }
 
         /* 面包屑导航 */
@@ -179,19 +186,113 @@
         }
 
         .search-form button {
-            background: #2563eb;
-            color: white;
+            background: none;
+            color: #6b7280;
             border: none;
             padding: 1rem 1.5rem;
             border-radius: 25px;
             cursor: pointer;
             font-size: 1rem;
             min-width: 80px;
-            transition: background 0.3s;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .search-form button:hover {
-            background: #1d4ed8;
+            color: #374151;
+        }
+
+        /* 搜索过滤区域 */
+        .search-filters {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-tag-area {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .search-tag {
+            display: flex;
+            align-items: center;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            gap: 0.5rem;
+        }
+
+        .remove-tag {
+            background: none;
+            border: none;
+            color: #0369a1;
+            cursor: pointer;
+            font-size: 1.1rem;
+            line-height: 1;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .remove-tag:hover {
+            background: rgba(3, 105, 161, 0.2);
+        }
+
+        .filter-controls {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .filter-select {
+            padding: 0.5rem 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            background: white;
+            font-size: 0.9rem;
+            cursor: pointer;
+            min-width: 150px;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        /* 搜索结果标题区域 */
+        .search-results-header {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .results-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1f2937;
+            margin: 0;
+        }
+
+        .results-count {
+            color: #6b7280;
+            font-size: 0.95rem;
+            margin-top: 0.5rem;
         }
 
         /* 搜索信息 */
@@ -199,6 +300,7 @@
             margin-bottom: 2rem;
             padding: 1rem 0;
             border-bottom: 1px solid #e5e7eb;
+            display: none;
         }
 
         .search-term {
@@ -533,8 +635,46 @@
             <p class="search-subtitle">Find your perfect game from our collection</p>
             <div class="search-form">
                 <input type="text" id="mainSearchInput" placeholder="Search for games...">
-                <button id="mainSearchBtn">🔍</button>
+                <button id="mainSearchBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
             </div>
+        </div>
+
+        <!-- 搜索过滤区域 -->
+        <div class="search-filters" id="searchFilters" style="display: none;">
+            <div class="search-tag-area">
+                <span style="color: #6b7280; font-size: 0.9rem;">Searching for:</span>
+                <div class="search-tag" id="searchTag">
+                    <span id="searchTagText"></span>
+                    <button class="remove-tag" onclick="clearSearch()">×</button>
+                </div>
+            </div>
+            <div class="filter-controls">
+                <select class="filter-select" id="categoryFilter">
+                    <option value="">All Categories</option>
+                    <option value="arcade">Arcade</option>
+                    <option value="puzzle">Puzzle</option>
+                    <option value="action">Action</option>
+                    <option value="match-3">Match-3</option>
+                    <option value="block">Block</option>
+                </select>
+                <select class="filter-select" id="sortFilter">
+                    <option value="relevance">Most Relevant</option>
+                    <option value="newest">Newest</option>
+                    <option value="popular">Most Popular</option>
+                    <option value="rating">Highest Rated</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- 搜索结果标题 -->
+        <div class="search-results-header" id="searchResultsHeader" style="display: none;">
+            <h2 class="results-title">Search Results</h2>
+            <p class="results-count" id="resultsCount"></p>
         </div>
 
         <!-- 搜索信息 -->
@@ -645,9 +785,11 @@
             const searchTerm = getSearchTerm();
             const gamesGrid = document.getElementById('gamesGrid');
             const searchInfo = document.getElementById('searchInfo');
+            const searchFilters = document.getElementById('searchFilters');
+            const searchResultsHeader = document.getElementById('searchResultsHeader');
             const noResults = document.getElementById('noResults');
-            const searchTermSpan = document.getElementById('searchTerm');
-            const searchCount = document.getElementById('searchCount');
+            const searchTagText = document.getElementById('searchTagText');
+            const resultsCount = document.getElementById('resultsCount');
             const mainSearchInput = document.getElementById('mainSearchInput');
             const navSearchInput = document.getElementById('navSearchInput');
 
@@ -658,22 +800,33 @@
             if (!searchTerm) {
                 gamesGrid.style.display = 'none';
                 searchInfo.style.display = 'none';
+                searchFilters.style.display = 'none';
+                searchResultsHeader.style.display = 'none';
                 noResults.style.display = 'none';
                 return;
             }
 
             // 过滤游戏
-            const filteredGames = gameData.filter(game => 
+            const categoryFilter = document.getElementById('categoryFilter')?.value || '';
+            let filteredGames = gameData.filter(game => 
                 game.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                 game.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
                 game.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
                 game.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
             );
 
-            // 显示搜索信息
-            searchTermSpan.textContent = `"${searchTerm}"`;
-            searchCount.textContent = `Found ${filteredGames.length} games`;
-            searchInfo.style.display = 'block';
+            // 应用分类过滤
+            if (categoryFilter) {
+                filteredGames = filteredGames.filter(game => 
+                    game.category.toLowerCase() === categoryFilter.toLowerCase()
+                );
+            }
+
+            // 显示搜索过滤器和结果标题
+            searchFilters.style.display = 'flex';
+            searchResultsHeader.style.display = 'block';
+            searchTagText.textContent = `"${searchTerm}"`;
+            resultsCount.textContent = `Found ${filteredGames.length} games for "${searchTerm}"`;
 
             if (filteredGames.length === 0) {
                 gamesGrid.style.display = 'none';
@@ -709,6 +862,11 @@
             });
         }
 
+        // 清除搜索
+        function clearSearch() {
+            window.location.href = 'search.html';
+        }
+
         // 打开游戏
         function openGame(gameId) {
             window.location.href = `game.html?id=${gameId}`;
@@ -720,6 +878,8 @@
             const mainSearchBtn = document.getElementById('mainSearchBtn');
             const navSearchInput = document.getElementById('navSearchInput');
             const navSearchBtn = document.getElementById('navSearchBtn');
+            const categoryFilter = document.getElementById('categoryFilter');
+            const sortFilter = document.getElementById('sortFilter');
 
             // 主搜索区域
             if (mainSearchBtn) {
@@ -748,6 +908,19 @@
                     if (e.key === 'Enter') {
                         performSearch(navSearchInput.value.trim());
                     }
+                });
+            }
+
+            // 过滤器变化事件
+            if (categoryFilter) {
+                categoryFilter.addEventListener('change', () => {
+                    renderSearchResults();
+                });
+            }
+
+            if (sortFilter) {
+                sortFilter.addEventListener('change', () => {
+                    renderSearchResults();
                 });
             }
         }
