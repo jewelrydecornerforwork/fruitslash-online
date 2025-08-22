@@ -1278,12 +1278,10 @@ const gameData = [
         function renderGames() {
             if (filteredGames.length === 0) {
                 gamesGrid.style.display = 'none';
-                noGames.style.display = 'block';
                 return;
             }
 
             gamesGrid.style.display = 'grid';
-            noGames.style.display = 'none';
 
             gamesGrid.innerHTML = '';
             
