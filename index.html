@@ -894,24 +894,6 @@ Editing fruitslash-online/index.html at main · jewelrydecornerforwork/fruitslas
         .game-card:hover .card-title-bottom {
             color: #2563eb;
         }
-
-        .loading {
-            text-align: center;
-            padding: 2rem;
-            font-size: 1.2rem;
-            color: #6b7280;
-        }
-
-        .no-games {
-            text-align: center;
-            padding: 3rem;
-            color: #6b7280;
-        }
-
-        .no-games h3 {
-            margin-bottom: 1rem;
-            color: #374151;
-        }
             
         .card-info {
             padding: 1rem;
@@ -968,7 +950,15 @@ Editing fruitslash-online/index.html at main · jewelrydecornerforwork/fruitslas
             </ul>
             <div class="search-container">
                 <input type="text" class="search-input" placeholder="Search games..." id="searchInput">
-                <button class="search-btn" id="searchBtn"></button>
+               </ul>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search games..." id="searchInput">
+                <button class="search-btn" id="searchBtn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
             </div>
         </nav>
     </header>
@@ -1006,12 +996,6 @@ Editing fruitslash-online/index.html at main · jewelrydecornerforwork/fruitslas
         <!-- 更多游戏部分 -->
         <div class="more-games-section">
             <h2 class="section-title">More Games</h2>
-            
-            <div class="loading" id="loading">Loading games...</div>
-            <div class="no-games" id="noGames" style="display: none;">
-                <h3>No games found</h3>
-                <p>Try adjusting your search filter</p>
-            </div>
 
             <div class="games-grid" id="gamesGrid"></div>
         </div>
