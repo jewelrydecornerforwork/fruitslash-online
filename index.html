@@ -1250,25 +1250,41 @@ const gameData = [
 
         // 设置事件监听器
         function setupEventListeners() {
-            // 搜索功能
-            searchInput.addEventListener('input', (e) => {
-                currentSearch = e.target.value.toLowerCase();
-                filterGames();
-            });
+    // 新的搜索功能 - 跳转到搜索页面
+    const searchBtn = document.getElementById('searchBtn');
+    
+    // 搜索按钮点击事件
+    if (searchBtn) {
+        searchBtn.addEventListener('click', () => {
+            const searchTerm = searchInput.value.trim();
+            if (searchTerm) {
+                window.location.href = `search.html?q=${encodeURIComponent(searchTerm)}`;
+            }
+        });
+    }
 
-            // 模态框事件
-            closeModal.addEventListener('click', closeGameModal);
-            gameModal.addEventListener('click', (e) => {
-                if (e.target === gameModal) closeGameModal();
-            });
-
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && gameModal.classList.contains('active')) {
-                    closeGameModal();
-                }
-            });
+    // 搜索框回车事件
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            const searchTerm = searchInput.value.trim();
+            if (searchTerm) {
+                window.location.href = `search.html?q=${encodeURIComponent(searchTerm)}`;
+            }
         }
+    });
 
+    // 保持原有的模态框事件
+    closeModal.addEventListener('click', closeGameModal);
+    gameModal.addEventListener('click', (e) => {
+        if (e.target === gameModal) closeGameModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && gameModal.classList.contains('active')) {
+            closeGameModal();
+        }
+    });
+}
         // 过滤游戏 - 只基于搜索
         function filterGames() {
             filteredGames = allGames.filter(game => {
