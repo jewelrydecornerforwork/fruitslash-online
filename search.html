@@ -869,17 +869,17 @@
             if (navSearchInput) navSearchInput.value = searchTerm;
 
             if (!searchTerm) {
-                // 没有搜索词时：显示欢迎区域，隐藏其他所有内容
-                searchWelcome.style.display = 'block';
-                gamesGrid.style.display = 'none';
-                searchFilters.style.display = 'none';
-                searchResultsHeader.style.display = 'none';
-                if (noResults) noResults.style.display = 'none';
-                return;
-            }
+            // 没有搜索词时：显示欢迎区域，隐藏其他所有内容
+            if (searchWelcome) searchWelcome.style.display = 'block';
+            gamesGrid.style.display = 'none';
+            searchFilters.style.display = 'none';
+            searchResultsHeader.style.display = 'none';
+            if (noResults) noResults.style.display = 'none';
+            return;
+        }
 
-            // 有搜索词时：隐藏欢迎区域
-            searchWelcome.style.display = 'none';
+        // 有搜索词时：隐藏欢迎区域
+        if (searchWelcome) searchWelcome.style.display = 'none';
 
             // 过滤游戏
             const categoryFilter = document.getElementById('categoryFilter')?.value || '';
