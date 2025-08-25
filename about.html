@@ -18,10 +18,9 @@
             background: #f8f9fa;
             color: #333;
             line-height: 1.6;
-            padding-top: 0;
         }
 
-        /* 导航栏样式 - 与其他页面相同 */
+        /* 导航栏样式 */
         .header {
             background: white;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -31,8 +30,8 @@
             right: 0;
             width: 100%;
             z-index: 100;
-            height: 80px;
         }
+
         .nav {
             max-width: 1400px;
             margin: 0 auto;
@@ -110,13 +109,12 @@
         .search-btn:hover {
             color: #374151;
         }
-        
+
         /* 面包屑导航 */
         .breadcrumb {
             background: #f8f9fa;
             padding: 1rem 2rem;
             margin-top: 80px;
-            border-bottom: none;
         }
 
         .breadcrumb-container {
@@ -148,8 +146,6 @@
             padding: 3rem 2rem;
             background: white;
             min-height: calc(100vh - 200px);
-            position: relative;
-            z-index: 1;
         }
 
         /* About页面标题 */
@@ -164,7 +160,6 @@
         /* 内容区域 */
         .content-section {
             margin-bottom: 3rem;
-            border-bottom: none;
         }
 
         .section-title {
@@ -235,9 +230,8 @@
         .action-section {
             margin-top: 3rem;
             padding-top: 2rem;
-            border-top: none;
         }
-        
+
         .action-buttons {
             display: flex;
             gap: 1rem;
@@ -276,7 +270,7 @@
             border-color: #4b5563;
         }
 
-        /* 页脚样式 - 与index.html相同 */
+        /* 页脚样式 */
         .footer {
             background: #2d3748;
             color: white;
@@ -365,11 +359,6 @@
                 padding: 0.75rem 2rem;
             }
 
-            .header {
-                height: auto;
-                min-height: 120px;
-            }
-
             .nav-links {
                 gap: 1rem;
             }
@@ -379,7 +368,7 @@
             }
 
             .breadcrumb {
-                margin-top: 120px;
+                margin-top: 140px;
             }
 
             .main-content {
@@ -446,6 +435,8 @@
                     </svg>
                 </button>
             </div>
+        </nav>
+    </header>
 
     <!-- 面包屑导航 -->
     <div class="breadcrumb">
@@ -557,7 +548,7 @@
             <p>&copy; 2025 FruitSlash.online. All rights reserved.</p>
         </div>
     </footer>
-            
+
     <script>
         // 搜索功能
         function performSearch(searchTerm) {
@@ -585,6 +576,6 @@
                 });
             }
         });
-    </script>        
+    </script>
 </body>
 </html>
