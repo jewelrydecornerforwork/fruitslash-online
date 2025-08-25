@@ -101,13 +101,21 @@
             color: #6b7280;
             cursor: pointer;
             font-size: 1.1rem;
+            padding: 0.25rem;
+            border-radius: 4px;
+            transition: color 0.3s;
         }
+
+        .search-btn:hover {
+            color: #374151;
+        }
+        
         /* 面包屑导航 */
         .breadcrumb {
             background: #f8f9fa;
             padding: 1rem 2rem;
             margin-top: 80px;
-            border-bottom: 1px solid #e5e7eb;
+            border-bottom: none;
         }
 
         .breadcrumb-container {
@@ -153,6 +161,7 @@
         /* 内容区域 */
         .content-section {
             margin-bottom: 3rem;
+            border-bottom: none;
         }
 
         .section-title {
@@ -223,9 +232,9 @@
         .action-section {
             margin-top: 3rem;
             padding-top: 2rem;
-            border-top: 1px solid #e5e7eb;
+            border-top: none;
         }
-
+        
         .action-buttons {
             display: flex;
             gap: 1rem;
@@ -420,11 +429,14 @@
                 <li><a href="about.html">About</a></li>
             </ul>
             <div class="search-container">
-                <input type="text" class="search-input" placeholder="Search games...">
-                <button class="search-btn" id="searchBtn"></button>
+                <input type="text" class="search-input" placeholder="Search games..." id="navSearchInput">
+                <button class="search-btn" id="navSearchBtn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="10" cy="10" r="7"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
             </div>
-        </nav>
-    </header>
 
     <!-- 面包屑导航 -->
     <div class="breadcrumb">
@@ -536,5 +548,34 @@
             <p>&copy; 2025 FruitSlash.online. All rights reserved.</p>
         </div>
     </footer>
+            
+    <script>
+        // 搜索功能
+        function performSearch(searchTerm) {
+            if (searchTerm) {
+                window.location.href = `search.html?q=${encodeURIComponent(searchTerm)}`;
+            }
+        }
+
+        // 设置搜索事件
+        document.addEventListener('DOMContentLoaded', function() {
+            const navSearchInput = document.getElementById('navSearchInput');
+            const navSearchBtn = document.getElementById('navSearchBtn');
+
+            if (navSearchBtn) {
+                navSearchBtn.addEventListener('click', () => {
+                    performSearch(navSearchInput.value.trim());
+                });
+            }
+
+            if (navSearchInput) {
+                navSearchInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        performSearch(navSearchInput.value.trim());
+                    }
+                });
+            }
+        });
+    </script>        
 </body>
 </html>
