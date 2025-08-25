@@ -857,8 +857,8 @@
             <p>&copy; 2025 FruitSlash.online. All rights reserved.</p>
         </div>
     </footer>
-
     <script>
+        
         // 游戏数据
 const gameData = {
             2: {
@@ -941,6 +941,14 @@ const gameData = {
                     gameIconElement.innerHTML = '<img src="' + game.thumbnail + '" alt="' + game.title + '" class="game-cover-image">';
                 } else {
                     gameIconElement.innerHTML = '<span class="game-icon-emoji">' + game.icon + '</span>';
+                }
+
+                // 更新游戏预览区域的图标
+                const featuredIconElement = document.getElementById('featuredIcon');
+                if (game.thumbnail) {
+                   featuredIconElement.innerHTML = '<img src="' + game.thumbnail + '" alt="' + game.title + '" class="featured-cover-image">'; 
+                } else {
+                    featuredIconElement.textContent = game.icon;
                 }
                 
                 document.querySelector('.description-text').textContent = game.description;
