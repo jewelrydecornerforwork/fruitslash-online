@@ -396,6 +396,9 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
         }
 
         .card-header {
@@ -439,11 +442,23 @@
             border-radius: 50%;
             width: 50px;
             height: 50px;
-            font-size: 1.2rem;
             cursor: pointer;
             opacity: 0;
             transition: all 0.3s;
             z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .play-button::before {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 12px solid #2563eb;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            margin-left: 2px;
         }
 
         .game-card:hover .play-button {
@@ -620,6 +635,14 @@
                 gap: 1rem;
             }
 
+            .game-image {
+                height: 120px;
+            }
+
+            .card-info {
+                padding: 1rem;
+            }
+            
             .footer-content {
                 grid-template-columns: 1fr;
                 gap: 2rem;
@@ -647,11 +670,17 @@
         @media (max-width: 480px) {
             .games-grid {
                 grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 0.75rem;
+            }
+
+            .game-image {
+                height: 100px;
             }
         }
     </style>
 </head>
 <body>
+    
     <!-- 导航栏 -->
     <header class="header">
         <nav class="nav">
