@@ -943,14 +943,6 @@ const gameData = {
                     gameIconElement.innerHTML = '<span class="game-icon-emoji">' + game.icon + '</span>';
                 }
                 
-                // 更新游戏预览区域的图标
-                const featuredIconElement = document.getElementById('featuredIcon');
-                if (game.thumbnail) {
-                    featuredIconElement.innerHTML = '<img src="' + game.thumbnail + '" alt="' + game.title + '" class="featured-cover-image">';
-                } else {
-                    featuredIconElement.textContent = game.icon;
-                }
-                
                 document.querySelector('.description-text').textContent = game.description;
                 document.querySelector('.info-value').textContent = game.category;
                 
