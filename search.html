@@ -852,7 +852,7 @@
         }
 
         // 渲染搜索结果
-        function renderSearchResults() {
+       function renderSearchResults() {
             const searchTerm = getSearchTerm();
             const gamesGrid = document.getElementById('gamesGrid');
             const searchFilters = document.getElementById('searchFilters');
@@ -869,14 +869,17 @@
             if (navSearchInput) navSearchInput.value = searchTerm;
 
             if (!searchTerm) {
-                // 显示欢迎区域，隐藏其他内容
+                // 没有搜索词时：显示欢迎区域，隐藏其他所有内容
                 searchWelcome.style.display = 'block';
                 gamesGrid.style.display = 'none';
                 searchFilters.style.display = 'none';
                 searchResultsHeader.style.display = 'none';
-                noResults.style.display = 'none';
+                if (noResults) noResults.style.display = 'none';
                 return;
             }
+
+            // 有搜索词时：隐藏欢迎区域
+            searchWelcome.style.display = 'none';
 
             // 过滤游戏
             const categoryFilter = document.getElementById('categoryFilter')?.value || '';
@@ -901,21 +904,23 @@
             resultsCount.textContent = `Found ${filteredGames.length} games for "${searchTerm}"`;
 
             if (filteredGames.length === 0) {
+                // 没有找到游戏：显示无结果页面
                 gamesGrid.style.display = 'none';
-                noResults.style.display = 'block';
+                if (noResults) noResults.style.display = 'block';
                 return;
             }
 
-            // 渲染游戏卡片
-            noResults.style.display = 'none';
+            // 有搜索结果：显示游戏网格，隐藏无结果页面
+            if (noResults) noResults.style.display = 'none';
             gamesGrid.style.display = 'grid';
             gamesGrid.innerHTML = '';
 
+            // 渲染游戏卡片
             filteredGames.forEach(game => {
                 const gameCard = document.createElement('div');
                 gameCard.className = 'game-card';
                 gameCard.onclick = () => openGame(game.id);
-                
+
                 gameCard.innerHTML = `
                     <div class="game-image">
                         <img src="${game.thumbnail}" alt="${game.title}" class="game-thumbnail">
