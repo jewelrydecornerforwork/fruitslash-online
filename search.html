@@ -850,7 +850,7 @@
                 window.location.href = `search.html?q=${encodeURIComponent(searchTerm)}`;
             }
         }
-
+        
         // 渲染搜索结果
        function renderSearchResults() {
             const searchTerm = getSearchTerm();
@@ -925,19 +925,19 @@
                 ? `<img src="${game.thumbnail}" alt="${game.title}" class="game-thumbnail">`
                 : `<div class="game-emoji">${game.thumbnail || '🎮'}</div>`;
 
-            gameCard.innerHTML = `
-                <div class="game-image">
-                    ${thumbnailContent}
-                    <div class="card-header">
-                        <div class="card-title-top">${game.category}</div>
-                        <div class="game-rating">⭐ 4.5</div>
-                    </div>
-                    <button class="play-button"></button>
+        gameCard.innerHTML = `
+            <div class="game-image">
+                ${thumbnailContent}
+                <div class="card-header">
+                    <div class="card-title-top">${game.category}</div>
+                    <div class="game-rating">⭐ 4.5</div>
                 </div>
-                <div class="card-info">
-                    <h3 class="card-title-bottom">${game.title}</h3>
-                </div>
-            `;        
+                <button class="play-button"></button>
+            </div>
+            <div class="card-info">
+                <h3 class="card-title-bottom">${game.title}</h3>
+            </div>
+        `;
                 
         // 清除搜索
         function clearSearch() {
