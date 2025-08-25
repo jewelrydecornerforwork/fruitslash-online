@@ -319,6 +319,35 @@
             font-size: 0.95rem;
         }
 
+        /* 搜索欢迎区域 */
+        .search-welcome {
+            background: white;
+            padding: 4rem 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .welcome-icon {
+            margin-bottom: 2rem;
+        }
+
+        .welcome-title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .welcome-description {
+            font-size: 1.1rem;
+            color: #6b7280;
+            max-width: 500px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
         /* 游戏网格 */
         .games-grid {
             display: grid;
@@ -815,9 +844,9 @@
         function renderSearchResults() {
             const searchTerm = getSearchTerm();
             const gamesGrid = document.getElementById('gamesGrid');
-            const searchInfo = document.getElementById('searchInfo');
             const searchFilters = document.getElementById('searchFilters');
             const searchResultsHeader = document.getElementById('searchResultsHeader');
+            const searchWelcome = document.getElementById('searchWelcome');
             const noResults = document.getElementById('noResults');
             const searchTagText = document.getElementById('searchTagText');
             const resultsCount = document.getElementById('resultsCount');
@@ -829,8 +858,9 @@
             if (navSearchInput) navSearchInput.value = searchTerm;
 
             if (!searchTerm) {
+                // 显示欢迎区域，隐藏其他内容
+                searchWelcome.style.display = 'block';
                 gamesGrid.style.display = 'none';
-                searchInfo.style.display = 'none';
                 searchFilters.style.display = 'none';
                 searchResultsHeader.style.display = 'none';
                 noResults.style.display = 'none';
@@ -874,7 +904,7 @@
                 const gameCard = document.createElement('div');
                 gameCard.className = 'game-card';
                 gameCard.onclick = () => openGame(game.id);
-
+                
                 gameCard.innerHTML = `
                     <div class="game-image">
                         <img src="${game.thumbnail}" alt="${game.title}" class="game-thumbnail">
