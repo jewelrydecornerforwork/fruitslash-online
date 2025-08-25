@@ -18,6 +18,7 @@
             background: #f8f9fa;
             color: #333;
             line-height: 1.6;
+            padding-top: 0;
         }
 
         /* 导航栏样式 - 与其他页面相同 */
@@ -30,8 +31,8 @@
             right: 0;
             width: 100%;
             z-index: 100;
+            height: 80px;
         }
-
         .nav {
             max-width: 1400px;
             margin: 0 auto;
@@ -147,6 +148,8 @@
             padding: 3rem 2rem;
             background: white;
             min-height: calc(100vh - 200px);
+            position: relative;
+            z-index: 1;
         }
 
         /* About页面标题 */
@@ -359,6 +362,12 @@
             .nav {
                 flex-direction: column;
                 gap: 1rem;
+                padding: 0.75rem 2rem;
+            }
+
+            .header {
+                height: auto;
+                min-height: 120px;
             }
 
             .nav-links {
