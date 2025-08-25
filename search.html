@@ -801,7 +801,7 @@
         </div>
     </footer>
 
-    <script>
+<script>
         // 游戏数据
         const gameData = [
             {
@@ -810,6 +810,7 @@
                 description: "Become a master of the blade as you slice through flying fruit with precision and speed.",
                 category: "arcade",
                 tags: ["slicing", "fruit", "arcade"],
+                gameUrl: "https://play.gamepix.com/cut-fruit-ninja/embed?sid=1",
                 thumbnail: "https://img.gamepix.com/games/cut-fruit-ninja/icon/cut-fruit-ninja.png?w=1"
             },
             {
@@ -818,6 +819,7 @@
                 description: "Embark on a vibrant puzzle quest in Princess Rescue Fruit Connect.",
                 category: "match-3",
                 tags: ["match-3", "fruit", "puzzle"],
+                gameUrl: "https://play.gamepix.com/princess-rescue-fruit-connect/embed?sid=1",
                 thumbnail: "https://img.gamepix.com/games/princess-rescue-fruit-connect/icon/princess-rescue-fruit-connect.png?w=105"
             },
             {
@@ -826,6 +828,7 @@
                 description: "Dive into Fruit Fiesta, a vibrant tile-matching adventure.",
                 category: "block",
                 tags: ["block", "fruit", "puzzle"],
+                gameUrl: "https://play.gamepix.com/fruit-fiesta/embed?sid=1",
                 thumbnail: "https://img.gamepix.com/games/fruit-fiesta/icon/fruit-fiesta.png?w=105"
             },
             {
@@ -834,6 +837,7 @@
                 description: "Unwind with Crazy Fruit Merge, a vibrant puzzle game.",
                 category: "puzzle",
                 tags: ["puzzle", "fruit", "merge"],
+                gameUrl: "https://play.gamepix.com/crazy-fruit-merge/embed?sid=1",
                 thumbnail: "https://img.gamepix.com/games/crazy-fruit-merge/icon/crazy-fruit-merge.png?w=105"
             }
         ];
@@ -850,9 +854,9 @@
                 window.location.href = `search.html?q=${encodeURIComponent(searchTerm)}`;
             }
         }
-        
+
         // 渲染搜索结果
-       function renderSearchResults() {
+        function renderSearchResults() {
             const searchTerm = getSearchTerm();
             const gamesGrid = document.getElementById('gamesGrid');
             const searchFilters = document.getElementById('searchFilters');
@@ -869,20 +873,21 @@
             if (navSearchInput) navSearchInput.value = searchTerm;
 
             if (!searchTerm) {
-            // 没有搜索词时：显示欢迎区域，隐藏其他所有内容
-            if (searchWelcome) searchWelcome.style.display = 'block';
-            gamesGrid.style.display = 'none';
-            searchFilters.style.display = 'none';
-            searchResultsHeader.style.display = 'none';
-            if (noResults) noResults.style.display = 'none';
-            return;
-        }
+                // 没有搜索词时：显示欢迎区域，隐藏其他所有内容
+                if (searchWelcome) searchWelcome.style.display = 'block';
+                gamesGrid.style.display = 'none';
+                searchFilters.style.display = 'none';
+                searchResultsHeader.style.display = 'none';
+                if (noResults) noResults.style.display = 'none';
+                return;
+            }
 
-        // 有搜索词时：隐藏欢迎区域
-        if (searchWelcome) searchWelcome.style.display = 'none';
+            // 有搜索词时：隐藏欢迎区域
+            if (searchWelcome) searchWelcome.style.display = 'none';
 
             // 过滤游戏
-            const categoryFilter = document.getElementById('categoryFilter')?.value || '';
+            const categoryFilter = document.getElementById('categoryFilter');
+            const categoryValue = categoryFilter ? categoryFilter.value : '';
             let filteredGames = gameData.filter(game => 
                 game.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                 game.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -891,54 +896,56 @@
             );
 
             // 应用分类过滤
-            if (categoryFilter) {
+            if (categoryValue) {
                 filteredGames = filteredGames.filter(game => 
-                    game.category.toLowerCase() === categoryFilter.toLowerCase()
+                    game.category.toLowerCase() === categoryValue.toLowerCase()
                 );
             }
 
             // 显示搜索过滤器和结果标题
             searchFilters.style.display = 'flex';
             searchResultsHeader.style.display = 'block';
-            searchTagText.textContent = `"${searchTerm}"`;
-            resultsCount.textContent = `Found ${filteredGames.length} games for "${searchTerm}"`;
+            if (searchTagText) searchTagText.textContent = `"${searchTerm}"`;
+            if (resultsCount) resultsCount.textContent = `Found ${filteredGames.length} games for "${searchTerm}"`;
 
             if (filteredGames.length === 0) {
-                // 没有找到游戏：显示无结果页面
                 gamesGrid.style.display = 'none';
                 if (noResults) noResults.style.display = 'block';
                 return;
             }
 
-            // 有搜索结果：显示游戏网格，隐藏无结果页面
+            // 渲染游戏卡片
             if (noResults) noResults.style.display = 'none';
             gamesGrid.style.display = 'grid';
             gamesGrid.innerHTML = '';
 
-            // 渲染游戏卡片
             filteredGames.forEach(game => {
                 const gameCard = document.createElement('div');
                 gameCard.className = 'game-card';
                 gameCard.onclick = () => openGame(game.id);
 
-        const thumbnailContent = game.thumbnail && game.thumbnail.startsWith('http') 
-                ? `<img src="${game.thumbnail}" alt="${game.title}" class="game-thumbnail">`
-                : `<div class="game-emoji">${game.thumbnail || '🎮'}</div>`;
+                const thumbnailContent = game.thumbnail && game.thumbnail.startsWith('http') 
+                    ? `<img src="${game.thumbnail}" alt="${game.title}" class="game-thumbnail">`
+                    : `<div class="game-emoji">${game.thumbnail || '🎮'}</div>`;
 
-        gameCard.innerHTML = `
-            <div class="game-image">
-                ${thumbnailContent}
-                <div class="card-header">
-                    <div class="card-title-top">${game.category}</div>
-                    <div class="game-rating">⭐ 4.5</div>
-                </div>
-                <button class="play-button"></button>
-            </div>
-            <div class="card-info">
-                <h3 class="card-title-bottom">${game.title}</h3>
-            </div>
-        `;
-                
+                gameCard.innerHTML = `
+                    <div class="game-image">
+                        ${thumbnailContent}
+                        <div class="card-header">
+                            <div class="card-title-top">${game.category}</div>
+                            <div class="game-rating">⭐ 4.5</div>
+                        </div>
+                        <button class="play-button"></button>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title-bottom">${game.title}</h3>
+                    </div>
+                `;
+
+                gamesGrid.appendChild(gameCard);
+            });
+        }
+
         // 清除搜索
         function clearSearch() {
             window.location.href = 'search.html';
@@ -946,7 +953,17 @@
 
         // 打开游戏
         function openGame(gameId) {
-            window.location.href = `game.html?id=${gameId}`;
+            try {
+                const game = gameData.find(g => g.id === gameId);
+                if (!game) {
+                    console.error(`Game with ID ${gameId} not found`);
+                    return;
+                }
+                
+                window.location.href = `game.html?id=${gameId}`;
+            } catch (error) {
+                console.error('Error opening game:', error);
+            }
         }
 
         // 设置搜索事件
