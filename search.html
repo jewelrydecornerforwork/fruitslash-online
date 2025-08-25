@@ -921,24 +921,23 @@
                 gameCard.className = 'game-card';
                 gameCard.onclick = () => openGame(game.id);
 
-                gameCard.innerHTML = `
-                    <div class="game-image">
-                        <img src="${game.thumbnail}" alt="${game.title}" class="game-thumbnail">
-                        <div class="card-header">
-                            <div class="card-title-top">${game.category}</div>
-                            <div class="game-rating">⭐ 4.5</div>
-                        </div>
-                        <button class="play-button">▶</button>
-                    </div>
-                    <div class="card-info">
-                        <h3 class="card-title-bottom">${game.title}</h3>
-                    </div>
-                `;
+const thumbnailContent = game.thumbnail && game.thumbnail.startsWith('http') 
+            ? `<img src="${game.thumbnail}" alt="${game.title}" class="game-thumbnail">`
+            : `<div class="game-emoji">${game.thumbnail || '🎮'}</div>`;
 
-                gamesGrid.appendChild(gameCard);
-            });
-        }
-
+        gameCard.innerHTML = `
+            <div class="game-image">
+                ${thumbnailContent}
+                <div class="card-header">
+                    <div class="card-title-top">${game.category}</div>
+                    <div class="game-rating">⭐ 4.5</div>
+                </div>
+                <button class="play-button"></button>
+            </div>
+            <div class="card-info">
+                <h3 class="card-title-bottom">${game.title}</h3>
+            </div>
+        `;
         // 清除搜索
         function clearSearch() {
             window.location.href = 'search.html';
