@@ -184,7 +184,8 @@
             padding: 2rem;
             text-align: center;
             position: relative;
-            min-height: 600px;
+            min-height: 540px;
+            aspect-ratio: 16/9;
             width: 100%;
             display: flex;
             flex-direction: column;
@@ -290,6 +291,10 @@
 
         .game-preview-content {
             transition: all 0.5s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
         }
 
         .game-preview.playing .game-preview-content {
@@ -299,6 +304,78 @@
 
         .game-info {
             flex: 1;
+        }
+
+        /* Featured content refinements */
+        .featured-subtitle {
+            color: rgba(255,255,255,0.95);
+            font-size: 1rem;
+            line-height: 1.6;
+            max-width: 720px;
+            margin: 0 auto 0.5rem auto;
+        }
+
+        .featured-meta {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .badge {
+            background: rgba(255,255,255,0.15);
+            color: #fff;
+            padding: 0.35rem 0.7rem;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.25);
+        }
+
+        .featured-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tag-chip {
+            background: rgba(255,255,255,0.14);
+            color: #fff;
+            padding: 0.25rem 0.6rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .featured-actions {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cta-secondary {
+            background: rgba(255,255,255,0.2);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.35);
+            padding: 0.9rem 1.4rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .cta-secondary:hover {
+            transform: translateY(-1px);
+            background: rgba(255,255,255,0.28);
         }
 
         /* 分类导航 */
@@ -1033,9 +1110,21 @@
                     <div class="game-preview" id="gamePreview">
                         <div class="game-preview-content" id="previewContent">
                             <div class="game-icon" id="featuredIcon">🍇</div>
-                            <button class="play-featured" id="playFeaturedBtn" aria-label="Play Fruit Blaster game">
-                                Play Now
-                            </button>
+                            <p class="featured-subtitle">Slice and blast colorful fruits to create satisfying combos. Smooth, fast-paced, and made for quick fun.</p>
+                            <div class="featured-meta">
+                                <span class="badge">⭐ 4.5</span>
+                                <span class="badge">No Download</span>
+                                <span class="badge">Mobile Friendly</span>
+                            </div>
+                            <div class="featured-actions">
+                                <button class="play-featured" id="playFeaturedBtn" aria-label="Play Fruit Blaster game">Play Now</button>
+                                <a href="game.html?id=2" class="cta-secondary" aria-label="Learn more about Fruit Blaster">Learn More →</a>
+                            </div>
+                            <div class="featured-tags">
+                                <span class="tag-chip">arcade</span>
+                                <span class="tag-chip">fruit</span>
+                                <span class="tag-chip">slicing</span>
+                            </div>
                             <div class="mobile-hint" style="display: none; margin-top: 1rem; font-size: 0.9rem; color: rgba(255,255,255,0.8);">
                                     📱 建议横屏游玩获得最佳体验
                             </div>
