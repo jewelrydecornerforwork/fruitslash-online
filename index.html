@@ -572,6 +572,7 @@
             transition: color 0.25s ease;
             margin: 0;
             display: -webkit-box;
+            line-clamp: 1;
             -webkit-line-clamp: 1;
             -webkit-box-orient: vertical;
             overflow: hidden;
@@ -1398,7 +1399,10 @@ const gameData = [
                 // 判断是否为图片URL
                 var thumbnailContent = '';
                 if (game.thumbnail && game.thumbnail.startsWith('http')) {
-                    thumbnailContent = '<img src="' + game.thumbnail + '" alt="' + game.title + ' thumbnail" class="game-thumbnail" loading="lazy" data-loaded="false" onload="this.setAttribute(\'data-loaded\', \'true\')" onerror="this.style.display=\'none\'">';
+                    var baseThumb = game.thumbnail.replace(/w=\d+/, 'w=512');
+                    var src1x = baseThumb;
+                    var src2x = baseThumb.replace(/w=512/, 'w=1024');
+                    thumbnailContent = '<img src="' + src1x + '" srcset="' + src1x + ' 1x, ' + src2x + ' 2x" sizes="(max-width: 480px) 160px, (max-width: 768px) 220px, 320px" alt="' + game.title + ' thumbnail" class="game-thumbnail" loading="lazy" decoding="async" data-loaded="false" onload="this.setAttribute(\'data-loaded\', \'true\')" onerror="this.style.display=\'none\'">';
                 } else {
                     thumbnailContent = '<div class="game-emoji" aria-hidden="true">' + (game.thumbnail || '🎮') + '</div>';
                 }

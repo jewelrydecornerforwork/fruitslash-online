@@ -1003,7 +1003,12 @@
                 gameCard.onclick = () => openGame(game.id);
 
                 const thumbnailContent = game.thumbnail && game.thumbnail.startsWith('http') 
-                    ? `<img src="${game.thumbnail}" alt="${game.title}" class="game-thumbnail">`
+                    ? (() => {
+                        const baseThumb = game.thumbnail.replace(/w=\d+/, 'w=512');
+                        const src1x = baseThumb;
+                        const src2x = baseThumb.replace(/w=512/, 'w=1024');
+                        return `<img src="${src1x}" srcset="${src1x} 1x, ${src2x} 2x" sizes="(max-width: 480px) 160px, (max-width: 768px) 220px, 320px" alt="${game.title}" class="game-thumbnail" loading="lazy" decoding="async">`;
+                      })()
                     : `<div class="game-emoji">${game.thumbnail || '🎮'}</div>`;
 
                 gameCard.innerHTML = `
