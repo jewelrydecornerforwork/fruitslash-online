@@ -8,6 +8,9 @@
     <meta name="description" content="Learn more about FruitSlash.online - Your ultimate destination for free online HTML5 games. No downloads required!">
     
     <style>
+        :root {
+            --focus-ring: 0 0 0 3px rgba(37,99,235,0.3);
+        }
         * {
             margin: 0;
             padding: 0;
@@ -96,6 +99,24 @@
             padding: 0.25rem;
             border-radius: 4px;
             transition: color 0.3s;
+        }
+
+        .search-clear {
+            position: absolute;
+            right: 2.1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #9ca3af;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        a:focus-visible, button:focus-visible, input:focus-visible {
+            outline: none;
+            box-shadow: var(--focus-ring);
+            border-radius: 6px;
         }
 
         .search-btn:hover {
@@ -416,6 +437,7 @@
             </ul>
             <div class="search-container">
                 <input type="text" class="search-input" placeholder="Search games..." id="navSearchInput">
+                <button class="search-clear" id="navSearchClearBtn" aria-label="Clear search" title="Clear">×</button>
                 <button class="search-btn" id="navSearchBtn" aria-label="Search games">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                         <circle cx="11" cy="11" r="8"></circle>
@@ -552,10 +574,18 @@
         document.addEventListener('DOMContentLoaded', function() {
             const navSearchInput = document.getElementById('navSearchInput');
             const navSearchBtn = document.getElementById('navSearchBtn');
+            const navSearchClearBtn = document.getElementById('navSearchClearBtn');
 
             if (navSearchBtn) {
                 navSearchBtn.addEventListener('click', () => {
                     performSearch(navSearchInput.value.trim());
+                });
+            }
+
+            if (navSearchClearBtn) {
+                navSearchClearBtn.addEventListener('click', () => {
+                    navSearchInput.value = '';
+                    navSearchInput.focus();
                 });
             }
 
