@@ -15,9 +15,9 @@
   Access-Control-Allow-Methods: GET, POST, OPTIONS
   Access-Control-Allow-Headers: Content-Type
 
-# HTML files - shorter cache
+# HTML files - very short cache to reflect updates quickly
 /*.html
-  Cache-Control: public, max-age=3600
+  Cache-Control: public, max-age=120, must-revalidate
 
 # CSS and JS files - longer cache
 /*.css

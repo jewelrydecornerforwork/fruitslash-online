@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; frame-src https://play.gamepix.com https://games.gamepix.com; connect-src 'self' https:;">
     <title>FruitSlash.online - Play Free HTML5 Games</title>
     <meta name="description" content="Play the best free HTML5 games online. No downloads required! Enjoy puzzle, action, arcade games and more.">
     <meta name="keywords" content="HTML5 games, free games, online games, browser games, arcade games">
@@ -10,25 +11,42 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://fruitslash.online/">
-Use Control + Shift + m to toggle the tab key moving focus. Alternatively, use esc then tab to move to the next interactive element on the page.
-Editing fruitslash-online/index.html at main · jewelrydecornerforwork/fruitslash-online
-
-翻译
+    <link rel="canonical" href="https://fruitslash.online/">
 
     <meta property="og:title" content="FruitSlash.online - Play Free HTML5 Games">
     <meta property="og:description" content="Play the best free HTML5 games online. No downloads required!">
-    <meta property="og:image" content="https://fruitslash.online/assets/images/og-image.jpg">
+    <meta property="og:image" content="https://fruitslash.online/game-intro.jpg">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://fruitslash.online/">
     <meta property="twitter:title" content="FruitSlash.online - Play Free HTML5 Games">
     <meta property="twitter:description" content="Play the best free HTML5 games online. No downloads required!">
-    <meta property="twitter:image" content="https://fruitslash.online/assets/images/og-image.jpg">
+    <meta property="twitter:image" content="https://fruitslash.online/game-intro.jpg">
 
     <!-- Favicon --> 
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="logo.png" as="image">
+    <link rel="preload" href="game-intro.jpg" as="image">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "FruitSlash.online",
+        "url": "https://fruitslash.online",
+        "description": "Play the best free HTML5 games online. No downloads required!",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://fruitslash.online/search.html?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
     
     <style>
         * {
@@ -358,6 +376,8 @@ Editing fruitslash-online/index.html at main · jewelrydecornerforwork/fruitslas
             font-size: 3rem;
             position: relative;
             overflow: hidden;
+            border-radius: 12px;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
         }
 
         .game-image::after {
@@ -417,6 +437,25 @@ Editing fruitslash-online/index.html at main · jewelrydecornerforwork/fruitslas
             top: 0;
             left: 0;
             border-radius: 0;
+            transition: transform 0.4s ease, filter 0.4s ease;
+            will-change: transform;
+        }
+
+        .game-card:hover .game-thumbnail {
+            transform: scale(1.06);
+        }
+
+        /* Loading shimmer for thumbnails */
+        .game-thumbnail[data-loaded="false"] {
+            filter: blur(6px) saturate(0.9);
+            background: linear-gradient(90deg, rgba(255,255,255,0.08) 25%, rgba(255,255,255,0.18) 37%, rgba(255,255,255,0.08) 63%);
+            background-size: 400% 100%;
+            animation: shimmer 1.2s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
         }
 
         .game-emoji {
@@ -965,20 +1004,20 @@ Editing fruitslash-online/index.html at main · jewelrydecornerforwork/fruitslas
     <header class="header">
         <nav class="nav">
             <a href="#" class="logo">
-                <img src="logo.png" alt="Logo" style="width: 3rem; height: 3rem; margin-right: 0.5rem;">
+                <img src="logo.png" alt="FruitSlash.online Logo" style="width: 3rem; height: 3rem; margin-right: 0.5rem;" loading="lazy">
                 FruitSlash.online
             </a>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#games">Games</a></li>
-                <li><a href="#categories">Categories</a></li>
+                <li><a href="categories.html">Categories</a></li>
                 <li><a href="about.html">About</a></li>
                 
                </ul>
             <div class="search-container">
                 <input type="text" class="search-input" placeholder="Search games..." id="searchInput">
-                <button class="search-btn" id="searchBtn">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <button class="search-btn" id="searchBtn" aria-label="Search games">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                         <circle cx="11" cy="11" r="8"></circle>
                         <path d="m21 21-4.35-4.35"></path>
                     </svg>
@@ -999,7 +1038,7 @@ Editing fruitslash-online/index.html at main · jewelrydecornerforwork/fruitslas
                     <div class="game-preview" id="gamePreview">
                         <div class="game-preview-content" id="previewContent">
                             <div class="game-icon" id="featuredIcon">🍇</div>
-                            <button class="play-featured" id="playFeaturedBtn">
+                            <button class="play-featured" id="playFeaturedBtn" aria-label="Play Fruit Blaster game">
                                 Play Now
                             </button>
                             <div class="mobile-hint" style="display: none; margin-top: 1rem; font-size: 0.9rem; color: rgba(255,255,255,0.8);">
@@ -1010,7 +1049,9 @@ Editing fruitslash-online/index.html at main · jewelrydecornerforwork/fruitslas
                             class="game-iframe" 
                             id="featuredGameIframe"
                             src=""
-                            allowfullscreen>
+                            allowfullscreen
+                            sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+                            loading="lazy">
                         </iframe>
                     </div>
                 </div>
@@ -1035,7 +1076,7 @@ Editing fruitslash-online/index.html at main · jewelrydecornerforwork/fruitslas
                     </p>
                 </div>
                 <div class="intro-image">
-                    <img src="game-intro.jpg" alt="Game Characters" />
+                    <img src="game-intro.jpg" alt="Fruit Blaster gameplay characters" loading="lazy" />
                 </div>
             </div>
         </div>
@@ -1054,7 +1095,7 @@ Editing fruitslash-online/index.html at main · jewelrydecornerforwork/fruitslas
                         </p>
                     </div>
                     <div class="feature-image">
-                        <img src="free-to-play.jpg" alt="Free to Play Features" />
+                        <img src="free-to-play.jpg" alt="Free to Play features illustration" loading="lazy" />
                     </div>
                 </div>
 
@@ -1068,7 +1109,7 @@ Editing fruitslash-online/index.html at main · jewelrydecornerforwork/fruitslas
                         </p>
                     </div>
                     <div class="feature-image">
-                        <img src="cross-platform.jpg" alt="Cross Platform Gaming" />
+                        <img src="cross-platform.jpg" alt="Cross-platform gaming devices" loading="lazy" />
                     </div>
                 </div>
             </div>
@@ -1114,7 +1155,7 @@ Editing fruitslash-online/index.html at main · jewelrydecornerforwork/fruitslas
         <div class="footer-content">
             <div class="footer-brand">
                 <a href="#" class="footer-logo">
-                    <img src="logo.png" alt="Logo" style="width: 3rem; height: 3rem; margin-right: 0.5rem;">
+                    <img src="logo.png" alt="FruitSlash.online Logo" style="width: 3rem; height: 3rem; margin-right: 0.5rem;" loading="lazy">
                     FruitSlash.online
                 </a>         
                 <p class="footer-description">
@@ -1125,7 +1166,7 @@ Editing fruitslash-online/index.html at main · jewelrydecornerforwork/fruitslas
             <div class="footer-section">
                 <h3>Quick Links</h3>
                 <div class="footer-links">
-                    <a href=/">Home</a>
+                    <a href="/">Home</a>
                     <a href="#games">Games</a>
                     <a href="#categories">Categories</a>
                     <a href="about.html">About</a>
@@ -1317,9 +1358,9 @@ const gameData = [
                 // 判断是否为图片URL
                 var thumbnailContent = '';
                 if (game.thumbnail && game.thumbnail.startsWith('http')) {
-                    thumbnailContent = '<img src="' + game.thumbnail + '" alt="' + game.title + '" class="game-thumbnail">';
+                    thumbnailContent = '<img src="' + game.thumbnail + '" alt="' + game.title + ' thumbnail" class="game-thumbnail" loading="lazy" data-loaded="false" onload="this.setAttribute(\'data-loaded\', \'true\')" onerror="this.style.display=\'none\'">';
                 } else {
-                    thumbnailContent = '<div class="game-emoji">' + (game.thumbnail || '🎮') + '</div>';
+                    thumbnailContent = '<div class="game-emoji" aria-hidden="true">' + (game.thumbnail || '🎮') + '</div>';
                 }
                 
                 var gameCard = '<div class="game-card" onclick="openGame(' + game.id + ')">' +

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Results - FruitSlash.online</title>
+    <link rel="canonical" href="https://fruitslash.online/search.html">
     <meta name="description" content="Search results for games on FruitSlash.online">
     
     <style>
@@ -684,19 +685,19 @@
     <header class="header">
         <nav class="nav">
             <a href="/" class="logo">
-                <img src="logo.png" alt="Logo" style="width: 3rem; height: 3rem; margin-right: 0.5rem;">
+                <img src="logo.png" alt="FruitSlash.online Logo" style="width: 3rem; height: 3rem; margin-right: 0.5rem;" loading="lazy">
                 FruitSlash.online
         </a>
             <ul class="nav-links">
                 <li><a href="/">Home</a></li>
                 <li><a href="#games">Games</a></li>
-                <li><a href="#categories">Categories</a></li>
+                <li><a href="categories.html">Categories</a></li>
                 <li><a href="about.html">About</a></li>
             </ul>
             <div class="search-container">
                 <input type="text" class="search-input" placeholder="Search games..." id="navSearchInput">
-                <button class="search-btn" id="navSearchBtn">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <button class="search-btn" id="navSearchBtn" aria-label="Search games">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                         <circle cx="11" cy="11" r="8"></circle>
                         <path d="m21 21-4.35-4.35"></path>
                     </svg>
@@ -724,8 +725,8 @@
             <p class="search-subtitle">Find your perfect game from our collection</p>
             <div class="search-form">
                 <input type="text" id="mainSearchInput" placeholder="Search for games...">
-                <button id="mainSearchBtn">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <button id="mainSearchBtn" aria-label="Search games">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                         <circle cx="11" cy="11" r="8"></circle>
                         <path d="m21 21-4.35-4.35"></path>
                     </svg>
@@ -877,9 +878,12 @@
         ];
 
         // 获取搜索参数
-        function getSearchTerm() {
+        function getSearchParams() {
             const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get('q') || '';
+            return {
+                q: urlParams.get('q') || '',
+                category: urlParams.get('category') || urlParams.get('cat') || ''
+            };
         }
 
         // 执行搜索
@@ -891,7 +895,8 @@
 
         // 渲染搜索结果
         function renderSearchResults() {
-            const searchTerm = getSearchTerm();
+            const params = getSearchParams();
+            const searchTerm = params.q;
             const gamesGrid = document.getElementById('gamesGrid');
             const searchFilters = document.getElementById('searchFilters');
             const searchResultsHeader = document.getElementById('searchResultsHeader');
@@ -921,7 +926,7 @@
 
             // 过滤游戏
             const categoryFilter = document.getElementById('categoryFilter');
-            const categoryValue = categoryFilter ? categoryFilter.value : '';
+            const categoryValue = (categoryFilter ? categoryFilter.value : '') || params.category;
             let filteredGames = gameData.filter(game => 
                 game.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                 game.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -939,8 +944,11 @@
             // 显示搜索过滤器和结果标题
             searchFilters.style.display = 'flex';
             searchResultsHeader.style.display = 'block';
-            if (searchTagText) searchTagText.textContent = `"${searchTerm}"`;
-            if (resultsCount) resultsCount.textContent = `Found ${filteredGames.length} games for "${searchTerm}"`;
+            const tagParts = [];
+            if (searchTerm) tagParts.push(`"${searchTerm}"`);
+            if (categoryValue) tagParts.push(`category: ${categoryValue}`);
+            if (searchTagText) searchTagText.textContent = tagParts.join(' · ');
+            if (resultsCount) resultsCount.textContent = `Found ${filteredGames.length} game(s)`;
 
             if (filteredGames.length === 0) {
                 gamesGrid.style.display = 'none';
