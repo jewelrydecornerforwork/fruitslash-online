@@ -87,22 +87,31 @@
         .nav {
             max-width: 1400px;
             margin: 0 auto;
-            display: flex;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
             align-items: center;
             padding: 1rem 2rem;
             background: transparent;
             backdrop-filter: none;
             border-radius: 0;
             margin-top: 0;
-            gap: 2rem;
         }
 
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
 
         .nav-links {
             display: flex;
             list-style: none;
             gap: 2rem;
+            justify-self: center;
         }
 
         .nav-links a {
@@ -118,6 +127,7 @@
 
         .search-container {
             position: relative;
+            justify-self: end;
         }
 
         .search-input {
@@ -768,6 +778,7 @@
 
         @media (max-width: 768px) {
             .nav {
+                display: flex;
                 flex-direction: column;
                 gap: 1rem;
                 padding: 1rem 2rem;
@@ -894,6 +905,10 @@
 <body>
     <header class="header">
         <nav class="nav">
+            <a href="#" class="logo">
+                <img src="logo.png" alt="FruitSlash.online Logo" style="width: 3rem; height: 3rem; margin-right: 0.5rem;" loading="lazy">
+                FruitSlash.online
+            </a>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#games">Games</a></li>
