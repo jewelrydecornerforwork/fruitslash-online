@@ -25,93 +25,17 @@
         }
 
         /* 导航栏样式 */
-        .header {
-            background: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: static;
-            width: 100%;
-        }
-
-        .nav {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #374151;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #374151;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: #2563eb;
-        }
-
-        .search-container {
-            position: relative;
-        }
-
-        .search-input {
-            padding: 0.75rem 2.5rem 0.75rem 1rem;
-            border: 2px solid #e5e7eb;
-            border-radius: 25px;
-            outline: none;
-            transition: border-color 0.3s;
-            width: 300px;
-            font-size: 0.9rem;
-        }
-
-        .search-input:focus {
-            border-color: #2563eb;
-        }
-
-        .search-btn {
-            position: absolute;
-            right: 0.75rem;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            color: #6b7280;
-            cursor: pointer;
-            font-size: 1.1rem;
-            padding: 0.25rem;
-            border-radius: 4px;
-            transition: color 0.3s;
-        }
-
-        .search-clear {
-            position: absolute;
-            right: 2.1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            color: #9ca3af;
-            cursor: pointer;
-            font-size: 1rem;
-        }
+        .header { background: #2d3748; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: static; width: 100%; }
+        .nav { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 1rem 2rem; }
+        .logo { font-size: 1.8rem; font-weight: bold; color: white; text-decoration: none; display: flex; align-items: center; gap: .5rem; }
+        .nav-links { display: flex; list-style: none; gap: 2rem; justify-self: center; }
+        .nav-links a { text-decoration: none; color: white; font-weight: 500; transition: color .3s; }
+        .nav-links a:hover { color: #a0aec0; }
+        .search-container { position: relative; justify-self: end; }
+        .search-input { padding: .9rem 2.75rem .9rem 1rem; border: 2px solid #a5b4fc; border-radius: 16px; outline: none; width: 360px; font-size: 1rem; background: rgba(255,255,255,.08); color: #eef2ff; box-shadow: 0 0 0 3px rgba(59,130,246,.35) inset, 0 0 0 3px rgba(59,130,246,.35); transition: box-shadow .2s, border-color .2s, background .2s; }
+        .search-input:focus { border-color: #c7d2fe; box-shadow: 0 0 0 3px rgba(99,102,241,.45) inset, 0 0 0 3px rgba(99,102,241,.45); background: rgba(255,255,255,.06); }
+        .search-input::placeholder { color: #cbd5e1; }
+        .search-btn { position: absolute; right: .6rem; top: 50%; transform: translateY(-50%); background: none; border: none; color: #cbd5e1; cursor: pointer; font-size: 1.2rem; }
 
         a:focus-visible, button:focus-visible, input:focus-visible {
             outline: none;
@@ -160,62 +84,39 @@
         }
 
         /* 搜索头部区域 */
-        .search-header {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            color: white;
-            padding: 3rem 2rem;
-            border-radius: 15px;
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .search-title {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-
-        .search-subtitle {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            margin-bottom: 2rem;
-        }
-
-        .search-form {
-            display: flex;
-            max-width: 500px;
-            margin: 0 auto;
-            gap: 0.5rem;
-        }
-
+        .search-header { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 3rem 2rem; border-radius: 15px; text-align: center; margin-bottom: 2rem; }
+        .search-title { font-size: 2.5rem; font-weight: bold; margin-bottom: 0.5rem; }
+        .search-subtitle { font-size: 1.1rem; opacity: 0.9; margin-bottom: 2rem; }
+        .search-form { display: flex; max-width: 600px; margin: 0 auto; gap: .5rem; position: relative; }
         .search-form input {
             flex: 1;
-            padding: 1rem 1.5rem;
-            border: none;
-            border-radius: 25px;
+            padding: .9rem 3rem .9rem 1rem;
+            border: 2px solid #a5b4fc;
+            border-radius: 16px;
             font-size: 1rem;
             outline: none;
+            background: rgba(255,255,255,.08);
+            color: #eef2ff;
+            box-shadow: 0 0 0 3px rgba(59,130,246,.35) inset, 0 0 0 3px rgba(59,130,246,.35);
+            transition: box-shadow .2s, border-color .2s, background .2s;
         }
-
+        .search-form input::placeholder { color: #e5e7eb; }
+        .search-form input:focus { border-color: #c7d2fe; box-shadow: 0 0 0 3px rgba(99,102,241,.45) inset, 0 0 0 3px rgba(99,102,241,.45); background: rgba(255,255,255,.06); }
         .search-form button {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            padding: 1rem 1.5rem;
-            border-radius: 25px;
+            position: absolute;
+            right: .6rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #eef2ff;
+            padding: 0;
+            min-width: auto;
             cursor: pointer;
-            font-size: 1rem;
-            min-width: 80px;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-size: 1.2rem;
+            border-radius: 8px;
         }
-
-        .search-form button:hover {
-            background: rgba(255, 255, 255, 0.3);
-            border-color: rgba(255, 255, 255, 0.5);
-        }
+        .search-form button:hover { background: rgba(255, 255, 255, 0.3); border-color: rgba(255, 255, 255, 0.5); }
 
         /* 搜索过滤区域 */
         .search-filters {
@@ -730,7 +631,6 @@
             </ul>
             <div class="search-container">
                 <input type="text" class="search-input" placeholder="Search games..." id="navSearchInput">
-                <button class="search-clear" id="navSearchClearBtn" aria-label="Clear search" title="Clear">×</button>
                 <button class="search-btn" id="navSearchBtn" aria-label="Search games">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                         <circle cx="11" cy="11" r="8"></circle>
@@ -760,7 +660,6 @@
             <p class="search-subtitle">Find your perfect game from our collection</p>
             <div class="search-form">
                 <input type="text" id="mainSearchInput" placeholder="Search for games...">
-                <button id="mainSearchClearBtn" class="cta-clear" aria-label="Clear search" title="Clear" style="background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.35); border-radius: 25px; padding: 0 0.8rem;">×</button>
                 <button id="mainSearchBtn" aria-label="Search games">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                         <circle cx="11" cy="11" r="8"></circle>
@@ -1053,10 +952,8 @@
         function setupSearchEvents() {
             const mainSearchInput = document.getElementById('mainSearchInput');
             const mainSearchBtn = document.getElementById('mainSearchBtn');
-            const mainSearchClearBtn = document.getElementById('mainSearchClearBtn');
             const navSearchInput = document.getElementById('navSearchInput');
             const navSearchBtn = document.getElementById('navSearchBtn');
-            const navSearchClearBtn = document.getElementById('navSearchClearBtn');
             const categoryFilter = document.getElementById('categoryFilter');
             const sortFilter = document.getElementById('sortFilter');
 
@@ -1064,13 +961,6 @@
             if (mainSearchBtn) {
                 mainSearchBtn.addEventListener('click', () => {
                     performSearch(mainSearchInput.value.trim());
-                });
-            }
-
-            if (mainSearchClearBtn) {
-                mainSearchClearBtn.addEventListener('click', () => {
-                    mainSearchInput.value = '';
-                    mainSearchInput.focus();
                 });
             }
 
@@ -1086,13 +976,6 @@
             if (navSearchBtn) {
                 navSearchBtn.addEventListener('click', () => {
                     performSearch(navSearchInput.value.trim());
-                });
-            }
-
-            if (navSearchClearBtn) {
-                navSearchClearBtn.addEventListener('click', () => {
-                    navSearchInput.value = '';
-                    navSearchInput.focus();
                 });
             }
 
