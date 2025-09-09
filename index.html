@@ -88,24 +88,16 @@
             max-width: 1400px;
             margin: 0 auto;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             padding: 1rem 2rem;
             background: transparent;
             backdrop-filter: none;
             border-radius: 0;
             margin-top: 0;
+            gap: 2rem;
         }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: white;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
 
         .nav-links {
             display: flex;
@@ -186,7 +178,7 @@
         }
 
         .game-container {
-            background: white;
+            background: #000000;
             border-radius: 0;
             overflow: hidden;
             box-shadow: none;
@@ -195,9 +187,9 @@
 
 
         .game-content {
-            padding: 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
+            padding: 0;
+            max-width: 100%;
+            margin: 0;
         }
 
         .featured-game {
@@ -208,10 +200,10 @@
         .game-preview {
             background: transparent;
             border-radius: 0;
-            padding: 2rem;
+            padding: 0;
             text-align: center;
             position: relative;
-            min-height: 600px;
+            min-height: calc(100vh - 80px);
             width: 100%;
             display: flex;
             flex-direction: column;
@@ -793,17 +785,17 @@
 
             .main-game-section {
                 padding: 0;
-                padding-top: 75px; 
+                padding-top: 0; 
                 max-width: 100%;
             }
 
             .game-preview {
-                min-height: 400px;
-                padding: 1rem;
+                min-height: calc(100vh - 60px);
+                padding: 0;
             }
 
             .game-content {
-                padding: 1rem;
+                padding: 0;
                 max-width: 100%;
             }
 
@@ -902,10 +894,6 @@
 <body>
     <header class="header">
         <nav class="nav">
-            <a href="#" class="logo">
-                <img src="logo.png" alt="FruitSlash.online Logo" style="width: 3rem; height: 3rem; margin-right: 0.5rem;" loading="lazy">
-                FruitSlash.online
-            </a>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#games">Games</a></li>
