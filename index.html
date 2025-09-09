@@ -176,31 +176,19 @@
         .main-game-section {
             max-width: 100%;
             margin: 0;
-            padding: 0;
+            padding: 72px 0 0 0;
         }
 
         .game-container {
-            background: #000000;
+            background: #0b0f1a;
             border-radius: 0;
             overflow: hidden;
             box-shadow: none;
             margin-bottom: 0;
         }
 
-
-        .game-content {
-            padding: 0;
-            max-width: 100%;
-            margin: 0;
-        }
-
-        .featured-game {
-            display: block;
-            margin-bottom: 3rem;
-        }
-
         .game-preview {
-            background: transparent;
+            background: #0b0f1a;
             border-radius: 0;
             padding: 0;
             text-align: center;
@@ -227,6 +215,7 @@
             opacity: 0;
             visibility: hidden;
             transition: all 0.5s ease;
+            z-index: 1;
         }
 
         .game-iframe.active {
@@ -472,7 +461,7 @@
         .game-card:hover .game-thumbnail { transform: scale(1.02); }
 
         .card-info { padding: 0.9rem 1rem; text-align: left; }
-        .card-title-bottom { font-size: 1rem; font-weight: 700; color: #111827; margin: 0 0 .25rem 0; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .card-title-bottom { font-size: 1rem; font-weight: 700; color: #111827; margin: 0 0 .25rem 0; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; }
         .game-subline { font-size: 0.9rem; color: #6b7280; margin: 0; }
 
         .card-header, .play-button, .game-rating, .card-category { display: none !important; }
@@ -564,14 +553,13 @@
             font-weight: 700;
             color: #1f2937;
             transition: color 0.25s ease;
-            margin: 0;
+            margin: 0 0 .25rem 0;
+            line-height: 1.3;
             display: -webkit-box;
-            line-clamp: 1;
-            -webkit-line-clamp: 1;
+            -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
             text-overflow: ellipsis;
-            white-space: nowrap;
         }
 
         .game-card:hover .card-title-bottom {
@@ -739,13 +727,12 @@
             }
 
             .main-game-section {
-                padding: 0;
-                padding-top: 0; 
+                padding: 72px 0 0 0;
                 max-width: 100%;
             }
 
             .game-preview {
-                min-height: calc(100vh - 60px);
+                min-height: calc(100vh - 72px);
                 padding: 0;
             }
 
