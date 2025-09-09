@@ -174,44 +174,36 @@
 
         /* 主游戏展示区域 */
         .main-game-section {
-            max-width: 100%;
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
         }
 
         .game-container {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 0;
+            background: white;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: none;
-            margin-bottom: 0;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
         }
 
 
         .game-content {
-            padding: 0;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
+            padding: 2rem;
         }
 
         .featured-game {
             display: block;
-            margin-bottom: 0;
-            flex: 1;
+            margin-bottom: 3rem;
         }
 
         .game-preview {
-            background: transparent;
-            border-radius: 0;
-            padding: 0;
+            background: linear-gradient(135deg, #ff6b6b, #ffa500, #ff4757);
+            border-radius: 15px;
+            padding: 2rem;
             text-align: center;
             position: relative;
-            min-height: 100vh;
+            min-height: 600px;
             width: 100%;
             display: flex;
             flex-direction: column;
@@ -229,7 +221,7 @@
             width: 100%;
             height: 100%;
             border: none;
-            border-radius: 0;
+            border-radius: 15px;
             opacity: 0;
             visibility: hidden;
             transition: all 0.5s ease;
@@ -270,14 +262,158 @@
         /* Ensure no blank space under the game when playing */
         .game-preview.playing {
             padding: 0;
-            min-height: 100vh;
-            height: 100vh;
+            min-height: 0;
+            height: 75vh;
         }
 
 
         /* 更多游戏网格 */
         .more-games-section {
             margin-top: 3rem;
+        }
+
+        /* 游戏介绍部分 */
+        .game-intro-section {
+            margin: 4rem 0;
+            padding: 3rem 2rem;
+            background: #f8f9fa;
+        }
+
+        .intro-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .intro-content {
+            flex: 1;
+        }
+
+        .intro-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #4ade80;
+            margin-bottom: 1rem;
+        }
+
+        .intro-description {
+            font-size: 1.1rem;
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        .intro-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .intro-image img {
+            max-width: 100%;
+            width: 100%;
+            height: 400px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        /* 游戏特色部分 */
+        .features-section {
+            margin: 4rem 0;
+            padding: 0 2rem;
+            background: #f8f9fa;
+        }
+
+        .features-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            padding: 3rem 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            padding: 2rem 0;
+            background: transparent;
+            border-radius: 15px;
+        }
+
+        .feature-item.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .feature-content {
+            flex: 1;
+        }
+
+        .feature-title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #4ade80;
+            margin-bottom: 1rem;
+        }
+
+        .feature-description {
+            font-size: 1.1rem;
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        .feature-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .feature-image img {
+            max-width: 100%;
+            width: 100%;
+            height: 350px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 常见问题部分 */
+        .faq-section {
+            margin: 4rem 0;
+            padding: 3rem 2rem;
+            background: #f0f9ff;
+        }
+
+        .faq-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .faq-item {
+            background: #dcfce7;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid #4ade80;
+        }
+
+        .faq-question {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #166534;
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-answer {
+            font-size: 1rem;
+            color: #166534;
+            line-height: 1.5;
+            margin: 0;
         }
 
         .section-title {
@@ -650,18 +786,18 @@
             }
 
             .main-game-section {
-                padding: 0;
-                padding-top: 0; 
+                padding: 0 2rem;
+                padding-top: 75px; 
                 max-width: 100%;
             }
 
             .game-preview {
-                min-height: 100vh;
-                padding: 0;
+                min-height: 400px;
+                padding: 1rem;
             }
 
             .game-content {
-                padding: 0;
+                padding: 1rem;
             }
 
 
@@ -709,6 +845,34 @@
             max-width: none;
         }
 
+            /* 移动端图片修复 */
+        .intro-container {
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .intro-image img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+        
+        .feature-item {
+            flex-direction: column !important;
+            gap: 2rem;
+        }
+        
+        .feature-item.reverse {
+            flex-direction: column !important;
+        }
+        
+        .feature-image img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
         }
             
         @media (max-width: 480px) {
@@ -778,6 +942,81 @@
         <div class="more-games-section">
             <h2 class="section-title">More Games</h2>
             <div class="games-grid" id="gamesGrid"></div>
+        </div>
+             
+        <!-- 游戏介绍部分 -->
+        <div class="game-intro-section">
+            <div class="intro-container">
+                <div class="intro-content">
+                    <h2 class="intro-title">What is Fruit Blaster?</h2>
+                    <p class="intro-description">
+                        Fruit Blaster is an exciting and addictive puzzle game where you slice and blast colorful fruits to create amazing combos! 
+                        Experience fast-paced action, stunning visuals, and satisfying gameplay that will keep you entertained for hours. 
+                        Challenge yourself to achieve high scores and master the art of fruit slicing!
+                    </p>
+                </div>
+                <div class="intro-image">
+                    <img src="game-intro.jpg" alt="Fruit Blaster gameplay characters" loading="lazy" />
+                </div>
+            </div>
+        </div>
+
+        <!-- 游戏特色部分 -->
+        <div class="features-section">
+            <h2 class="section-title">Game Features</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-content">
+                        <h3 class="feature-title">100% Free to Play</h3>
+                        <p class="feature-description">
+                            Jump right into the action! No downloads, no registration, no hidden fees. 
+                            Simply click play and start slicing fruits immediately. Enjoy unlimited gaming sessions 
+                            without any restrictions or premium barriers.
+                        </p>
+                    </div>
+                    <div class="feature-image">
+                        <img src="free-to-play.jpg" alt="Free to Play features illustration" loading="lazy" />
+                    </div>
+                </div>
+
+                <div class="feature-item reverse">
+                    <div class="feature-content">
+                        <h3 class="feature-title">Cross-Platform Gaming</h3>
+                        <p class="feature-description">
+                            Slice fruits on any device, anywhere! Our game runs smoothly on desktop computers, 
+                            tablets, and smartphones. Whether you're at home or on the go, enjoy the same 
+                            high-quality gaming experience across all your devices.
+                        </p>
+                    </div>
+                    <div class="feature-image">
+                        <img src="cross-platform.jpg" alt="Cross-platform gaming devices" loading="lazy" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 常见问题部分 -->
+        <div class="faq-section">
+            <div class="faq-container">
+                <h2 class="section-title">FAQ</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <h3 class="faq-question">Is Fruit Blaster completely free?</h3>
+                        <p class="faq-answer">Yes! Fruit Blaster is 100% free to play with no hidden costs, in-app purchases, or premium features. Enjoy unlimited gaming sessions without spending a penny.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3 class="faq-question">Do I need to download or install anything?</h3>
+                        <p class="faq-answer">No downloads required! Fruit Blaster runs directly in your web browser. Simply visit our website, click play, and start slicing fruits immediately.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3 class="faq-question">Can I play on my mobile device?</h3>
+                        <p class="faq-answer">Absolutely! Our game is fully optimized for mobile devices, tablets, and desktop computers. Enjoy smooth gameplay and responsive controls on any screen size.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3 class="faq-question">Do I need to create an account to play?</h3>
+                        <p class="faq-answer">No registration needed! Jump straight into the action without creating accounts, providing email addresses, or filling out forms. Just click and play!</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 
