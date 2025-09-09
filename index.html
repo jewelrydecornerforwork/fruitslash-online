@@ -214,7 +214,7 @@
         }
 
         .game-preview {
-            background: linear-gradient(135deg, #ff6b6b, #ffa500, #ff4757);
+            background: #000000;
             border-radius: 15px;
             padding: 2rem;
             text-align: center;
@@ -249,6 +249,7 @@
             margin-bottom: 2rem;
             position: relative;
             z-index: 1;
+            color: #666666;
         }
 
 .play-featured {
@@ -1086,7 +1087,12 @@
             <div class="game-content">
                 <div class="featured-game" id="featuredGame">
                     <div class="game-preview" id="gamePreview">
-                        
+                        <div class="game-preview-content" id="previewContent">
+                            <div class="game-icon">🎮</div>
+                            <button class="play-featured" id="playFeaturedBtn">
+                                Play Game
+                            </button>
+                        </div>
                         <iframe 
                             class="game-iframe" 
                             id="featuredGameIframe"
@@ -1296,10 +1302,10 @@ const gameData = [
                setupEventListeners();
             }
 
-        // 设置精选游戏 - 直接在首页播放
+        // 设置精选游戏 - 显示预览界面
         function setupFeaturedGame() {
-            // 页面加载即播放精选游戏
-            playFeaturedGame();
+            // 页面加载时显示预览界面，等待用户点击播放
+            setupFeaturedGameEvents();
         }
 
         // 播放精选游戏 - 使用移动端兼容的URL
@@ -1323,6 +1329,14 @@ const gameData = [
             }
             
             console.log('Starting Fruit Blaster in featured area');
+        }
+
+        // 添加播放按钮点击事件
+        function setupFeaturedGameEvents() {
+            const playBtn = document.getElementById('playFeaturedBtn');
+            if (playBtn) {
+                playBtn.addEventListener('click', playFeaturedGame);
+            }
         }
 
         // 设置事件监听器
