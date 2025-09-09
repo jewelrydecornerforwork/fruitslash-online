@@ -423,108 +423,59 @@
         .section-title {
             font-size: 2rem;
             font-weight: bold;
-            text-align: center;
-            margin-bottom: 2rem;
+            text-align: left;
+            margin-bottom: 1.25rem;
             color: #1f2937;
         }
 
         .games-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.25rem;
             margin-bottom: 3rem;
+            justify-items: center;
         }
         .game-card {
             background: white;
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
             border: 1px solid rgba(0,0,0,0.06);
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
             cursor: pointer;
-            opacity: 0;
-            transform: translateY(6px);
-            animation: fadeInUp 0.4s ease forwards;
+            opacity: 1;
+            transform: none;
+            animation: none;
+            width: 100%;
+            max-width: 360px;
+            text-align: left;
         }
 
         .game-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
         }
 
         .game-image {
             width: 100%;
             aspect-ratio: 16 / 9;
             background: #f3f4f6;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
+            display: block;
             position: relative;
             overflow: hidden;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
         }
 
-        .game-image::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,0.35) 100%);
-            opacity: 0;
-            transition: opacity 0.25s ease;
-        }
+        .game-image::after { content: none; }
 
-        .game-card:hover .game-image::after {
-            opacity: 1;
-        }
+        .game-thumbnail { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; transition: transform 0.25s ease; }
+        .game-card:hover .game-thumbnail { transform: scale(1.02); }
 
-        .play-button {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(255, 255, 255, 0.95);
-            border: none;
-            border-radius: 50%;
-            width: 48px;
-            height: 48px;
-            cursor: pointer;
-            opacity: 0;
-            transition: transform 0.25s ease, opacity 0.25s ease;
-            z-index: 2;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+        .card-info { padding: 0.9rem 1rem; text-align: left; }
+        .card-title-bottom { font-size: 1rem; font-weight: 700; color: #111827; margin: 0 0 .25rem 0; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .game-subline { font-size: 0.9rem; color: #6b7280; margin: 0; }
 
-        .play-button::before {
-            content: '';
-            width: 0;
-            height: 0;
-            border-left: 12px solid #2563eb;
-            border-top: 8px solid transparent;
-            border-bottom: 8px solid transparent;
-            margin-left: 2px;
-        }
-
-        .game-card:hover .play-button {
-            opacity: 1;
-            transform: translate(-50%, -50%) scale(1.06);
-        }
-        .game-thumbnail {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            top: 0;
-            left: 0;
-            border-radius: 0;
-            transition: transform 0.3s ease;
-            will-change: transform;
-        }
-
-        .game-card:hover .game-thumbnail {
-            transform: scale(1.04);
-        }
+        .card-header, .play-button, .game-rating, .card-category { display: none !important; }
 
         /* Loading shimmer for thumbnails */
         .game-thumbnail[data-loaded="false"] {
@@ -1242,14 +1193,10 @@ const gameData = [
                 var gameCard = '<div class="game-card" onclick="openGame(' + game.id + ')">' +
                     '<div class="game-image">' +
                     thumbnailContent +
-                    '<div class="card-header">' +
-                    '<div class="card-title-top">' + game.category + '</div>' +
-                    '<div class="game-rating">⭐ 4.5</div>' +
-                    '</div>' +
-                    '<button class="play-button"></button>' +
                     '</div>' +
                     '<div class="card-info">' +
                     '<h3 class="card-title-bottom">' + game.title + '</h3>' +
+                    '<p class="game-subline">FruitSlash · Free HTML5 Game</p>' +
                     '</div>' +
                     '</div>';
                 
