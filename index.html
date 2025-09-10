@@ -437,28 +437,25 @@
         }
         .game-card {
             background: white;
-            border-radius: 18px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             border: none;
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
             cursor: pointer;
-            opacity: 1;
-            transform: translateZ(0);
-            animation: none;
             width: 100%;
-            max-width: 420px;
+            max-width: 300px;
             text-align: left;
         }
 
         .game-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
         .game-image {
             width: 100%;
-            height: 220px;
+            height: 200px;
             background: #f3f4f6;
             display: block;
             position: relative;
@@ -467,35 +464,33 @@
 
         .game-image::after { content: none; }
 
-        .game-thumbnail { width: 100%; height: 100%; object-fit: contain; position: absolute; inset: 0; background: #ffffff; }
-
-        /* 底部渐变覆盖层，贴近 GD Exclusive 风格 */
-        .gd-gradient {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.45), rgba(0,0,0,0.2) 35%, rgba(0,0,0,0) 60%);
-            pointer-events: none;
+        .game-thumbnail { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            position: absolute; 
+            inset: 0; 
         }
 
-        /* 左上角徽标 */
-        .gd-badge {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            background: #111827;
-            color: #ffffff;
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: .02em;
-            padding: 0.35rem 0.6rem;
-            border-radius: 999px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-            z-index: 2;
-        }
+        /* 移除所有徽标和覆盖层样式 */
 
-        .card-info { padding: 0.9rem 1rem 1rem 1rem; text-align: left; }
-        .card-title-bottom { font-size: 1.05rem; font-weight: 800; color: #111827; margin: 0 0 .25rem 0; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; }
-        .game-subline { font-size: 0.85rem; color: #6b7280; margin: 0; }
+        .card-info { 
+            padding: 1rem; 
+            text-align: left; 
+        }
+        .card-title-bottom { 
+            font-size: 1rem; 
+            font-weight: 600; 
+            color: #1f2937; 
+            margin: 0; 
+            line-height: 1.3; 
+            display: -webkit-box; 
+            -webkit-line-clamp: 2; 
+            -webkit-box-orient: vertical; 
+            overflow: hidden; 
+            text-overflow: ellipsis; 
+        }
+        .game-subline { display: none; }
 
         .card-header, .play-button, .game-rating, .card-category { display: none !important; }
 
@@ -776,12 +771,12 @@
 
 
             .games-grid {
-                grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
                 gap: 1rem;
             }
 
             .game-image {
-                height: 180px;
+                height: 160px;
             }
 
             .card-header {
@@ -851,12 +846,12 @@
             
         @media (max-width: 480px) {
             .games-grid {
-                grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
                 gap: 0.75rem;
             }
 
             .game-image {
-                height: 150px;
+                height: 120px;
             }
 
             .card-title-bottom {
@@ -1210,13 +1205,10 @@ const gameData = [
                 
                 var gameCard = '<div class="game-card" onclick="openGame(' + game.id + ')">' +
                     '<div class="game-image">' +
-                        '<span class="gd-badge">Exclusive</span>' +
                         thumbnailContent +
-                        '<div class="gd-gradient"></div>' +
                     '</div>' +
                     '<div class="card-info">' +
                         '<h3 class="card-title-bottom">' + game.title + '</h3>' +
-                        '<p class="game-subline">FruitSlash · Free HTML5 Game</p>' +
                     '</div>' +
                 '</div>';
                 
