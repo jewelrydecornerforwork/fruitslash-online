@@ -456,6 +456,16 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
+        /* New containers to explicitly separate image and title areas */
+        .card-image-container {
+            flex: 1;
+            display: block;
+        }
+
+        .card-title-container {
+            flex-shrink: 0;
+        }
+
         .game-image {
             width: 100%;
             flex: 1;
@@ -1201,11 +1211,15 @@ const gameData = [
                 }
                 
                 var gameCard = '<div class="game-card" onclick="openGame(' + game.id + ')">' +
-                    '<div class="game-image">' +
-                        thumbnailContent +
+                    '<div class="card-image-container">' +
+                        '<div class="game-image">' +
+                            thumbnailContent +
+                        '</div>' +
                     '</div>' +
-                    '<div class="card-info">' +
-                        '<h3 class="card-title-bottom">' + game.title + '</h3>' +
+                    '<div class="card-title-container">' +
+                        '<div class="card-info">' +
+                            '<h3 class="card-title-bottom">' + game.title + '</h3>' +
+                        '</div>' +
                     '</div>' +
                 '</div>';
                 
