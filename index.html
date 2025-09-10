@@ -430,6 +430,35 @@
             margin-right: auto;
         }
 
+        /* Section header with action button */
+        .section-header {
+            max-width: 1400px;
+            margin: 0 auto 1.25rem auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .section-header .section-title {
+            margin: 0;
+            max-width: none;
+        }
+        .more-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.55rem 0.9rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            color: #2563eb;
+            background: #e8eefc;
+            border: 1px solid #cdd8fb;
+            transition: background 0.2s ease, transform 0.1s ease;
+            white-space: nowrap;
+        }
+        .more-btn:hover { background: #dfe8fb; }
+        .more-btn:active { transform: translateY(1px); }
+
         .games-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -921,7 +950,10 @@
         
         <!-- 更多游戏部分 -->
         <div class="more-games-section">
-            <h2 class="section-title">More Games</h2>
+            <div class="section-header">
+                <h2 class="section-title">More Games</h2>
+                <a class="more-btn" href="categories.html">Browse All</a>
+            </div>
             <div class="games-grid" id="gamesGrid"></div>
         </div>
              
