@@ -609,6 +609,53 @@
             width: 100vw;
             height: 100vh;
         }
+
+        /* 沉浸填满模式（始终铺满视口） */
+        body.immersive {
+            overflow: hidden;
+            background: #000;
+        }
+        body.immersive .header,
+        body.immersive .breadcrumb,
+        body.immersive .footer { display: none; }
+        body.immersive .main-content {
+            max-width: none;
+            padding: 0;
+            margin: 0;
+        }
+        body.immersive .game-section {
+            border-radius: 0;
+            box-shadow: none;
+        }
+        body.immersive #gameContainer {
+            position: fixed;
+            inset: 0;
+            width: 100vw;
+            height: 100svh;
+            padding-top: max(env(safe-area-inset-top), 0px);
+            padding-bottom: max(env(safe-area-inset-bottom), 0px);
+            padding-left: max(env(safe-area-inset-left), 0px);
+            padding-right: max(env(safe-area-inset-right), 0px);
+            z-index: 999;
+        }
+        body.immersive #fullscreenBtn { display: none; }
+        /* 退出按钮 */
+        #exitImmersiveBtn {
+            position: fixed;
+            top: max(12px, env(safe-area-inset-top));
+            left: max(12px, env(safe-area-inset-left));
+            background: rgba(0,0,0,0.6);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 10px;
+            padding: 0.45rem 0.7rem;
+            font-size: 0.95rem;
+            line-height: 1;
+            z-index: 1000;
+            cursor: pointer;
+            display: none;
+        }
+        body.immersive #exitImmersiveBtn { display: inline-flex; }
     </style>
 </head>
 <body>
@@ -671,6 +718,7 @@
             <div class="game-frame-container" id="gameContainer">
                 <iframe class="game-iframe" id="gameIframe" src=""></iframe>
                 <button class="fullscreen-btn" id="fullscreenBtn" title="Toggle Fullscreen">⛶</button>
+                <button id="exitImmersiveBtn" title="Exit">Exit</button>
             </div>
 
             <!-- 游戏信息 -->
@@ -852,12 +900,11 @@ const gameData = {
             return parseInt(urlParams.get('id')) || 2;
         }
 
-        // 调整游戏容器尺寸 - 和首页保持一致
+        // 调整游戏容器尺寸（普通模式下）
         function adjustGameContainer() {
             const gameContainer = document.getElementById('gameContainer');
+            if (document.body.classList.contains('immersive')) return;
             const viewportHeight = window.innerHeight;
-            
-            // 使用和首页相同的高度计算
             gameContainer.style.height = Math.max(viewportHeight - 200, 500) + 'px';
         }
 
@@ -908,9 +955,17 @@ const gameData = {
             adjustGameContainer();
         }
 
-        // 移除播放按钮相关代码，游戏直接加载
+        // 进入沉浸填满模式
+        function enterImmersive() {
+            document.body.classList.add('immersive');
+        }
 
-        // 全屏功能
+        function exitImmersive() {
+            document.body.classList.remove('immersive');
+            adjustGameContainer();
+        }
+
+        // 全屏功能（保留原生全屏按钮）
         document.getElementById('fullscreenBtn').addEventListener('click', function() {
             const gameContainer = document.getElementById('gameContainer');
             
@@ -921,6 +976,11 @@ const gameData = {
             } else {
                 document.exitFullscreen();
             }
+        });
+
+        // 退出沉浸
+        document.getElementById('exitImmersiveBtn').addEventListener('click', function() {
+            exitImmersive();
         });
 
         // 监听全屏状态变化
@@ -977,8 +1037,11 @@ const gameData = {
         // 窗口尺寸变化时重新调整游戏容器
         window.addEventListener('resize', adjustGameContainer);
 
-        // 页面加载时初始化
-        document.addEventListener('DOMContentLoaded', loadGame);
+        // 页面加载时初始化并进入沉浸
+        document.addEventListener('DOMContentLoaded', function() {
+            loadGame();
+            enterImmersive();
+        });
     </script>
 </body>
 </html>
