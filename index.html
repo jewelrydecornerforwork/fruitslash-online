@@ -445,7 +445,6 @@
             cursor: pointer;
             width: 100%;
             max-width: 280px;
-            aspect-ratio: 1;
             text-align: left;
             display: flex;
             flex-direction: column;
@@ -458,8 +457,10 @@
 
         /* New containers to explicitly separate image and title areas */
         .card-image-container {
-            flex: 1;
-            display: block;
+            width: 100%;
+            aspect-ratio: 1;
+            position: relative;
+            background: #f3f4f6;
         }
 
         .card-title-container {
@@ -467,11 +468,11 @@
         }
 
         .game-image {
+            position: absolute;
+            inset: 0;
             width: 100%;
-            flex: 1;
-            background: #f3f4f6;
+            height: 100%;
             display: block;
-            position: relative;
             overflow: hidden;
         }
 
@@ -1202,10 +1203,8 @@ const gameData = [
                 // 判断是否为图片URL
                 var thumbnailContent = '';
                 if (game.thumbnail && game.thumbnail.startsWith('http')) {
-                    var baseThumb = game.thumbnail.replace(/w=\d+/, 'w=512');
-                    var src1x = baseThumb;
-                    var src2x = baseThumb.replace(/w=512/, 'w=1024');
-                    thumbnailContent = '<img src="' + src1x + '" srcset="' + src1x + ' 1x, ' + src2x + ' 2x" sizes="(max-width: 480px) 160px, (max-width: 768px) 220px, 320px" alt="' + game.title + ' thumbnail" class="game-thumbnail" loading="lazy" decoding="async" data-loaded="false" onload="this.setAttribute(\'data-loaded\', \'true\')" onerror="this.style.display=\'none\'">';
+                    var src1x = game.thumbnail;
+                    thumbnailContent = '<img src="' + src1x + '" alt="' + game.title + ' thumbnail" class="game-thumbnail" loading="lazy" decoding="async" data-loaded="false" onload="this.setAttribute(\'data-loaded\', \'true\')">';
                 } else {
                     thumbnailContent = '<div class="game-emoji" aria-hidden="true">' + (game.thumbnail || '🎮') + '</div>';
                 }
