@@ -430,7 +430,7 @@
 
         .games-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
             gap: 1.25rem;
             margin-bottom: 3rem;
             justify-items: center;
@@ -444,7 +444,7 @@
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             cursor: pointer;
             width: 100%;
-            max-width: 280px;
+            max-width: 220px;
             text-align: left;
             display: flex;
             flex-direction: column;
@@ -787,7 +787,7 @@
 
 
             .games-grid {
-                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
                 gap: 1rem;
             }
 
@@ -858,7 +858,7 @@
             
         @media (max-width: 480px) {
             .games-grid {
-                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
                 gap: 0.75rem;
             }
 
@@ -1203,8 +1203,14 @@ const gameData = [
                 // 判断是否为图片URL
                 var thumbnailContent = '';
                 if (game.thumbnail && game.thumbnail.startsWith('http')) {
-                    var src1x = game.thumbnail;
-                    thumbnailContent = '<img src="' + src1x + '" alt="' + game.title + ' thumbnail" class="game-thumbnail" loading="lazy" decoding="async" data-loaded="false" onload="this.setAttribute(\'data-loaded\', \'true\')">';
+                    var baseThumb = game.thumbnail;
+                    // 优先将 w 参数提升到高清 512px，并提供 2x 版本
+                    if (/w=\d+/.test(baseThumb)) {
+                        baseThumb = baseThumb.replace(/w=\d+/, 'w=512');
+                    }
+                    var src1x = baseThumb;
+                    var src2x = baseThumb.replace(/w=512/, 'w=1024');
+                    thumbnailContent = '<img src="' + src1x + '" srcset="' + src1x + ' 1x, ' + src2x + ' 2x" sizes="(max-width: 480px) 130px, (max-width: 768px) 150px, 220px" alt="' + game.title + ' thumbnail" class="game-thumbnail" loading="lazy" decoding="async" data-loaded="false" onload="this.setAttribute(\'data-loaded\', \'true\')">';
                 } else {
                     thumbnailContent = '<div class="game-emoji" aria-hidden="true">' + (game.thumbnail || '🎮') + '</div>';
                 }
