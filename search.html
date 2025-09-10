@@ -280,7 +280,7 @@
             text-align: center;
         }
 
-        /* 游戏网格 */
+        /* 游戏网格（尺寸保持原样） */
         .games-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -288,31 +288,38 @@
             margin-bottom: 3rem;
         }
 
+        /* 统一为首页样式 */
         .game-card {
-            background: white;
-            border-radius: 12px;
+            background: #f8f9fa;
+            border-radius: 14px;
             overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-            border: 1px solid rgba(0,0,0,0.06);
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            box-shadow: none;
+            border: none;
+            transition: transform 0.25s ease;
             cursor: pointer;
         }
 
-        .game-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-        }
+        .game-card:hover { transform: translateY(-4px); }
 
-        .game-image {
+        .card-image-container {
             width: 100%;
             aspect-ratio: 16 / 9;
-            background: #f3f4f6;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
             position: relative;
+            background: #f3f4f6;
             overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .card-title-container { flex-shrink: 0; }
+
+        .game-image {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            overflow: hidden;
+            border-radius: inherit;
         }
 
         .game-thumbnail {
@@ -320,105 +327,38 @@
             height: 100%;
             object-fit: cover;
             position: absolute;
-            top: 0;
-            left: 0;
-            transition: transform 0.3s ease;
-        }
-
-        .card-header {
-            position: absolute;
-            top: 0.75rem;
-            left: 0.75rem;
-            right: 0.75rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            z-index: 3;
-        }
-
-        .card-title-top {
-            background: #2563eb;
-            color: white;
-            padding: 0.35rem 0.7rem;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: capitalize;
-            max-width: 65%;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .game-rating {
-            background: rgba(0, 0, 0, 0.3);
-            color: white;
-            padding: 0.35rem 0.55rem;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            backdrop-filter: blur(6px);
-        }
-
-        .play-button {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(255, 255, 255, 0.95);
-            border: none;
-            border-radius: 50%;
-            width: 48px;
-            height: 48px;
-            cursor: pointer;
-            opacity: 0;
-            transition: transform 0.25s ease, opacity 0.25s ease;
-            z-index: 2;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .play-button::before {
-            content: '';
-            width: 0;
-            height: 0;
-            border-left: 12px solid #2563eb;
-            border-top: 8px solid transparent;
-            border-bottom: 8px solid transparent;
-            margin-left: 2px;
-        }
-
-        .game-card:hover .play-button {
-            opacity: 1;
-            transform: translate(-50%, -50%) scale(1.06);
-        }
-
-        .card-info {
-            padding: 0.9rem 1rem 1.1rem 1rem;
-            text-align: left;
-        }
-
-        .card-title-bottom {
-            font-size: 1rem;
-            font-weight: 700;
-            color: #1f2937;
-            margin: 0;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .game-image::after {
-            content: '';
-            position: absolute;
             inset: 0;
-            background: linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,0.35) 100%);
-            opacity: 0;
-            transition: opacity 0.25s ease;
+            transform: scale(1);
+            transition: transform 0.35s ease;
+            border-radius: inherit;
+        }
+        .game-card:hover .game-thumbnail { transform: scale(1.03); }
+
+        /* 移除徽标/覆盖层（与首页一致） */
+        .card-header, .play-button, .game-rating, .card-category { display: none !important; }
+
+        .card-info { padding: 0.75rem 1rem 0.9rem 1rem; text-align: left; }
+        .card-title-bottom {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: #111827;
+            margin: 0 0 .25rem 0;
+            line-height: 1.25;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
-        .game-card:hover .game-thumbnail { transform: scale(1.04); }
-        .game-card:hover .game-image::after { opacity: 1; }
+        /* 缩略图加载效果，可选 */
+        .game-thumbnail[data-loaded="false"] {
+            filter: blur(6px) saturate(0.9);
+            background: linear-gradient(90deg, rgba(255,255,255,0.08) 25%, rgba(255,255,255,0.18) 37%, rgba(255,255,255,0.08) 63%);
+            background-size: 400% 100%;
+            animation: shimmer 1.2s ease-in-out infinite;
+        }
+        @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
 
         /* 无结果页面 */
         .no-results {
@@ -895,24 +835,22 @@
 
                 const thumbnailContent = game.thumbnail && game.thumbnail.startsWith('http') 
                     ? (() => {
-                        const baseThumb = game.thumbnail.replace(/w=\d+/, 'w=512');
+                        let baseThumb = game.thumbnail;
+                        if (/w=\d+/.test(baseThumb)) baseThumb = baseThumb.replace(/w=\d+/, 'w=512');
                         const src1x = baseThumb;
                         const src2x = baseThumb.replace(/w=512/, 'w=1024');
-                        return `<img src="${src1x}" srcset="${src1x} 1x, ${src2x} 2x" sizes="(max-width: 480px) 160px, (max-width: 768px) 220px, 320px" alt="${game.title}" class="game-thumbnail" loading="lazy" decoding="async">`;
+                        return `<img src="${src1x}" srcset="${src1x} 1x, ${src2x} 2x" sizes="(max-width: 480px) 160px, (max-width: 768px) 220px, 320px" alt="${game.title} thumbnail" class="game-thumbnail" loading="lazy" decoding="async" data-loaded="false" onload="this.setAttribute('data-loaded','true')">`;
                       })()
-                    : `<div class="game-emoji">${game.thumbnail || '🎮'}</div>`;
+                    : `<div class="game-emoji" aria-hidden="true">${game.thumbnail || '🎮'}</div>`;
 
                 gameCard.innerHTML = `
-                    <div class="game-image">
-                        ${thumbnailContent}
-                        <div class="card-header">
-                            <div class="card-title-top">${game.category}</div>
-                            <div class="game-rating">⭐ 4.5</div>
-                        </div>
-                        <button class="play-button"></button>
+                    <div class="card-image-container">
+                        <div class="game-image">${thumbnailContent}</div>
                     </div>
-                    <div class="card-info">
-                        <h3 class="card-title-bottom">${game.title}</h3>
+                    <div class="card-title-container">
+                        <div class="card-info">
+                            <h3 class="card-title-bottom">${game.title}</h3>
+                        </div>
                     </div>
                 `;
 
