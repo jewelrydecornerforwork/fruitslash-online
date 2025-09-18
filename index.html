@@ -267,21 +267,10 @@
             visibility: visible;
         }
 
-        /* 移动端游戏iframe优化 */
+        /* 移动端游戏iframe优化：不再自动全屏，避免遮挡页面点击 */
         @media (max-width: 768px) {
             .game-iframe {
                 border-radius: 10px;
-            }
-            
-            .game-iframe.active {
-                /* 移动端全屏显示 */
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100vw;
-                height: 100vh;
-                z-index: 9999;
-                border-radius: 0;
             }
         }
 
