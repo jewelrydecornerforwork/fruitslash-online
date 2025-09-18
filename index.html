@@ -180,6 +180,54 @@
             padding: 72px 0 0 0;
         }
 
+        /* Hero 首屏模块（桌面端） */
+        .hero-section {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            align-items: center;
+            gap: 2rem;
+            padding: 6rem 2rem 2rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: #111827;
+            margin-bottom: 1rem;
+        }
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: #4b5563;
+            margin-bottom: 1.75rem;
+        }
+        .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn-primary-cta {
+            background: #2563eb;
+            color: #fff;
+            border: none;
+            padding: 0.9rem 1.4rem;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .btn-secondary-cta {
+            background: #f3f4f6;
+            color: #111827;
+            border: 1px solid #e5e7eb;
+            padding: 0.9rem 1.4rem;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .hero-preview {
+            background: #0b0f1a;
+            border-radius: 12px;
+            height: 320px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
         .game-container {
             background: #0b0f1a;
             border-radius: 12px;
@@ -269,6 +317,29 @@
             margin-top: 0;
             padding: 3rem 2rem;
             background: #f8f9fa; /* 灰 */
+        }
+
+        /* 分类 Chips */
+        .category-chips {
+            max-width: 1400px;
+            margin: 0 auto 1rem auto;
+            display: flex;
+            gap: .5rem;
+            flex-wrap: wrap;
+        }
+        .chip {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            color: #111827;
+            padding: .45rem .9rem;
+            border-radius: 999px;
+            cursor: pointer;
+            font-size: .95rem;
+        }
+        .chip.active {
+            background: #2563eb;
+            color: #fff;
+            border-color: #2563eb;
         }
 
         /* 居中更多游戏网格容器 */
@@ -520,9 +591,20 @@
             display: none; 
         }
 
-        /* 移除所有徽标和覆盖层样式 */
-
-        .card-header, .play-button, .game-rating, .card-category { display: none !important; }
+        /* 卡片徽标（显示类别） */
+        .card-header { display: none; }
+        .card-category {
+            position: absolute;
+            top: 0.6rem;
+            left: 0.6rem;
+            background: rgba(0, 0, 0, 0.55);
+            color: #fff;
+            padding: 0.25rem 0.6rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            z-index: 3;
+        }
 
         /* Loading shimmer for thumbnails */
         .game-thumbnail[data-loaded="false"] {
@@ -767,6 +849,9 @@
 
 
         @media (max-width: 768px) {
+            .hero-section { grid-template-columns: 1fr; padding: 5.5rem 1rem 1.5rem 1rem; }
+            .hero-title { font-size: 2rem; }
+            .hero-preview { height: 220px; }
             .nav {
                 display: flex;
                 flex-direction: column;
@@ -878,6 +963,38 @@
 
             .card-title-bottom { font-size: 0.98rem; }
         }
+
+        /* 搜索联想下拉 */
+        .search-suggest {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            color: #111827;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            margin-top: .35rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,.08);
+            overflow: hidden;
+            display: none;
+            z-index: 20;
+        }
+        .search-suggest.active { display: block; }
+        .suggest-item { padding: .6rem .9rem; cursor: pointer; font-size: .95rem; }
+        .suggest-item:hover { background: #f3f4f6; }
+
+        /* 加载更多 */
+        .load-more-wrap { text-align: center; }
+        .load-more-btn {
+            background: #2563eb;
+            color: #fff;
+            border: none;
+            padding: 0.9rem 1.4rem;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+        }
             
     </style>
 </head>
@@ -908,6 +1025,18 @@
     </header>
 
     <main class="main-game-section">
+        <!-- Hero 首屏 -->
+        <section class="hero-section">
+            <div>
+                <h1 class="hero-title">Play Free HTML5 Games<br>Instantly in Your Browser</h1>
+                <p class="hero-subtitle">No downloads. No sign‑ups. Hit Play and enjoy arcade, puzzle, action games and more.</p>
+                <div class="hero-cta">
+                    <button class="btn-primary-cta" id="heroPlayBtn">▶ Play Featured Game</button>
+                    <button class="btn-secondary-cta" id="heroExploreBtn">Explore Games</button>
+                </div>
+            </div>
+            <div class="hero-preview"></div>
+        </section>
         <div class="game-container">
             <div class="game-content">
                 <div class="featured-game" id="featuredGame">
@@ -930,7 +1059,10 @@
         <!-- 更多游戏部分 -->
         <div class="more-games-section">
             <h2 class="section-title">More Games</h2>
+            <!-- 分类 chips -->
+            <div class="category-chips" id="categoryChips"></div>
             <div class="games-grid" id="gamesGrid"></div>
+            <div class="load-more-wrap"><button class="load-more-btn" id="loadMoreBtn">Load More</button></div>
         </div>
              
         <!-- 游戏介绍部分 -->
@@ -1110,6 +1242,10 @@ const gameData = [
         const modalTitle = document.getElementById('modalTitle');
         const closeModal = document.getElementById('closeModal');
         const searchInput = document.getElementById('searchInput');
+        const categoryChips = document.getElementById('categoryChips');
+        const loadMoreBtn = document.getElementById('loadMoreBtn');
+        const heroPlayBtn = document.getElementById('heroPlayBtn');
+        const heroExploreBtn = document.getElementById('heroExploreBtn');
 
         // 初始化
         function init() {
@@ -1118,7 +1254,10 @@ const gameData = [
             
                 setupFeaturedGame();
                 renderGames();
-               setupEventListeners();
+                setupEventListeners();
+                setupCategoryChips();
+                setupTypeahead();
+                setupLoadMore();
             }
 
         // 设置精选游戏 - 直接在首页播放
@@ -1199,6 +1338,12 @@ const gameData = [
             closeGameModal();
         }
     });
+    // Hero CTA
+    if (typeof heroPlayBtn !== 'undefined' && heroPlayBtn) heroPlayBtn.addEventListener('click', () => playFeaturedGame());
+    if (typeof heroExploreBtn !== 'undefined' && heroExploreBtn) heroExploreBtn.addEventListener('click', () => {
+        const more = document.querySelector('.more-games-section');
+        if (more) more.scrollIntoView({ behavior: 'smooth' });
+    });
 }
         // 过滤游戏 - 只基于搜索
         function filterGames() {
@@ -1213,7 +1358,17 @@ const gameData = [
 
             renderGames();
         }
-        function renderGames() {
+        let pageIndex = 0;
+        const pageSize = 12;
+
+        function renderGames(reset = true) {
+            if (reset) {
+                gamesGrid.innerHTML = '';
+                pageIndex = 0;
+            }
+            const start = pageIndex * pageSize;
+            const end = start + pageSize;
+            const slice = filteredGames.slice(start, end);
             if (filteredGames.length === 0) {
                 gamesGrid.style.display = 'none';
                 return;
@@ -1221,10 +1376,8 @@ const gameData = [
 
             gamesGrid.style.display = 'grid';
 
-            gamesGrid.innerHTML = '';
-            
-            for (var i = 0; i < filteredGames.length; i++) {
-                var game = filteredGames[i];
+            for (var i = 0; i < slice.length; i++) {
+                var game = slice[i];
                 
                 // 判断是否为图片URL
                 var thumbnailContent = '';
@@ -1242,7 +1395,8 @@ const gameData = [
                 }
                 
                 var gameCard = '<div class="game-card" onclick="openGame(' + game.id + ')">' +
-                    '<div class="card-image-container">' +
+                    '<div class="card-image-container" style="position:relative">' +
+                        '<span class="card-category">' + (game.category || '') + '</span>' +
                         '<div class="game-image">' +
                             thumbnailContent +
                         '</div>' +
@@ -1254,8 +1408,71 @@ const gameData = [
                     '</div>' +
                 '</div>';
                 
-                gamesGrid.innerHTML += gameCard;
+                gamesGrid.insertAdjacentHTML('beforeend', gameCard);
             }
+            if (loadMoreBtn) {
+                if (end >= filteredGames.length) {
+                    loadMoreBtn.style.display = 'none';
+                } else {
+                    loadMoreBtn.style.display = 'inline-block';
+                }
+            }
+            pageIndex++;
+        }
+
+        function setupLoadMore() {
+            if (!loadMoreBtn) return;
+            loadMoreBtn.addEventListener('click', function() {
+                renderGames(false);
+            });
+        }
+
+        function setupCategoryChips() {
+            if (!categoryChips) return;
+            const cats = Array.from(new Set(allGames.map(g => g.category)));
+            const items = ['all', ...cats];
+            categoryChips.innerHTML = items.map(c => '<button class="chip' + (c==='all' ? ' active' : '') + '" data-cat="' + c + '">' + c.replace(/^(.)/, function(m){return m.toUpperCase();}) + '</button>').join('');
+            categoryChips.addEventListener('click', function(e){
+                const btn = e.target.closest('.chip');
+                if (!btn) return;
+                const cat = btn.getAttribute('data-cat');
+                Array.from(categoryChips.children).forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                if (cat === 'all') {
+                    filteredGames = [...allGames];
+                } else {
+                    filteredGames = allGames.filter(g => (g.category||'').toLowerCase() === cat.toLowerCase());
+                }
+                renderGames(true);
+            });
+        }
+
+        function setupTypeahead() {
+            const container = document.querySelector('.search-container');
+            if (!container || !searchInput) return;
+            let dropdown = document.createElement('div');
+            dropdown.className = 'search-suggest';
+            container.appendChild(dropdown);
+
+            function updateSuggest() {
+                const q = searchInput.value.trim().toLowerCase();
+                if (!q) { dropdown.classList.remove('active'); dropdown.innerHTML=''; return; }
+                const suggestions = allGames.filter(g => g.title.toLowerCase().includes(q)).slice(0,6);
+                if (suggestions.length === 0) { dropdown.classList.remove('active'); dropdown.innerHTML=''; return; }
+                dropdown.innerHTML = suggestions.map(g => '<div class="suggest-item" data-id="'+g.id+'">'+g.title+'</div>').join('');
+                dropdown.classList.add('active');
+            }
+
+            searchInput.addEventListener('input', updateSuggest);
+            document.addEventListener('click', (e)=>{
+                if (!container.contains(e.target)) dropdown.classList.remove('active');
+            });
+            dropdown.addEventListener('click', (e)=>{
+                const item = e.target.closest('.suggest-item');
+        		if (!item) return;
+                const id = parseInt(item.getAttribute('data-id'));
+                openGame(id);
+            });
         }
             
         // 打开游戏 - 修复路径问题并添加错误处理
