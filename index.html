@@ -657,11 +657,15 @@
             left: 0.6rem;
             background: rgba(0, 0, 0, 0.55);
             color: #fff;
-            padding: 0.25rem 0.6rem;
-            border-radius: 999px;
-            font-size: 0.75rem;
+            padding: 0.15rem 0.4rem;
+            border-radius: 6px;
+            font-size: 0.65rem;
             font-weight: 700;
             z-index: 3;
+            max-width: 50px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
         /* Loading shimmer for thumbnails */
@@ -1468,6 +1472,20 @@ const gameData = [
         }
         let pageIndex = 0;
         const pageSize = 12;
+
+        // 缩短类别名称显示
+        function shortenCategory(category) {
+            if (!category) return '';
+            const categoryMap = {
+                'arcade': 'Arc',
+                'match-3': 'M3',
+                'puzzle': 'Puz', 
+                'block': 'Blk',
+                'action': 'Act',
+                'sports': 'Spt'
+            };
+            return categoryMap[category.toLowerCase()] || category.substring(0, 3);
+        }
 
         function renderGames(reset = true) {
             if (reset) {
