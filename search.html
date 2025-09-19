@@ -120,21 +120,29 @@
 
         /* 搜索过滤区域 */
         .search-filters {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .filter-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.5rem;
-            padding: 1rem 0;
-            border-bottom: 1px solid #e5e7eb;
-            background: transparent;
-            box-shadow: none;
-            border-radius: 0;
+            margin-bottom: 1rem;
+        }
+
+        .filter-row:last-child {
+            margin-bottom: 0;
         }
 
         .search-tag-area {
             display: flex;
             align-items: center;
             gap: 1rem;
+            flex-wrap: wrap;
         }
 
         .search-tag {
@@ -148,10 +156,15 @@
             gap: 0.5rem;
         }
 
+        .category-tag {
+            background: #f0fdf4;
+            color: #166534;
+        }
+
         .remove-tag {
             background: none;
             border: none;
-            color: #0369a1;
+            color: inherit;
             cursor: pointer;
             font-size: 1.1rem;
             line-height: 1;
@@ -165,12 +178,28 @@
         }
 
         .remove-tag:hover {
-            background: rgba(3, 105, 161, 0.2);
+            background: rgba(0, 0, 0, 0.1);
         }
 
         .filter-controls {
             display: flex;
             gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .filter-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #374151;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         .filter-select {
@@ -181,11 +210,66 @@
             font-size: 0.9rem;
             cursor: pointer;
             min-width: 150px;
+            transition: border-color 0.2s ease;
         }
 
         .filter-select:focus {
             outline: none;
             border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .advanced-filters {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .toggle-filters {
+            background: none;
+            border: none;
+            color: #2563eb;
+            cursor: pointer;
+            font-size: 0.9rem;
+            padding: 0.25rem 0;
+            text-decoration: underline;
+        }
+
+        .toggle-filters:hover {
+            color: #1d4ed8;
+        }
+
+        .rating-filter {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .rating-star {
+            color: #fbbf24;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: color 0.2s;
+        }
+
+        .rating-star:hover,
+        .rating-star.active {
+            color: #f59e0b;
+        }
+
+        .clear-filters {
+            background: #f3f4f6;
+            color: #374151;
+            border: 1px solid #d1d5db;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background-color 0.2s;
+        }
+
+        .clear-filters:hover {
+            background: #e5e7eb;
         }
 
         /* 搜索结果标题区域 */
@@ -603,28 +687,84 @@
 
         <!-- 搜索过滤区域 -->
         <div class="search-filters" id="searchFilters" style="display: none;">
-            <div class="search-tag-area">
-                <span style="color: #6b7280; font-size: 0.9rem;">Searching for:</span>
-                <div class="search-tag" id="searchTag">
-                    <span id="searchTagText"></span>
-                    <button class="remove-tag" onclick="clearSearch()">×</button>
+            <!-- 当前搜索标签 -->
+            <div class="filter-row">
+                <div class="search-tag-area">
+                    <span style="color: #6b7280; font-size: 0.9rem;">Active filters:</span>
+                    <div class="search-tag" id="searchTag" style="display: none;">
+                        <span id="searchTagText"></span>
+                        <button class="remove-tag" onclick="clearSearchTerm()">×</button>
+                    </div>
+                    <div class="search-tag category-tag" id="categoryTag" style="display: none;">
+                        <span id="categoryTagText"></span>
+                        <button class="remove-tag" onclick="clearCategory()">×</button>
+                    </div>
                 </div>
+                <button class="clear-filters" onclick="clearAllFilters()">Clear All</button>
             </div>
-            <div class="filter-controls">
-                <select class="filter-select" id="categoryFilter">
-                    <option value="">All Categories</option>
-                    <option value="arcade">Arcade</option>
-                    <option value="puzzle">Puzzle</option>
-                    <option value="action">Action</option>
-                    <option value="match-3">Match-3</option>
-                    <option value="block">Block</option>
-                </select>
-                <select class="filter-select" id="sortFilter">
-                    <option value="relevance">Most Relevant</option>
-                    <option value="newest">Newest</option>
-                    <option value="popular">Most Popular</option>
-                    <option value="rating">Highest Rated</option>
-                </select>
+
+            <!-- 基础筛选 -->
+            <div class="filter-row">
+                <div class="filter-controls">
+                    <div class="filter-group">
+                        <label class="filter-label">Category</label>
+                        <select class="filter-select" id="categoryFilter">
+                            <option value="">All Categories</option>
+                            <option value="arcade">Arcade</option>
+                            <option value="puzzle">Puzzle</option>
+                            <option value="action">Action</option>
+                            <option value="match-3">Match-3</option>
+                            <option value="block">Block</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">Sort By</label>
+                        <select class="filter-select" id="sortFilter">
+                            <option value="relevance">Most Relevant</option>
+                            <option value="newest">Newest First</option>
+                            <option value="oldest">Oldest First</option>
+                            <option value="popular">Most Popular</option>
+                            <option value="title-asc">Title A-Z</option>
+                            <option value="title-desc">Title Z-A</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="toggle-filters" onclick="toggleAdvancedFilters()">
+                    <span id="advancedToggleText">Show Advanced Filters</span>
+                </button>
+            </div>
+
+            <!-- 高级筛选（默认隐藏） -->
+            <div class="advanced-filters" id="advancedFilters" style="display: none;">
+                <div class="filter-group">
+                    <label class="filter-label">Minimum Rating</label>
+                    <div class="rating-filter">
+                        <span class="rating-star" data-rating="1">★</span>
+                        <span class="rating-star" data-rating="2">★</span>
+                        <span class="rating-star" data-rating="3">★</span>
+                        <span class="rating-star" data-rating="4">★</span>
+                        <span class="rating-star" data-rating="5">★</span>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Game Type</label>
+                    <select class="filter-select" id="typeFilter">
+                        <option value="">All Types</option>
+                        <option value="single">Single Player</option>
+                        <option value="multi">Multiplayer</option>
+                        <option value="endless">Endless</option>
+                        <option value="levels">Level-based</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Difficulty</label>
+                    <select class="filter-select" id="difficultyFilter">
+                        <option value="">Any Difficulty</option>
+                        <option value="easy">Easy</option>
+                        <option value="medium">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </div>
             </div>
         </div>
 
@@ -704,7 +844,7 @@
     </footer>
 
 <script>
-        // 游戏数据
+        // 增强的游戏数据
         const gameData = [
             {
                 id: 2,
@@ -713,7 +853,11 @@
                 category: "arcade",
                 tags: ["slicing", "fruit", "arcade"],
                 gameUrl: "https://play.gamepix.com/cut-fruit-ninja/embed?sid=1",
-                thumbnail: "https://img.gamepix.com/games/cut-fruit-ninja/icon/cut-fruit-ninja.png?w=1"
+                thumbnail: "https://img.gamepix.com/games/cut-fruit-ninja/icon/cut-fruit-ninja.png?w=1",
+                rating: 4.5,
+                type: "single",
+                difficulty: "medium",
+                releaseDate: "2024-01-15"
             },
             {
                 id: 3,
@@ -722,7 +866,11 @@
                 category: "match-3",
                 tags: ["match-3", "fruit", "puzzle"],
                 gameUrl: "https://play.gamepix.com/princess-rescue-fruit-connect/embed?sid=1",
-                thumbnail: "https://img.gamepix.com/games/princess-rescue-fruit-connect/icon/princess-rescue-fruit-connect.png?w=105"
+                thumbnail: "https://img.gamepix.com/games/princess-rescue-fruit-connect/icon/princess-rescue-fruit-connect.png?w=105",
+                rating: 4.2,
+                type: "levels",
+                difficulty: "easy",
+                releaseDate: "2024-02-20"
             },
             {
                 id: 4,
@@ -731,7 +879,11 @@
                 category: "block",
                 tags: ["block", "fruit", "puzzle"],
                 gameUrl: "https://play.gamepix.com/fruit-fiesta/embed?sid=1",
-                thumbnail: "https://img.gamepix.com/games/fruit-fiesta/icon/fruit-fiesta.png?w=105"
+                thumbnail: "https://img.gamepix.com/games/fruit-fiesta/icon/fruit-fiesta.png?w=105",
+                rating: 4.0,
+                type: "endless",
+                difficulty: "medium",
+                releaseDate: "2024-01-30"
             },
             {
                 id: 5,
@@ -740,9 +892,23 @@
                 category: "puzzle",
                 tags: ["puzzle", "fruit", "merge"],
                 gameUrl: "https://play.gamepix.com/crazy-fruit-merge/embed?sid=1",
-                thumbnail: "https://img.gamepix.com/games/crazy-fruit-merge/icon/crazy-fruit-merge.png?w=105"
+                thumbnail: "https://img.gamepix.com/games/crazy-fruit-merge/icon/crazy-fruit-merge.png?w=105",
+                rating: 4.7,
+                type: "single",
+                difficulty: "easy",
+                releaseDate: "2024-03-10"
             }
         ];
+
+        // 筛选状态
+        let currentFilters = {
+            searchTerm: '',
+            category: '',
+            sort: 'relevance',
+            rating: 0,
+            type: '',
+            difficulty: ''
+        };
 
         // 获取搜索参数
         function getSearchParams() {
@@ -760,26 +926,133 @@
             }
         }
 
+        // 更新筛选器状态
+        function updateFiltersFromUI() {
+            const params = getSearchParams();
+            currentFilters.searchTerm = params.q;
+            currentFilters.category = document.getElementById('categoryFilter')?.value || params.category;
+            currentFilters.sort = document.getElementById('sortFilter')?.value || 'relevance';
+            currentFilters.type = document.getElementById('typeFilter')?.value || '';
+            currentFilters.difficulty = document.getElementById('difficultyFilter')?.value || '';
+        }
+
+        // 应用筛选和排序
+        function applyFiltersAndSort() {
+            let filteredGames = [...gameData];
+
+            // 搜索词筛选
+            if (currentFilters.searchTerm) {
+                const term = currentFilters.searchTerm.toLowerCase();
+                filteredGames = filteredGames.filter(game => 
+                    game.title.toLowerCase().includes(term) ||
+                    game.description.toLowerCase().includes(term) ||
+                    game.category.toLowerCase().includes(term) ||
+                    game.tags.some(tag => tag.toLowerCase().includes(term))
+                );
+            }
+
+            // 分类筛选
+            if (currentFilters.category) {
+                filteredGames = filteredGames.filter(game => 
+                    game.category.toLowerCase() === currentFilters.category.toLowerCase()
+                );
+            }
+
+            // 评分筛选
+            if (currentFilters.rating > 0) {
+                filteredGames = filteredGames.filter(game => 
+                    (game.rating || 0) >= currentFilters.rating
+                );
+            }
+
+            // 游戏类型筛选
+            if (currentFilters.type) {
+                filteredGames = filteredGames.filter(game => 
+                    game.type === currentFilters.type
+                );
+            }
+
+            // 难度筛选
+            if (currentFilters.difficulty) {
+                filteredGames = filteredGames.filter(game => 
+                    game.difficulty === currentFilters.difficulty
+                );
+            }
+
+            // 排序
+            switch (currentFilters.sort) {
+                case 'newest':
+                    filteredGames.sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate));
+                    break;
+                case 'oldest':
+                    filteredGames.sort((a, b) => new Date(a.releaseDate) - new Date(b.releaseDate));
+                    break;
+                case 'popular':
+                    filteredGames.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+                    break;
+                case 'title-asc':
+                    filteredGames.sort((a, b) => a.title.localeCompare(b.title));
+                    break;
+                case 'title-desc':
+                    filteredGames.sort((a, b) => b.title.localeCompare(a.title));
+                    break;
+                default: // relevance
+                    // 保持原始顺序或根据相关性排序
+                    break;
+            }
+
+            return filteredGames;
+        }
+
+        // 更新筛选标签显示
+        function updateFilterTags() {
+            const searchTag = document.getElementById('searchTag');
+            const searchTagText = document.getElementById('searchTagText');
+            const categoryTag = document.getElementById('categoryTag');
+            const categoryTagText = document.getElementById('categoryTagText');
+
+            // 搜索词标签
+            if (currentFilters.searchTerm) {
+                searchTag.style.display = 'flex';
+                searchTagText.textContent = `"${currentFilters.searchTerm}"`;
+            } else {
+                searchTag.style.display = 'none';
+            }
+
+            // 分类标签
+            if (currentFilters.category) {
+                categoryTag.style.display = 'flex';
+                categoryTagText.textContent = `Category: ${currentFilters.category}`;
+            } else {
+                categoryTag.style.display = 'none';
+            }
+        }
+
         // 渲染搜索结果
         function renderSearchResults() {
-            const params = getSearchParams();
-            const searchTerm = params.q;
             const gamesGrid = document.getElementById('gamesGrid');
             const searchFilters = document.getElementById('searchFilters');
             const searchResultsHeader = document.getElementById('searchResultsHeader');
             const searchWelcome = document.getElementById('searchWelcome');
             const noResults = document.getElementById('noResults');
-            const searchTagText = document.getElementById('searchTagText');
             const resultsCount = document.getElementById('resultsCount');
             const mainSearchInput = document.getElementById('mainSearchInput');
             const navSearchInput = document.getElementById('navSearchInput');
 
-            // 设置搜索框值
-            if (mainSearchInput) mainSearchInput.value = searchTerm;
-            if (navSearchInput) navSearchInput.value = searchTerm;
+            // 更新筛选器状态
+            updateFiltersFromUI();
 
-            if (!searchTerm) {
-                // 没有搜索词时：显示欢迎区域，隐藏其他所有内容
+            // 设置搜索框值
+            if (mainSearchInput) mainSearchInput.value = currentFilters.searchTerm;
+            if (navSearchInput) navSearchInput.value = currentFilters.searchTerm;
+
+            // 设置筛选器选择框值
+            if (document.getElementById('categoryFilter')) {
+                document.getElementById('categoryFilter').value = currentFilters.category;
+            }
+
+            if (!currentFilters.searchTerm && !currentFilters.category) {
+                // 没有任何筛选条件时：显示欢迎区域
                 if (searchWelcome) searchWelcome.style.display = 'block';
                 gamesGrid.style.display = 'none';
                 searchFilters.style.display = 'none';
@@ -788,33 +1061,19 @@
                 return;
             }
 
-            // 有搜索词时：隐藏欢迎区域
+            // 有筛选条件时：隐藏欢迎区域
             if (searchWelcome) searchWelcome.style.display = 'none';
 
-            // 过滤游戏
-            const categoryFilter = document.getElementById('categoryFilter');
-            const categoryValue = (categoryFilter ? categoryFilter.value : '') || params.category;
-            let filteredGames = gameData.filter(game => 
-                game.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                game.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                game.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                game.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
-            );
-
-            // 应用分类过滤
-            if (categoryValue) {
-                filteredGames = filteredGames.filter(game => 
-                    game.category.toLowerCase() === categoryValue.toLowerCase()
-                );
-            }
+            // 应用筛选和排序
+            const filteredGames = applyFiltersAndSort();
 
             // 显示搜索过滤器和结果标题
-            searchFilters.style.display = 'flex';
+            searchFilters.style.display = 'block';
             searchResultsHeader.style.display = 'block';
-            const tagParts = [];
-            if (searchTerm) tagParts.push(`"${searchTerm}"`);
-            if (categoryValue) tagParts.push(`category: ${categoryValue}`);
-            if (searchTagText) searchTagText.textContent = tagParts.join(' · ');
+            
+            // 更新筛选标签
+            updateFilterTags();
+            
             if (resultsCount) resultsCount.textContent = `Found ${filteredGames.length} game(s)`;
 
             if (filteredGames.length === 0) {
@@ -858,9 +1117,59 @@
             });
         }
 
-        // 清除搜索
-        function clearSearch() {
+        // 筛选控制函数
+        function clearSearchTerm() {
+            const params = new URLSearchParams(window.location.search);
+            params.delete('q');
+            const newUrl = params.toString() ? `search.html?${params.toString()}` : 'search.html';
+            window.location.href = newUrl;
+        }
+
+        function clearCategory() {
+            const params = new URLSearchParams(window.location.search);
+            params.delete('category');
+            params.delete('cat');
+            const newUrl = params.toString() ? `search.html?${params.toString()}` : 'search.html';
+            window.location.href = newUrl;
+        }
+
+        function clearAllFilters() {
             window.location.href = 'search.html';
+        }
+
+        function toggleAdvancedFilters() {
+            const advancedFilters = document.getElementById('advancedFilters');
+            const toggleText = document.getElementById('advancedToggleText');
+            
+            if (advancedFilters.style.display === 'none' || !advancedFilters.style.display) {
+                advancedFilters.style.display = 'flex';
+                toggleText.textContent = 'Hide Advanced Filters';
+            } else {
+                advancedFilters.style.display = 'none';
+                toggleText.textContent = 'Show Advanced Filters';
+            }
+        }
+
+        // 评分筛选
+        function setupRatingFilter() {
+            const ratingStars = document.querySelectorAll('.rating-star');
+            ratingStars.forEach((star, index) => {
+                star.addEventListener('click', () => {
+                    const rating = parseInt(star.dataset.rating);
+                    currentFilters.rating = currentFilters.rating === rating ? 0 : rating;
+                    
+                    // 更新星星显示
+                    ratingStars.forEach((s, i) => {
+                        if (i < currentFilters.rating) {
+                            s.classList.add('active');
+                        } else {
+                            s.classList.remove('active');
+                        }
+                    });
+                    
+                    renderSearchResults();
+                });
+            });
         }
 
         // 打开游戏
@@ -886,6 +1195,8 @@
             const navSearchBtn = document.getElementById('navSearchBtn');
             const categoryFilter = document.getElementById('categoryFilter');
             const sortFilter = document.getElementById('sortFilter');
+            const typeFilter = document.getElementById('typeFilter');
+            const difficultyFilter = document.getElementById('difficultyFilter');
 
             // 主搜索区域
             if (mainSearchBtn) {
@@ -929,6 +1240,21 @@
                     renderSearchResults();
                 });
             }
+
+            if (typeFilter) {
+                typeFilter.addEventListener('change', () => {
+                    renderSearchResults();
+                });
+            }
+
+            if (difficultyFilter) {
+                difficultyFilter.addEventListener('change', () => {
+                    renderSearchResults();
+                });
+            }
+
+            // 设置评分筛选
+            setupRatingFilter();
         }
 
         // 页面初始化
