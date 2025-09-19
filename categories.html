@@ -20,58 +20,117 @@
             line-height: 1.6;
         }
 
+        :root {
+            --color-primary: #2563eb;
+            --color-primary-strong: #1d4ed8;
+            --focus-ring: 0 0 0 3px rgba(37,99,235,0.3);
+            --card-accent: #ff4d57;
+        }
+
         .header {
-            background: white;
+            background: #2d3748;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             right: 0;
+            z-index: 10;
             width: 100%;
-            z-index: 1000;
         }
 
         .nav {
             max-width: 1400px;
             margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
             align-items: center;
-            padding: 0.75rem 2rem;
+            padding: 1rem 2rem;
+            background: transparent;
+            backdrop-filter: none;
+            border-radius: 0;
+            margin-top: 0;
         }
 
         .logo {
             font-size: 1.8rem;
             font-weight: bold;
-            color: #374151;
+            color: white;
             text-decoration: none;
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            text-shadow: 0 0 3px rgba(99,102,241,0.35), 0 0 8px rgba(59,130,246,0.25);
         }
 
         .nav-links {
             display: flex;
             list-style: none;
             gap: 2rem;
+            justify-self: center;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: #374151;
+            color: white;
             font-weight: 500;
             transition: color 0.3s;
         }
 
         .nav-links a:hover {
-            color: #2563eb;
+            color: #a0aec0;
+        }
+
+        .search-container {
+            position: relative;
+            justify-self: end;
+        }
+
+        .search-input {
+            padding: 0.9rem 2.75rem 0.9rem 1rem;
+            border: 2px solid #a5b4fc;
+            border-radius: 16px;
+            outline: none;
+            width: 360px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.08);
+            color: #eef2ff;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.35) inset, 0 0 0 3px rgba(59, 130, 246, 0.35);
+            transition: box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .search-input:focus {
+            border-color: #c7d2fe;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.45) inset, 0 0 0 3px rgba(99, 102, 241, 0.45);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .search-input::placeholder {
+            color: #cbd5e1;
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 0.6rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #cbd5e1;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        a:focus-visible, button:focus-visible, input:focus-visible {
+            outline: none;
+            box-shadow: var(--focus-ring);
+            border-radius: 6px;
         }
 
         .main-content {
             max-width: 1400px;
             margin: 0 auto;
             padding: 2rem;
-            padding-top: 100px;
+            padding-top: 120px;
         }
 
         .page-title {
@@ -214,18 +273,25 @@
 
         @media (max-width: 768px) {
             .nav {
+                display: flex;
                 flex-direction: column;
                 gap: 1rem;
-                padding: 0.75rem 2rem;
+                padding: 1rem 2rem;
+                margin-top: 0.5rem;
+                border-radius: 0 0 10px 10px;
             }
 
             .nav-links {
                 gap: 1rem;
             }
 
+            .search-input {
+                width: 250px;
+            }
+
             .main-content {
                 padding: 1rem;
-                padding-top: 120px;
+                padding-top: 140px;
             }
 
             .page-title {
@@ -262,6 +328,15 @@
                 <li><a href="categories.html">Categories</a></li>
                 <li><a href="about.html">About</a></li>
             </ul>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search games..." id="searchInput">
+                <button class="search-btn" id="searchBtn" aria-label="Search games">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+            </div>
         </nav>
     </header>
 
@@ -350,5 +425,33 @@
             <p>&copy; 2025 FruitSlash.online. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // 搜索功能 - 跳转到搜索页面
+        const searchBtn = document.getElementById('searchBtn');
+        const searchInput = document.getElementById('searchInput');
+        
+        // 搜索按钮点击事件
+        if (searchBtn && searchInput) {
+            searchBtn.addEventListener('click', () => {
+                const searchTerm = searchInput.value.trim();
+                if (searchTerm) {
+                    window.location.href = `search.html?q=${encodeURIComponent(searchTerm)}`;
+                }
+            });
+        }
+        
+        // 搜索框回车事件
+        if (searchInput) {
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    const searchTerm = searchInput.value.trim();
+                    if (searchTerm) {
+                        window.location.href = `search.html?q=${encodeURIComponent(searchTerm)}`;
+                    }
+                }
+            });
+        }
+    </script>
 </body>
 </html>
