@@ -226,6 +226,64 @@
             border-radius: 12px;
             height: 320px;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-game-preview {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 12px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .hero-game-preview.loaded {
+            opacity: 1;
+        }
+        
+        .hero-preview-fallback {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            transition: opacity 0.5s ease;
+        }
+        
+        .hero-preview-fallback.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .hero-preview-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: pulse 2s infinite;
+        }
+        
+        .hero-preview-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .hero-preview-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
 
         .game-container {
@@ -1035,7 +1093,22 @@
                     <button class="btn-secondary-cta" id="heroExploreBtn">Explore Games</button>
                 </div>
             </div>
-            <div class="hero-preview"></div>
+            <div class="hero-preview">
+                <iframe 
+                    class="hero-game-preview" 
+                    id="heroGamePreview"
+                    src=""
+                    allow="autoplay; fullscreen; gamepad *; accelerometer; gyroscope"
+                    allowfullscreen
+                    sandbox="allow-scripts allow-same-origin allow-forms"
+                    loading="lazy">
+                </iframe>
+                <div class="hero-preview-fallback" id="heroPreviewFallback">
+                    <div class="hero-preview-icon">🎮</div>
+                    <div class="hero-preview-text">Fruit Blaster</div>
+                    <div class="hero-preview-subtitle">Click "Play Featured Game" to start</div>
+                </div>
+            </div>
         </section>
         <div class="game-container">
             <div class="game-content">
@@ -1264,6 +1337,37 @@ const gameData = [
         function setupFeaturedGame() {
             // 页面加载即播放精选游戏
             playFeaturedGame();
+            // 同时设置 Hero 预览
+            setupHeroPreview();
+        }
+        
+        // 设置 Hero 预览
+        function setupHeroPreview() {
+            const heroPreview = document.getElementById('heroGamePreview');
+            const heroFallback = document.getElementById('heroPreviewFallback');
+            
+            if (!heroPreview || !heroFallback) return;
+            
+            // 使用静态游戏缩略图作为预览，或者加载一个轻量级的游戏预览
+            const previewUrl = 'https://img.gamepix.com/games/fruit-blaster/icon/fruit-blaster.png?w=512';
+            
+            // 创建一个图片元素作为预览
+            const previewImg = document.createElement('img');
+            previewImg.src = previewUrl;
+            previewImg.style.cssText = 'width: 100%; height: 100%; object-fit: cover; border-radius: 12px;';
+            previewImg.alt = 'Fruit Blaster Game Preview';
+            
+            previewImg.onload = () => {
+                heroPreview.style.display = 'none';
+                heroFallback.innerHTML = '';
+                heroFallback.appendChild(previewImg);
+                heroFallback.style.background = 'transparent';
+            };
+            
+            previewImg.onerror = () => {
+                // 如果图片加载失败，保持原有的渐变背景和游戏图标
+                console.log('Hero preview image failed to load, keeping fallback design');
+            };
         }
 
         // 播放精选游戏 - 使用移动端兼容的URL，并增加网络容错
@@ -1339,7 +1443,11 @@ const gameData = [
         }
     });
     // Hero CTA
-    if (typeof heroPlayBtn !== 'undefined' && heroPlayBtn) heroPlayBtn.addEventListener('click', () => playFeaturedGame());
+    if (typeof heroPlayBtn !== 'undefined' && heroPlayBtn) heroPlayBtn.addEventListener('click', () => {
+        // 滚动到主游戏区域并开始游戏
+        document.querySelector('.game-container').scrollIntoView({ behavior: 'smooth' });
+        playFeaturedGame();
+    });
     if (typeof heroExploreBtn !== 'undefined' && heroExploreBtn) heroExploreBtn.addEventListener('click', () => {
         const more = document.querySelector('.more-games-section');
         if (more) more.scrollIntoView({ behavior: 'smooth' });
