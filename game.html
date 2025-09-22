@@ -826,6 +826,22 @@
         
         // 游戏数据
 const gameData = {
+            1: {
+                title: "Incredibox",
+                url: "https://www.miniplay.com/embed/incredibox",
+                description: "Create your own music with Incredibox! Mix different beats, effects, melodies and voices to create unique musical compositions in this interactive music game. Drag and drop icons onto characters to build your perfect rhythm. Share your creations and discover the amazing world of music creation!",
+                category: "music",
+                tags: ["music", "creative", "rhythm"],
+                icon: "🎵",
+                thumbnail: "🎵",
+                iframeSettings: {
+                    width: "800",
+                    height: "600",
+                    frameborder: "0",
+                    allowfullscreen: true,
+                    allow: "autoplay; fullscreen; microphone"
+                }
+            },
             2: {
                 title: "Cut Fruit Ninja",
                 url: "https://play.gamepix.com/cut-fruit-ninja/embed?sid=1",
@@ -867,7 +883,7 @@ const gameData = {
         // 获取当前游戏ID
         function getCurrentGameId() {
             const urlParams = new URLSearchParams(window.location.search);
-            return parseInt(urlParams.get('id')) || 2;
+            return parseInt(urlParams.get('id')) || 1;
         }
 
         // 调整游戏容器尺寸 - 和首页保持一致
@@ -915,9 +931,20 @@ const gameData = {
                 const gameIframe = document.getElementById('gameIframe');
                 const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
                 
-                if (isMobile) {
+                // 应用自定义 iframe 设置（如果存在）
+                if (game.iframeSettings) {
+                    const settings = game.iframeSettings;
+                    if (settings.frameborder !== undefined) gameIframe.frameBorder = settings.frameborder;
+                    if (settings.allowfullscreen) gameIframe.allowFullscreen = settings.allowfullscreen;
+                    if (settings.allow) gameIframe.allow = settings.allow;
+                    console.log('应用自定义 iframe 设置:', settings);
+                }
+                
+                if (isMobile && !game.iframeSettings) {
+                    // 对于没有自定义设置的游戏，使用移动端优化
                     gameIframe.src = game.url.replace('play.gamepix.com', 'games.gamepix.com').replace('/embed?sid=1', '/?pub_id=1');
                 } else {
+                    // 使用原始 URL（包括有自定义设置的游戏）
                     gameIframe.src = game.url;
                 }
             }
