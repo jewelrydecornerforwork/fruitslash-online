@@ -597,7 +597,7 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-brand">
-                <a href="#" class="footer-logo">
+                <a href="/" class="footer-logo"
                     <img src="logo.png" alt="FruitSlash.online Logo" style="width: 3rem; height: 3rem; margin-right: 0.5rem;" loading="lazy">
                     FruitSlash.online
                 </a>
@@ -619,10 +619,10 @@
             <div class="footer-section">
                 <h3>Legal</h3>
                 <div class="footer-links">
-                    <a href="#privacy">Privacy Policy</a>
-                    <a href="#terms">Terms of Service</a>
-                    <a href="#contact">Contact</a>
-                    <a href="#dmca">DMCA</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Contact</a>
+                    <a href="#">DMCA</a>
                 </div>
             </div>
         </div>
@@ -633,7 +633,7 @@
     </footer>
 
     <script>
-        // 游戏数据
+        // Unified Game Data Structure
         const gameData = [
             {
                 id: 2,
@@ -644,7 +644,10 @@
                 gameUrl: "https://play.gamepix.com/cut-fruit-ninja/embed?sid=1",
                 thumbnail: "https://img.gamepix.com/games/cut-fruit-ninja/icon/cut-fruit-ninja.png?w=1",
                 rating: 4.5,
-                releaseDate: "2024-01-15"
+                type: "single",
+                difficulty: "medium",
+                releaseDate: "2024-01-15",
+                icon: "🥷"
             },
             {
                 id: 3,
@@ -655,7 +658,10 @@
                 gameUrl: "https://play.gamepix.com/princess-rescue-fruit-connect/embed?sid=1",
                 thumbnail: "https://img.gamepix.com/games/princess-rescue-fruit-connect/icon/princess-rescue-fruit-connect.png?w=105",
                 rating: 4.2,
-                releaseDate: "2024-02-20"
+                type: "levels",
+                difficulty: "easy",
+                releaseDate: "2024-02-20",
+                icon: "👸"
             },
             {
                 id: 4,
@@ -666,7 +672,10 @@
                 gameUrl: "https://play.gamepix.com/fruit-fiesta/embed?sid=1",
                 thumbnail: "https://img.gamepix.com/games/fruit-fiesta/icon/fruit-fiesta.png?w=105",
                 rating: 4.0,
-                releaseDate: "2024-01-30"
+                type: "endless",
+                difficulty: "medium",
+                releaseDate: "2024-01-30",
+                icon: "🎉"
             },
             {
                 id: 5,
@@ -677,7 +686,10 @@
                 gameUrl: "https://play.gamepix.com/crazy-fruit-merge/embed?sid=1",
                 thumbnail: "https://img.gamepix.com/games/crazy-fruit-merge/icon/crazy-fruit-merge.png?w=105",
                 rating: 4.7,
-                releaseDate: "2024-03-10"
+                type: "single",
+                difficulty: "easy",
+                releaseDate: "2024-03-10",
+                icon: "🔄"
             }
         ];
 
@@ -839,14 +851,14 @@
                 const game = gameData.find(g => g.id === gameId);
                 if (!game) {
                     console.error(`Game with ID ${gameId} not found`);
-                    alert('游戏不存在，请稍后再试！');
+                    alert('Game not found. Please try again later!');
                     return;
                 }
                 
                 window.location.href = `game.html?id=${gameId}`;
             } catch (error) {
                 console.error('Error opening game:', error);
-                alert('打开游戏时出现错误，请刷新页面后重试！');
+                alert('Error opening game. Please refresh the page and try again!');
             }
         }
 
