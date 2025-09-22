@@ -826,22 +826,6 @@
         
         // 游戏数据
 const gameData = {
-            1: {
-                title: "Incredibox",
-                url: "https://www.incredibox.com/",
-                description: "Create your own music with Incredibox! Mix different beats, effects, melodies and voices to create unique musical compositions in this interactive music game. Drag and drop icons onto characters to build your perfect rhythm. Share your creations and discover the amazing world of music creation!",
-                category: "music",
-                tags: ["music", "creative", "rhythm"],
-                icon: "🎵",
-                thumbnail: "🎵",
-                iframeSettings: {
-                    width: "800",
-                    height: "600",
-                    frameborder: "0",
-                    allowfullscreen: true,
-                    allow: "autoplay; fullscreen; microphone"
-                }
-            },
             2: {
                 title: "Cut Fruit Ninja",
                 url: "https://play.gamepix.com/cut-fruit-ninja/embed?sid=1",
@@ -883,7 +867,7 @@ const gameData = {
         // 获取当前游戏ID
         function getCurrentGameId() {
             const urlParams = new URLSearchParams(window.location.search);
-            return parseInt(urlParams.get('id')) || 1;
+            return parseInt(urlParams.get('id')) || 2;
         }
 
         // 调整游戏容器尺寸 - 和首页保持一致
