@@ -171,6 +171,33 @@
             margin-bottom: 1rem;
         }
 
+        .breadcrumb {
+            background: #f8f9fa;
+            padding: 1rem 2rem;
+        }
+
+        .breadcrumb-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .breadcrumb-links {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+
+        .breadcrumb-links a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .breadcrumb-links a:hover {
+            text-decoration: underline;
+        }
+
         .contact-info {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -383,6 +410,16 @@
             </div>
         </nav>
     </header>
+
+    <div class="breadcrumb">
+        <div class="breadcrumb-container">
+            <div class="breadcrumb-links">
+                <a href="/">Home</a>
+                <span>›</span>
+                <span>Contact</span>
+            </div>
+        </div>
+    </div>
 
     <!-- Main Content -->
     <main class="main-content">
